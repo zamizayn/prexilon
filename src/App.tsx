@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { ArrowUp, ArrowDownLeft, Check, Building2, HeartPulse, Globe, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUp, ArrowDownLeft, Check, Building2, HeartPulse, Globe, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -14,6 +14,7 @@ import posImg from "./assets/pos_bg.png";
 import retinaImg from "./assets/retinaImg.png";
 import iitk from "./assets/iitk.png";
 import footerLogo from "./assets/footerLogo.png";
+import contactBg from "./assets/contact_background.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -282,6 +283,60 @@ export default function App() {
     });
 
     // -----------------------------------
+    // Molecular Zoom Scroll Animation
+    // -----------------------------------
+    const molecularTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".molecular-scroll-section",
+        start: "top top",
+        end: "+=150%",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+      }
+    });
+
+    molecularTl.to(".molecular-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
+      .to(".molecular-image-layer", {
+        width: "100vw",
+        height: "100vh",
+        maxWidth: "100vw",
+        borderRadius: "0px",
+        duration: 0.6,
+        ease: "power2.inOut"
+      }, 0.1)
+      .to(".molecular-inner-img", { opacity: 0.4, duration: 0.4 }, 0.4)
+      .to(".molecular-bg-gradient", { opacity: 1, duration: 0.4 }, 0.4)
+      .to(".molecular-content-card", { opacity: 1, y: 0, duration: 0.4, pointerEvents: "auto", ease: "power2.out" }, 0.5);
+
+    // -----------------------------------
+    const eyeTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".eye-scroll-section",
+        start: "top top",
+        end: "+=150%",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+      }
+    });
+
+    eyeTl.to(".eye-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
+      .to(".eye-pupil", { opacity: 0, scale: 3, duration: 0.3 }, 0)
+      .to(".eye-image-layer", {
+        width: "100vw",
+        height: "100vh",
+        maxWidth: "100vw",
+        borderRadius: "0px",
+        duration: 0.6,
+        ease: "power2.inOut"
+      }, 0.1)
+      .to(".eye-preview-img", { opacity: 0, duration: 0.3 }, 0.2) // Crossfade out the 'object-contain' image
+      .to(".eye-scene-img", { opacity: 1, duration: 0.4 }, 0.2) // Crossfade into the 'object-cover' scene
+      .to(".eye-bg-gradient", { opacity: 1, duration: 0.4 }, 0.4)
+      .to(".eye-content-card", { opacity: 1, y: 0, duration: 0.4, pointerEvents: "auto", ease: "power2.out" }, 0.5);
+
+    // -----------------------------------
     // Special Device Floating Animation
     // -----------------------------------
     gsap.to(".modaplex-device", {
@@ -344,9 +399,9 @@ export default function App() {
               <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
                 Precision Diagnostics Powered By
               </h2>
-              <h3 className="gsap-hero-title text-5xl md:text-8xl font-display leading-[1] tracking-tight uppercase text-white">
+              <h3 className="gsap-hero-title text-4xl md:text-6xl lg:text-7xl font-display leading-[1] tracking-tight uppercase text-white">
                 <div className="overflow-hidden"><div className="gsap-hero-line">Next-Generation</div></div>
-                <div className="overflow-hidden py-1 -my-1"><div className="gsap-hero-line"><span className="bg-gradient-to-r from-white via-teal-100 to-teal-400 bg-clip-text text-transparent">Point-Of-Care</span></div></div>
+                <div className="overflow-hidden py-1 -my-1"><div className="gsap-hero-line"><span className="bg-gradient-to-r from-white via-teal-50 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span></div></div>
                 <div className="overflow-hidden"><div className="gsap-hero-line">And AI Diagnostics</div></div>
               </h3>
             </div>
@@ -443,9 +498,9 @@ export default function App() {
             <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-teal-200 mb-6 block">
               Services
             </span>
-            <h2 className="gsap-advanced-title text-6xl md:text-8xl font-display font-medium leading-[0.9] tracking-tight">
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Diagnostic</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Solutions</div></div>
+            <h2 className="gsap-advanced-title text-6xl md:text-8xl font-display font-medium leading-none tracking-tight">
+              <div className="overflow-hidden pb-4 -mb-2"><div className="gsap-title-line text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #FFFFFF 0%, #5BAAAD 100%)', paddingBottom: '0.1em' }}>Diagnostic</div></div>
+              <div className="overflow-hidden pb-4 -mb-2"><div className="gsap-title-line text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #FFFFFF 0%, #5BAAAD 100%)', paddingBottom: '0.1em' }}>Solutions</div></div>
             </h2>
           </div>
 
@@ -464,9 +519,9 @@ export default function App() {
       <section className="relative z-20 bg-[#f8f9fa] text-black py-24 md:py-32 px-8 md:px-16">
         <div className="max-w-7xl mx-auto">
           <div className="gsap-reveal-up mb-16">
-            <h2 className="gsap-advanced-title text-6xl md:text-8xl font-display font-light leading-none tracking-tight text-slate-800">
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Proprietary</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line"><span className="font-bold text-slate-900">Platforms</span></div></div>
+            <h2 className="gsap-advanced-title text-6xl md:text-8xl font-display font-light leading-none tracking-tight">
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #222222 0%, #5BAAAD 100%)' }}>Proprietary</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line font-bold text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #222222 0%, #5BAAAD 100%)' }}>Platforms</div></div>
             </h2>
           </div>
 
@@ -514,261 +569,241 @@ export default function App() {
         </div>
       </section>
 
-      {/* Detailed Platform Section 01 */}
-      <section className="relative z-20 bg-black text-white py-24 md:py-32 px-8 md:px-16 min-h-screen flex flex-col">
-        <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col">
-          {/* Counter */}
-          <div className="gsap-reveal-left mb-12">
-            <span className="font-display text-2xl tracking-tighter">
-              <span className="text-teal-400 font-bold">01</span>
-              <span className="text-gray-600">/02</span>
-            </span>
+      {/* Detailed Platform Section 01 - Molecular Zoom Scroll */}
+      <section className="molecular-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
+        <div className="molecular-pin-container relative w-full h-screen flex flex-col items-center justify-center">
+
+          {/* Background Image Container - Starts as small preview, grows to full screen */}
+          <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center translate-y-[5vh]">
+            <img
+              src={posImg}
+              alt="Hospital Diagnostic Preview"
+              className="molecular-inner-img w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+            {/* Dark gradient for the background context later */}
+            <div className="molecular-bg-gradient absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent opacity-0 pointer-events-none" />
           </div>
 
-          {/* Centered Content */}
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <h2 className="gsap-advanced-title text-5xl md:text-7xl font-display font-light leading-tight tracking-tight text-teal-50 max-w-4xl mb-16">
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Advanced Molecular</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Point-of-Care</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Diagnostics</div></div>
-            </h2>
-
-            <div className="gsap-reveal-scale relative w-full max-w-2xl aspect-video overflow-hidden rounded-lg shadow-2xl shadow-teal-900/20">
-              <img
-                src={posImg}
-                alt="Molecular Diagnostics"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Detailed Platform Section 02 - Full Width */}
-      <section className="relative z-20 bg-black text-white h-screen w-full overflow-hidden border-t border-white/5">
-        <div className="gsap-reveal-fade w-full h-full">
-          <img
-            src={posImg}
-            alt="Retinal Screening Full Width"
-            className="gsap-parallax-image w-full h-full object-cover"
-            style={{ transformOrigin: "center center" }}
-            referrerPolicy="no-referrer"
-          />
-        </div>
-      </section>
-
-      {/* ModaPlex Platform Section */}
-      <section className="relative z-20 min-h-screen w-full overflow-hidden flex items-center px-8 md:px-16 py-24">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={posImg}
-            alt="Hospital Background"
-            className="w-full h-full object-cover opacity-40"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content Card */}
-          <div className="gsap-reveal-left bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] relative overflow-visible">
-            {/* Device Image Floating */}
-            <div className="gsap-reveal-up modaplex-device absolute -top-12 -right-4 md:-top-16 md:-right-20 w-48 md:w-64 z-20">
-              <img
-                src={posMachineImg}
-                alt="ModaPlex Device"
-                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            <div className="inline-block bg-white text-teal-600 px-4 py-1.5 rounded-full text-sm font-display font-bold mb-8">
-              ModaPlex™ Platform
-            </div>
-
-            <h2 className="gsap-advanced-title text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white">
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Advanced Molecular</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Point-of-Care</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Diagnostics</div></div>
-            </h2>
-
-            <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
-              Bringing the Lab to the Patient
-            </p>
-
-            <p className="text-lg text-gray-300 font-light leading-relaxed mb-12 max-w-xl">
-              Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure
-            </p>
-
-            <ul className="space-y-6">
-              {[
-                "Laboratory-grade accuracy in point-of-care settings",
-                "Ultrafast results without specialized infrastructure",
-                "Accessible in urban and rural healthcare environments"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-gray-200 font-light">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center">
-                    <Check className="w-4 h-4 text-white" />
+          {/* The ModaPlex Card - Hidden initially, fades in smoothly */}
+          <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
+            <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center px-8 md:px-16 pt-24 md:pt-32">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] relative shadow-2xl pointer-events-auto">
+                  <div className="gsap-reveal-up modaplex-device absolute -top-12 -right-4 md:-top-16 md:-right-20 w-48 md:w-64 z-20">
+                    <img
+                      src={posMachineImg}
+                      alt="ModaPlex Device"
+                      className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          <div className="hidden lg:block" />
-        </div>
-      </section>
-
-      {/* Detailed Platform Section 02 - AI Retinal Screening */}
-      <section className="relative z-20 bg-black text-white min-h-screen w-full overflow-hidden flex flex-col p-8 md:p-16 border-t border-white/5">
-        <div className="flex flex-col h-full">
-          {/* Counter */}
-          <div className="gsap-reveal-left mb-12">
-            <span className="font-display text-2xl tracking-tighter">
-              <span className="text-teal-400 font-bold">02</span>
-              <span className="text-gray-600">/02</span>
-            </span>
-          </div>
-
-          {/* Centered Content */}
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <h2 className="gsap-advanced-title text-5xl md:text-7xl font-display font-light leading-tight tracking-tight text-teal-50 max-w-4xl mb-16">
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">AI-Powered Retinal</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Screening</div></div>
-              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Technology</div></div>
-            </h2>
-
-            <div className="gsap-reveal-scale relative w-64 h-64 md:w-80 md:h-80">
-              <img
-                src={eyeImage}
-                alt="Retinal Screening"
-                className="w-full h-full object-contain"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Immersive Medical Visual - Full Width */}
-      <section className="relative z-20 h-screen w-full overflow-hidden border-t border-white/5">
-        <div className="gsap-reveal-fade w-full h-full">
-          <img
-            src={posImg}
-            alt="Immersive Medical Technology"
-            className="gsap-parallax-image w-full h-full object-cover"
-            style={{ transformOrigin: "center center" }}
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
-        </div>
-      </section>
-
-      {/* AI Retinal Screening Detailed Section */}
-      <section className="relative z-20 min-h-screen w-full overflow-hidden flex items-center px-8 md:px-16 py-24">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={posImg}
-            alt="Retinal Screening Background"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          {/* Content Card */}
-          <div className="gsap-reveal-left bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] max-w-3xl relative overflow-visible">
-            {/* Retina Image Floating */}
-            <div className="gsap-reveal-up modaplex-device absolute -top-16 -right-4 md:-top-24 md:-right-20 w-48 md:w-64 z-20">
-              <img
-                src={retinaImg}
-                alt="Retina Device"
-                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white">
-              AI-Powered Retinal <br />
-              Screening Technology
-            </h2>
-
-            <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
-              See the Unseen. Screen the Unscreened.
-            </p>
-
-            <p className="text-lg text-gray-200 font-light leading-relaxed mb-12">
-              An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports, replacing costly and invasive diagnostic procedures with accessible screening.
-            </p>
-
-            <ul className="space-y-6 mb-12">
-              {[
-                "Scan time is 5 minutes and the procedure is completely non-invasive.",
-                "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
-                "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-4 text-gray-200 font-light">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center mt-1">
-                    <Check className="w-4 h-4 text-white" />
+                  <div className="inline-block bg-white text-teal-600 px-4 py-1.5 rounded-full text-sm font-display font-bold mb-8 shadow-sm">
+                    ModaPlex™ Platform
                   </div>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
 
-            {/* Collaboration Badge */}
-            <div className="gsap-reveal-up bg-white rounded-2xl p-4 md:p-6 flex items-center gap-6 w-fit shadow-xl" style={{ transitionDelay: '300ms' }}>
-              <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
-                <img
-                  src={iitk}
-                  alt="IIITK Logo"
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div>
-                <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">Research Partner</p>
-                <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
+                  <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white drop-shadow-sm">
+                    Advanced Molecular <br />
+                    Point-of-Care Diagnostics
+                  </h2>
+
+                  <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
+                    Bringing the Lab to the Patient
+                  </p>
+
+                  <p className="text-lg text-gray-300 font-light leading-relaxed mb-12 max-w-xl">
+                    Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.
+                  </p>
+
+                  <ul className="space-y-6">
+                    {[
+                      "Laboratory-grade accuracy in point-of-care settings",
+                      "Ultrafast results without specialized infrastructure",
+                      "Accessible in urban and rural healthcare environments"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-4 text-gray-200 font-light">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center shadow-md">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="hidden lg:block" />
               </div>
             </div>
           </div>
+
+          {/* The Setup Elements (text, counter) - Active at start, hidden on scroll */}
+          <div className="molecular-setup-layer absolute inset-0 z-20 pointer-events-none">
+            {/* Counter */}
+            <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20">
+              <span className="font-display text-2xl tracking-tighter">
+                <span className="text-[#99f6e4] font-bold">01</span>
+                <span className="text-zinc-500 font-medium">/02</span>
+              </span>
+            </div>
+
+            {/* Title */}
+            <div className="absolute inset-x-0 top-[15vh] md:top-[12vh] z-20 flex flex-col items-center justify-center text-center w-full px-8">
+              <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>Advanced Molecular</span>
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Point-of-Care</span>
+                <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Diagnostics</span>
+              </h2>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Detailed Platform Section 02 - AI Retinal Screening (Eye Zoom Scroll) */}
+      <section className="eye-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
+        <div className="eye-pin-container relative w-full h-screen flex flex-col items-center justify-center">
+
+          {/* Background Image Container - Starts as an eye lens, grows to full screen */}
+          <div className="eye-image-layer absolute z-0 overflow-hidden w-[80vw] md:w-full max-w-sm aspect-[2/1] rounded-[100%] flex items-center justify-center translate-y-[10vh] bg-black">
+            {/* The Initial Preview mapped to the specific provided image with exactly 'object-contain' */}
+            <img
+              src={eyeImage}
+              alt="Eye Provided Image"
+              className="eye-preview-img absolute inset-0 w-full h-full object-contain opacity-100 z-10 pointer-events-none"
+              referrerPolicy="no-referrer"
+            />
+            {/* The Current Scene mapped to original full screen image using 'object-cover', hidden initially */}
+            <img
+              src={posImg}
+              alt="Retinal Full Scene"
+              className="eye-scene-img absolute inset-0 w-full h-full object-cover opacity-0 z-0 pointer-events-none"
+              referrerPolicy="no-referrer"
+            />
+
+            {/* The Pupil Ring! */}
+            <div className="eye-pupil absolute z-20 w-20 h-20 md:w-24 md:h-24 rounded-full border-[10px] md:border-[14px] border-black opacity-90 pointer-events-none" />
+            <div className="eye-bg-gradient absolute inset-0 z-30 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-0 pointer-events-none" />
+          </div>
+
+          {/* The Content Card - Hidden initially, fades in smoothly */}
+          <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
+            <div className="relative min-h-screen w-full flex items-center px-8 md:px-16 py-24 max-w-7xl mx-auto">
+              <div className="relative z-10 w-full pt-16 flex justify-start">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] max-w-3xl relative overflow-visible shadow-2xl pointer-events-auto">
+                  <div className="absolute -top-16 -right-4 md:-top-24 md:-right-20 w-48 md:w-64 z-20">
+                    <img
+                      src={retinaImg}
+                      alt="Retina Device"
+                      className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+
+                  <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white drop-shadow-md">
+                    AI-Powered Retinal <br />
+                    Screening Technology
+                  </h2>
+
+                  <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
+                    See the Unseen. Screen the Unscreened.
+                  </p>
+
+                  <p className="text-lg text-gray-200 font-light leading-relaxed mb-12">
+                    An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports, replacing costly and invasive diagnostic procedures with accessible screening.
+                  </p>
+
+                  <ul className="space-y-6 mb-12">
+                    {[
+                      "Scan time is 5 minutes and the procedure is completely non-invasive.",
+                      "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
+                      "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-4 text-gray-200 font-light">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center mt-1 shadow-lg">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="bg-white rounded-2xl p-4 md:p-6 flex items-center gap-6 w-fit shadow-xl border border-white/20">
+                    <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
+                      <img
+                        src={iitk}
+                        alt="IIITK Logo"
+                        className="w-full h-full object-contain"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">Research Partner</p>
+                      <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* The Setup Elements (text, counter) - Active at start, hidden on scroll */}
+          <div className="eye-setup-layer absolute inset-0 z-20 pointer-events-none">
+            {/* Counter */}
+            <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20">
+              <span className="font-display text-2xl tracking-tighter">
+                <span className="text-[#99f6e4] font-bold">02</span>
+                <span className="text-zinc-500 font-medium">/02</span>
+              </span>
+            </div>
+
+            {/* Title */}
+            <div className="absolute inset-x-0 top-[15vh] md:top-[12vh] z-20 flex flex-col items-center justify-center text-center w-full px-8">
+              <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>AI-Powered Retinal</span>
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Screening</span>
+                <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Technology</span>
+              </h2>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* CTA Section - Let's shape the Future together */}
       <section className="relative z-20 h-[70vh] w-full overflow-hidden flex items-center justify-center border-t border-white/5">
-        {/* Background Image with Blur */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=2000"
+            src={contactBg}
             alt="Scientific Background"
-            className="w-full h-full object-cover blur-sm opacity-50"
+            className="w-full h-full object-cover opacity-70"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
 
         <div className="relative z-10 text-center px-8">
-          <h2 className="gsap-advanced-title text-4xl md:text-6xl font-display font-bold text-white mb-4">
-            <div className="overflow-hidden pb-2"><div className="gsap-title-line">Let's shape the Future</div></div>
-            <div className="overflow-hidden pb-2"><div className="gsap-title-line">together</div></div>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg">
+            Let's shape the Future together
           </h2>
 
-          <p className="gsap-reveal-up-large text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-200 mb-10 max-w-2xl mx-auto drop-shadow-md">
             Schedule a free demo and see our programs in action.
           </p>
 
-          <div className="gsap-reveal-scale flex items-center justify-center gap-0.5">
-            <button className="bg-teal-900/80 hover:bg-teal-800 text-white px-8 py-3 rounded-l-lg font-display font-bold text-sm tracking-wide transition-colors">
-              Contact us
+          {/* Skewed Split Button exactly matching Figma design */}
+          <div className="gsap-reveal-scale flex items-stretch justify-center h-12 mt-8 group cursor-pointer relative z-10 transition-transform hover:scale-105 duration-300">
+            <button
+              className="bg-[#004e5a] text-white px-8 rounded-l-xl transition-colors shadow-lg flex items-center justify-center font-display font-medium tracking-wide z-10"
+              style={{ clipPath: 'polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%)' }}
+            >
+              <span className="mr-2">Conatct us</span>
             </button>
-            <div className="bg-gray-200 hover:bg-white text-black p-3 rounded-r-lg cursor-pointer transition-colors">
-              <Globe className="w-4 h-4 rotate-45" />
+            <div
+              className="bg-[#e4e2dd] text-[#004e5a] px-5 rounded-r-xl transition-colors shadow-lg flex items-center justify-center -ml-2.5 z-0"
+              style={{ clipPath: 'polygon(14px 0, 100% 0, 100% 100%, 0 100%)' }}
+            >
+              <ArrowRight className="w-5 h-5 ml-1" strokeWidth={2.5} />
             </div>
           </div>
         </div>
