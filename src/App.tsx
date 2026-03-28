@@ -1,24 +1,24 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { ArrowUp, ArrowDownLeft, Check, Building2, HeartPulse, Globe, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
+import { ArrowUp, ArrowDownLeft, Check, Building2, HeartPulse, Globe, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
 import heroBanner from "./assets/hero-banner.png";
 import logo from "./assets/logo.png";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
+import platformOneImg from "./assets/platform_1.png";
+import posMachineImg from "./assets/pos_machine.png";
+import eyeImage from "./assets/eye_image.png";
+import posImg from "./assets/pos_bg.png";
+import retinaImg from "./assets/retinaImg.png";
+import iitk from "./assets/iitk.png";
+import footerLogo from "./assets/footerLogo.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Parallax transforms
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -33,61 +33,292 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  useGSAP(() => {
+    // -----------------------------------
+    // Hero Parallax Backgrounds
+    // -----------------------------------
+    gsap.to(".hero-bg-dna", {
+      y: -200,
+      scale: 1.1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".hero-bg-cell-1", {
+      y: -100,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".hero-bg-cell-2", {
+      y: -300,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(".hero-bg-cell-3", {
+      y: -200,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    // -----------------------------------
+    // Hero Content Intro
+    // -----------------------------------
+    gsap.to(".hero-content-fade", {
+      opacity: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom center",
+        scrub: true,
+      },
+    });
+
+    gsap.from(".hero-content-left", {
+      x: -30,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power4.out",
+    });
+
+    gsap.from(".hero-content-right", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+
+    // -----------------------------------
+
+    // -----------------------------------
+    // Advanced Title Reveals (Staggered Masked Lines)
+    // -----------------------------------
+    gsap.utils.toArray<HTMLElement>(".gsap-advanced-title").forEach((title) => {
+      const lines = title.querySelectorAll(".gsap-title-line");
+      if (lines.length > 0) {
+        gsap.from(lines, {
+          scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+            once: true,
+          },
+          yPercent: 100,
+          rotation: 4,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+        });
+      }
+    });
+
+    gsap.from(".gsap-hero-line", {
+      yPercent: 100,
+      rotation: 4,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power4.out",
+      delay: 0.2
+    });
+
+    // -----------------------------------
+
+    // -----------------------------------
+    // Image Parallax Scrubbing
+    // -----------------------------------
+    gsap.utils.toArray<HTMLElement>(".gsap-parallax-image").forEach((img) => {
+      gsap.fromTo(img,
+        { scale: 1.25, yPercent: 5 },
+        {
+          scale: 1,
+          yPercent: -5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img.parentElement,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        }
+      );
+    });
+
+    // -----------------------------------
+    // Generic Reveals
+    // -----------------------------------
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-left").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        x: -20,
+        opacity: 0,
+        duration: 0.8,
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-right").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        x: 20,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.2, // Offset for typical right-side elements
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-up").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-up-large").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-scale").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-fade").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        opacity: 0,
+        duration: 1.5,
+      });
+    });
+
+    // -----------------------------------
+    // Stagger Containers
+    // -----------------------------------
+    gsap.utils.toArray<HTMLElement>(".gsap-stagger-container").forEach((container) => {
+      const items = container.querySelectorAll(".gsap-stagger-item");
+      gsap.from(items, {
+        scrollTrigger: {
+          trigger: container,
+          start: "top 80%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>(".gsap-stagger-container-large").forEach((container) => {
+      const items = container.querySelectorAll(".gsap-stagger-item-large");
+      gsap.from(items, {
+        scrollTrigger: {
+          trigger: container,
+          start: "top 80%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+      });
+    });
+
+    // -----------------------------------
+    // Special Device Floating Animation
+    // -----------------------------------
+    gsap.to(".modaplex-device", {
+      y: -15,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+
+  }, { scope: containerRef });
+
   return (
     <main ref={containerRef} className="relative bg-black">
       {/* Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden flex flex-col bg-black">
+      <section className="hero-section relative h-screen w-full overflow-hidden flex flex-col bg-black">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           {/* DNA Helix Background */}
-          <motion.div
-            style={{ y: y1, scale }}
-            className="absolute -right-20 -top-20 w-[80%] h-[120%] opacity-40"
-          >
+          <div className="hero-bg-dna absolute -right-20 -top-20 w-[80%] h-[120%] opacity-40">
             <img
               src={heroBanner}
               alt="Hero Banner"
               className="w-full h-full object-contain"
               referrerPolicy="no-referrer"
             />
-          </motion.div>
+          </div>
 
           {/* Glowing Cells/Viruses */}
-          <motion.div
-            style={{ y: y2 }}
-            className="absolute left-[10%] top-[15%] w-48 h-48 opacity-60 filter blur-[2px]"
-          >
-            {/* <img 
-              src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800" 
-              alt="Cell"
-              className="w-full h-full object-contain"
-              referrerPolicy="no-referrer"
-            /> */}
-          </motion.div>
+          <div className="hero-bg-cell-1 absolute left-[10%] top-[15%] w-48 h-48 opacity-60 filter blur-[2px]">
+          </div>
 
-          <motion.div
-            style={{ y: y3 }}
-            className="absolute left-[45%] top-[35%] w-64 h-64 opacity-80"
-          >
-            {/* <img
-              src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800"
-              alt="Cell"
-              className="w-full h-full object-contain"
-              referrerPolicy="no-referrer"
-            /> */}
-          </motion.div>
+          <div className="hero-bg-cell-2 absolute left-[45%] top-[35%] w-64 h-64 opacity-80">
+          </div>
 
-          <motion.div
-            style={{ y: y1 }}
-            className="absolute right-[5%] bottom-[20%] w-56 h-56 opacity-50 filter blur-[1px]"
-          >
-            {/* <img
-              src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800"
-              alt="Cell"
-              className="w-full h-full object-contain"
-              referrerPolicy="no-referrer"
-            /> */}
-          </motion.div>
+          <div className="hero-bg-cell-3 absolute right-[5%] bottom-[20%] w-56 h-56 opacity-50 filter blur-[1px]">
+          </div>
 
           {/* Overlays */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
@@ -107,39 +338,24 @@ export default function App() {
         </nav>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center p-8 md:p-16">
+        <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-8 md:p-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end h-full">
-            <motion.div
-              style={{ opacity }}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="lg:col-span-8 mb-12 lg:mb-0"
-            >
+            <div className="hero-content-left lg:col-span-8 mb-12 lg:mb-0">
               <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
                 Precision Diagnostics Powered By
               </h2>
-              <h3 className="text-5xl md:text-8xl font-display leading-[1] tracking-tight uppercase text-white">
-                Next-Generation <br />
-                <span className="bg-gradient-to-r from-white via-teal-100 to-teal-400 bg-clip-text text-transparent">
-                  Point-Of-Care
-                </span>
-                <br />
-                And AI Diagnostics
+              <h3 className="gsap-hero-title text-5xl md:text-8xl font-display leading-[1] tracking-tight uppercase text-white">
+                <div className="overflow-hidden"><div className="gsap-hero-line">Next-Generation</div></div>
+                <div className="overflow-hidden py-1 -my-1"><div className="gsap-hero-line"><span className="bg-gradient-to-r from-white via-teal-100 to-teal-400 bg-clip-text text-transparent">Point-Of-Care</span></div></div>
+                <div className="overflow-hidden"><div className="gsap-hero-line">And AI Diagnostics</div></div>
               </h3>
-            </motion.div>
+            </div>
 
-            <motion.div
-              style={{ opacity }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              className="lg:col-span-4 lg:ml-auto max-w-sm"
-            >
+            <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-sm">
               <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
                 Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -148,36 +364,23 @@ export default function App() {
       <section className="relative z-20 bg-white text-black py-24 md:py-32 px-8 md:px-12">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-32">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light leading-[1.00] tracking-tight text-[#2d3a3a]">
-                Engineering <span className="text-[#5a9191]">scalable</span> <br />
-                <span className="text-[#2d3a3a]">diagnostics</span> <span className="text-slate-500">for a</span> <br />
-                <span className="text-slate-500">world that needs</span> <br />
-                <span className="text-slate-500">precision</span>
+            <div className="gsap-reveal-left lg:col-span-7">
+              <h2 className="gsap-advanced-title text-4xl md:text-5xl lg:text-6xl font-display font-light leading-[1.00] tracking-tight text-[#2d3a3a]">
+                <div className="overflow-hidden pb-1"><div className="gsap-title-line">Engineering <span className="text-[#5a9191]">scalable</span></div></div>
+                <div className="overflow-hidden pb-1"><div className="gsap-title-line"><span className="text-[#2d3a3a]">diagnostics</span> <span className="text-slate-500">for a</span></div></div>
+                <div className="overflow-hidden pb-1"><div className="gsap-title-line"><span className="text-slate-500">world that needs</span></div></div>
+                <div className="overflow-hidden pb-1"><div className="gsap-title-line"><span className="text-slate-500">precision</span></div></div>
               </h2>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 lg:pt-16"
-            >
+            <div className="gsap-reveal-right lg:col-span-5 lg:pt-16">
               <p className="text-base md:text-lg text-slate-600 font-light leading-relaxed max-w-sm ml-auto">
                 Combining artificial intelligence with advanced bioscience to enable fast, accurate diagnostics at the point of care
               </p>
-            </motion.div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="gsap-stagger-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
               {
                 icon: <Building2 className="w-6 h-6 text-teal-600" />,
@@ -200,13 +403,9 @@ export default function App() {
                 desc: "Accessible healthcare solutions worldwide"
               }
             ].map((feature, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex flex-col gap-6"
+                className="gsap-stagger-item flex flex-col gap-6"
               >
                 <div className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center">
                   {feature.icon}
@@ -219,7 +418,7 @@ export default function App() {
                     {feature.desc}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -230,7 +429,8 @@ export default function App() {
         <img
           src={diagnosticImg}
           alt="Team Celebrating"
-          className="w-full h-full object-cover"
+          className="gsap-parallax-image w-full h-full object-cover"
+          style={{ transformOrigin: "center center" }}
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-black/10" />
@@ -239,76 +439,55 @@ export default function App() {
       {/* Diagnostic Solutions Content Section */}
       <section className="relative z-20 bg-[#004d55] text-white py-24 md:py-32 px-8 md:px-16">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="gsap-reveal-up">
             <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-teal-200 mb-6 block">
               Services
             </span>
-            <h2 className="text-6xl md:text-8xl font-display font-medium leading-[0.9] tracking-tight">
-              Diagnostic <br />
-              Solutions
+            <h2 className="gsap-advanced-title text-6xl md:text-8xl font-display font-medium leading-[0.9] tracking-tight">
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Diagnostic</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Solutions</div></div>
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:pt-20"
-          >
+          <div className="gsap-reveal-up md:pt-20" style={{ transitionDelay: '200ms' }}>
             <h3 className="text-xl font-display font-bold mb-8">
               Advanced Diagnostics for a Healthier World
             </h3>
             <p className="text-xl md:text-2xl text-teal-50/80 font-light leading-relaxed">
               Prexilon develops and commercializes next-generation diagnostic platforms — from molecular point-of-care testing to AI-powered screening technologies — while partnering with global innovators to bring the world's best diagnostic solutions to the Indian healthcare market.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Proprietary Platforms Section */}
       <section className="relative z-20 bg-[#f8f9fa] text-black py-24 md:py-32 px-8 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <h2 className="text-6xl md:text-8xl font-display font-light leading-none tracking-tight text-slate-800">
-              Proprietary <br />
-              <span className="font-bold text-slate-900">Platforms</span>
+          <div className="gsap-reveal-up mb-16">
+            <h2 className="gsap-advanced-title text-6xl md:text-8xl font-display font-light leading-none tracking-tight text-slate-800">
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Proprietary</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line"><span className="font-bold text-slate-900">Platforms</span></div></div>
             </h2>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="gsap-stagger-container-large grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {[
               {
                 id: "01",
                 title: "Advanced Molecular Point-of-Care Diagnostics",
                 subtitle: "Bringing the Lab to the Patient",
-                image: "https://images.unsplash.com/photo-1579154273801-e91e35495566?auto=format&fit=crop&q=80&w=1200"
+                image: platformOneImg
               },
               {
                 id: "02",
                 title: "AI-Powered Retinal Screening Technology",
                 subtitle: "See the Unseen. Screen the Unscreened.",
-                image: "https://images.unsplash.com/photo-1581093458791-9f3c3250bb8b?auto=format&fit=crop&q=80&w=1200"
+                image: platformOneImg
               }
-            ].map((platform, i) => (
-              <motion.div
+            ].map((platform) => (
+              <div
                 key={platform.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="bg-white group"
+                className="gsap-stagger-item-large bg-white group"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img
@@ -329,7 +508,7 @@ export default function App() {
                     {platform.subtitle}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -339,66 +518,44 @@ export default function App() {
       <section className="relative z-20 bg-black text-white py-24 md:py-32 px-8 md:px-16 min-h-screen flex flex-col">
         <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col">
           {/* Counter */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
+          <div className="gsap-reveal-left mb-12">
             <span className="font-display text-2xl tracking-tighter">
               <span className="text-teal-400 font-bold">01</span>
               <span className="text-gray-600">/02</span>
             </span>
-          </motion.div>
+          </div>
 
           {/* Centered Content */}
           <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-display font-light leading-tight tracking-tight text-teal-50 max-w-4xl mb-16"
-            >
-              Advanced Molecular <br />
-              Point-of-Care <br />
-              Diagnostics
-            </motion.h2>
+            <h2 className="gsap-advanced-title text-5xl md:text-7xl font-display font-light leading-tight tracking-tight text-teal-50 max-w-4xl mb-16">
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Advanced Molecular</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Point-of-Care</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Diagnostics</div></div>
+            </h2>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative w-full max-w-2xl aspect-video overflow-hidden rounded-lg shadow-2xl shadow-teal-900/20"
-            >
+            <div className="gsap-reveal-scale relative w-full max-w-2xl aspect-video overflow-hidden rounded-lg shadow-2xl shadow-teal-900/20">
               <img
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200"
+                src={posImg}
                 alt="Molecular Diagnostics"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Detailed Platform Section 02 - Full Width */}
       <section className="relative z-20 bg-black text-white h-screen w-full overflow-hidden border-t border-white/5">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="w-full h-full"
-        >
+        <div className="gsap-reveal-fade w-full h-full">
           <img
-            src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=2000"
+            src={posImg}
             alt="Retinal Screening Full Width"
-            className="w-full h-full object-cover"
+            className="gsap-parallax-image w-full h-full object-cover"
+            style={{ transformOrigin: "center center" }}
             referrerPolicy="no-referrer"
           />
-        </motion.div>
+        </div>
       </section>
 
       {/* ModaPlex Platform Section */}
@@ -406,7 +563,7 @@ export default function App() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=2000"
+            src={posImg}
             alt="Hospital Background"
             className="w-full h-full object-cover opacity-40"
             referrerPolicy="no-referrer"
@@ -416,37 +573,25 @@ export default function App() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] relative overflow-visible"
-          >
+          <div className="gsap-reveal-left bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] relative overflow-visible">
             {/* Device Image Floating */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="absolute -top-24 right-0 md:-right-12 w-48 md:w-64 z-20"
-            >
+            <div className="gsap-reveal-up modaplex-device absolute -top-12 -right-4 md:-top-16 md:-right-20 w-48 md:w-64 z-20">
               <img
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600"
+                src={posMachineImg}
                 alt="ModaPlex Device"
                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
                 referrerPolicy="no-referrer"
               />
-            </motion.div>
+            </div>
 
             <div className="inline-block bg-white text-teal-600 px-4 py-1.5 rounded-full text-sm font-display font-bold mb-8">
               ModaPlex™ Platform
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white">
-              Advanced Molecular <br />
-              Point-of-Care <br />
-              Diagnostics
+            <h2 className="gsap-advanced-title text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white">
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Advanced Molecular</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Point-of-Care</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Diagnostics</div></div>
             </h2>
 
             <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
@@ -471,9 +616,8 @@ export default function App() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Right side remains empty to show background image as per design */}
           <div className="hidden lg:block" />
         </div>
       </section>
@@ -482,74 +626,45 @@ export default function App() {
       <section className="relative z-20 bg-black text-white min-h-screen w-full overflow-hidden flex flex-col p-8 md:p-16 border-t border-white/5">
         <div className="flex flex-col h-full">
           {/* Counter */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
+          <div className="gsap-reveal-left mb-12">
             <span className="font-display text-2xl tracking-tighter">
               <span className="text-teal-400 font-bold">02</span>
               <span className="text-gray-600">/02</span>
             </span>
-          </motion.div>
+          </div>
 
           {/* Centered Content */}
           <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-display font-light leading-tight tracking-tight text-teal-50 max-w-4xl mb-16"
-            >
-              AI-Powered Retinal <br />
-              Screening <br />
-              Technology
-            </motion.h2>
+            <h2 className="gsap-advanced-title text-5xl md:text-7xl font-display font-light leading-tight tracking-tight text-teal-50 max-w-4xl mb-16">
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">AI-Powered Retinal</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Screening</div></div>
+              <div className="overflow-hidden pb-2"><div className="gsap-title-line">Technology</div></div>
+            </h2>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative w-64 h-64 md:w-80 md:h-80 overflow-hidden rounded-full border-4 border-white/10 shadow-2xl shadow-teal-900/40"
-            >
+            <div className="gsap-reveal-scale relative w-64 h-64 md:w-80 md:h-80">
               <img
-                src="https://images.unsplash.com/photo-1579154273801-e91e35495566?auto=format&fit=crop&q=80&w=800"
+                src={eyeImage}
                 alt="Retinal Screening"
-                className="w-full h-full object-cover scale-110"
+                className="w-full h-full object-contain"
                 referrerPolicy="no-referrer"
               />
-              {/* Eye pupil overlay effect */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-[12px] border-black/80 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-white/20" />
-                </div>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Immersive Medical Visual - Full Width */}
       <section className="relative z-20 h-screen w-full overflow-hidden border-t border-white/5">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="w-full h-full"
-        >
+        <div className="gsap-reveal-fade w-full h-full">
           <img
-            src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=2000"
+            src={posImg}
             alt="Immersive Medical Technology"
-            className="w-full h-full object-cover"
+            className="gsap-parallax-image w-full h-full object-cover"
+            style={{ transformOrigin: "center center" }}
             referrerPolicy="no-referrer"
           />
-          {/* Subtle overlay to tie it to the theme */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
-        </motion.div>
+        </div>
       </section>
 
       {/* AI Retinal Screening Detailed Section */}
@@ -557,7 +672,7 @@ export default function App() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=2000"
+            src={posImg}
             alt="Retinal Screening Background"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -567,13 +682,17 @@ export default function App() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Content Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] max-w-3xl"
-          >
+          <div className="gsap-reveal-left bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] max-w-3xl relative overflow-visible">
+            {/* Retina Image Floating */}
+            <div className="gsap-reveal-up modaplex-device absolute -top-16 -right-4 md:-top-24 md:-right-20 w-48 md:w-64 z-20">
+              <img
+                src={retinaImg}
+                alt="Retina Device"
+                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
             <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white">
               AI-Powered Retinal <br />
               Screening Technology
@@ -603,16 +722,10 @@ export default function App() {
             </ul>
 
             {/* Collaboration Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white rounded-2xl p-4 md:p-6 flex items-center gap-6 w-fit shadow-xl"
-            >
+            <div className="gsap-reveal-up bg-white rounded-2xl p-4 md:p-6 flex items-center gap-6 w-fit shadow-xl" style={{ transitionDelay: '300ms' }}>
               <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Indian_Institute_of_Information_Technology%2C_Kottayam_Logo.png/220px-Indian_Institute_of_Information_Technology%2C_Kottayam_Logo.png"
+                  src={iitk}
                   alt="IIITK Logo"
                   className="w-full h-full object-contain"
                   referrerPolicy="no-referrer"
@@ -622,8 +735,8 @@ export default function App() {
                 <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">Research Partner</p>
                 <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -641,40 +754,23 @@ export default function App() {
         </div>
 
         <div className="relative z-10 text-center px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-display font-bold text-white mb-4"
-          >
-            Let's shape the Future together
-          </motion.h2>
+          <h2 className="gsap-advanced-title text-4xl md:text-6xl font-display font-bold text-white mb-4">
+            <div className="overflow-hidden pb-2"><div className="gsap-title-line">Let's shape the Future</div></div>
+            <div className="overflow-hidden pb-2"><div className="gsap-title-line">together</div></div>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
-          >
+          <p className="gsap-reveal-up-large text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
             Schedule a free demo and see our programs in action.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center justify-center gap-0.5"
-          >
+          <div className="gsap-reveal-scale flex items-center justify-center gap-0.5">
             <button className="bg-teal-900/80 hover:bg-teal-800 text-white px-8 py-3 rounded-l-lg font-display font-bold text-sm tracking-wide transition-colors">
               Contact us
             </button>
             <div className="bg-gray-200 hover:bg-white text-black p-3 rounded-r-lg cursor-pointer transition-colors">
               <Globe className="w-4 h-4 rotate-45" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -684,7 +780,7 @@ export default function App() {
           {/* Brand Column */}
           <div className="space-y-8">
             <div className="bg-white p-4 inline-block rounded-sm">
-              <img src={logo} alt="PREXILON" className="h-12 w-auto object-contain" />
+              <img src={footerLogo} alt="PREXILON" className="h-12 w-auto object-contain" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               Empowering India's future through Prexilon
@@ -756,22 +852,16 @@ export default function App() {
       </footer>
 
       {/* Scroll to Top Button */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            initial={{ opacity: 0, y: 20, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 bg-teal-600 text-white p-4 rounded-full shadow-2xl hover:bg-teal-500 transition-colors group"
-            aria-label="Scroll to top"
-          >
-            <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 z-50 bg-teal-600 text-white p-4 rounded-full shadow-2xl hover:bg-teal-500 transition-all duration-500 group ${showScrollTop
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "translate-y-8 opacity-0 pointer-events-none"
+          }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
+      </button>
     </main>
   );
 }
