@@ -296,12 +296,15 @@ export default function App() {
       }
     });
 
+    gsap.set(".molecular-image-layer", { y: "15vh" });
+
     molecularTl.to(".molecular-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
       .to(".molecular-image-layer", {
         width: "100vw",
         height: "100vh",
         maxWidth: "100vw",
         borderRadius: "0px",
+        y: 0,
         duration: 0.6,
         ease: "power2.inOut"
       }, 0.1)
@@ -321,23 +324,20 @@ export default function App() {
       }
     });
 
-    gsap.set(".eye-image-layer", { y: "10vh" });
+    gsap.set(".eye-image-layer", { y: "15vh" });
 
     eyeTl.to(".eye-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
-      .to(".eye-pupil", { opacity: 0, scale: 15, duration: 0.4 }, 0)
+      .to(".eye-pupil", { opacity: 0, scale: 40, duration: 0.4 }, 0)
       .to(".eye-image-layer", {
-        scale: 25,
+        width: "10800px",
+        height: "4500px",
         y: 0,
         duration: 0.8,
         ease: "power2.inOut"
       }, 0.1)
-      .to(".eye-zoom-wrapper", {
-        scale: 0.08,
-        duration: 0.8,
-        ease: "power2.inOut"
-      }, 0.1)
       .to(".eye-preview-img", { opacity: 0, duration: 0.3 }, 0.2)
-      .to(".eye-scene-img", { opacity: 1, duration: 0.4 }, 0.2)
+      .to(".eye-scene-img", { opacity: 1, duration: 0.3 }, 0.2)
+      .to(".eye-scene-img", { opacity: 0.4, duration: 0.4 }, 0.5)
       .to(".eye-bg-gradient", { opacity: 1, duration: 0.4 }, 0.4)
       .to(".eye-content-card", { opacity: 1, y: 0, duration: 0.4, pointerEvents: "auto", ease: "power2.out" }, 0.5);
 
@@ -579,7 +579,7 @@ export default function App() {
         <div className="molecular-pin-container relative w-full h-screen flex flex-col items-center justify-center">
 
           {/* Background Image Container - Starts as small preview, grows to full screen */}
-          <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center translate-y-[5vh]">
+          <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center">
             <img
               src={posImg}
               alt="Hospital Diagnostic Preview"
@@ -652,8 +652,8 @@ export default function App() {
             </div>
 
             {/* Title */}
-            <div className="absolute inset-x-0 top-[15vh] md:top-[12vh] z-20 flex flex-col items-center justify-center text-center w-full px-8">
-              <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+            <div className="absolute inset-x-0 top-32 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
+              <h2 className="text-4xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>Advanced Molecular</span>
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Point-of-Care</span>
                 <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Diagnostics</span>
@@ -665,11 +665,13 @@ export default function App() {
       </section>
 
       {/* Detailed Platform Section 02 - AI Retinal Screening (Eye Zoom Scroll) */}
-      <section className="eye-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
+      <section className="eye-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5">
         <div className="eye-pin-container relative w-full h-screen flex flex-col items-center justify-center">
 
           {/* Background Image Container - Starts as an eye lens, grows to full screen */}
-          <div className="eye-image-layer absolute z-0 overflow-hidden w-[400px] h-[200px] flex items-center justify-center bg-black will-change-transform" style={{ 
+          <div className="eye-image-layer absolute z-10 overflow-hidden flex items-center justify-center bg-black max-w-none" style={{
+            width: '360px',
+            height: '150px',
             clipPath: 'url(#eye-clip)'
           }}>
             <div className="eye-zoom-wrapper absolute w-[100vw] h-[100vh] max-w-none flex items-center justify-center flex-shrink-0">
@@ -766,8 +768,8 @@ export default function App() {
             </div>
 
             {/* Title */}
-            <div className="absolute inset-x-0 top-[15vh] md:top-[12vh] z-20 flex flex-col items-center justify-center text-center w-full px-8">
-              <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+            <div className="absolute inset-x-0 top-32 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
+              <h2 className="text-4xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>AI-Powered Retinal</span>
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Screening</span>
                 <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Technology</span>
@@ -906,10 +908,19 @@ export default function App() {
       >
         <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
       </button>
+
+      {/* ✅ REALISTIC EYE SHAPE MASK */}
       <svg width="0" height="0" className="absolute pointer-events-none opacity-0">
         <defs>
           <clipPath id="eye-clip" clipPathUnits="objectBoundingBox">
-            <path d="M0,0.5 Q0.5,0 1,0.5 Q0.5,1 0,0.5 Z" />
+            <path d="
+              M 0,0.5
+              C 0.2,0.2 0.35,0.05 0.5,0.05
+              C 0.65,0.05 0.8,0.2 1,0.5
+              C 0.8,0.8 0.65,0.95 0.5,0.95
+              C 0.35,0.95 0.2,0.8 0,0.5
+              Z
+            " />
           </clipPath>
         </defs>
       </svg>
