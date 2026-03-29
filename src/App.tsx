@@ -321,18 +321,23 @@ export default function App() {
       }
     });
 
+    gsap.set(".eye-image-layer", { y: "10vh" });
+
     eyeTl.to(".eye-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
-      .to(".eye-pupil", { opacity: 0, scale: 3, duration: 0.3 }, 0)
+      .to(".eye-pupil", { opacity: 0, scale: 15, duration: 0.4 }, 0)
       .to(".eye-image-layer", {
-        width: "100vw",
-        height: "100vh",
-        maxWidth: "100vw",
-        borderRadius: "0px",
-        duration: 0.6,
+        scale: 25,
+        y: 0,
+        duration: 0.8,
         ease: "power2.inOut"
       }, 0.1)
-      .to(".eye-preview-img", { opacity: 0, duration: 0.3 }, 0.2) // Crossfade out the 'object-contain' image
-      .to(".eye-scene-img", { opacity: 1, duration: 0.4 }, 0.2) // Crossfade into the 'object-cover' scene
+      .to(".eye-zoom-wrapper", {
+        scale: 0.08,
+        duration: 0.8,
+        ease: "power2.inOut"
+      }, 0.1)
+      .to(".eye-preview-img", { opacity: 0, duration: 0.3 }, 0.2)
+      .to(".eye-scene-img", { opacity: 1, duration: 0.4 }, 0.2)
       .to(".eye-bg-gradient", { opacity: 1, duration: 0.4 }, 0.4)
       .to(".eye-content-card", { opacity: 1, y: 0, duration: 0.4, pointerEvents: "auto", ease: "power2.out" }, 0.5);
 
@@ -664,21 +669,25 @@ export default function App() {
         <div className="eye-pin-container relative w-full h-screen flex flex-col items-center justify-center">
 
           {/* Background Image Container - Starts as an eye lens, grows to full screen */}
-          <div className="eye-image-layer absolute z-0 overflow-hidden w-[80vw] md:w-full max-w-sm aspect-[2/1] rounded-[100%] flex items-center justify-center translate-y-[10vh] bg-black">
-            {/* The Initial Preview mapped to the specific provided image with exactly 'object-contain' */}
-            <img
-              src={eyeImage}
-              alt="Eye Provided Image"
-              className="eye-preview-img absolute inset-0 w-full h-full object-contain opacity-100 z-10 pointer-events-none"
-              referrerPolicy="no-referrer"
-            />
-            {/* The Current Scene mapped to original full screen image using 'object-cover', hidden initially */}
-            <img
-              src={posImg}
-              alt="Retinal Full Scene"
-              className="eye-scene-img absolute inset-0 w-full h-full object-cover opacity-0 z-0 pointer-events-none"
-              referrerPolicy="no-referrer"
-            />
+          <div className="eye-image-layer absolute z-0 overflow-hidden w-[400px] h-[200px] flex items-center justify-center bg-black will-change-transform" style={{ 
+            clipPath: 'url(#eye-clip)'
+          }}>
+            <div className="eye-zoom-wrapper absolute w-[100vw] h-[100vh] max-w-none flex items-center justify-center flex-shrink-0">
+              {/* The Initial Preview mapped to the specific provided image with exactly 'object-contain' */}
+              <img
+                src={eyeImage}
+                alt="Eye Provided Image"
+                className="eye-preview-img absolute inset-0 w-full h-full object-contain opacity-100 z-10 pointer-events-none"
+                referrerPolicy="no-referrer"
+              />
+              {/* The Current Scene mapped to original full screen image using 'object-cover', hidden initially */}
+              <img
+                src={posImg}
+                alt="Retinal Full Scene"
+                className="eye-scene-img absolute inset-0 w-full h-full object-cover opacity-0 z-0 pointer-events-none"
+                referrerPolicy="no-referrer"
+              />
+            </div>
 
             {/* The Pupil Ring! */}
             <div className="eye-pupil absolute z-20 w-20 h-20 md:w-24 md:h-24 rounded-full border-[10px] md:border-[14px] border-black opacity-90 pointer-events-none" />
@@ -897,6 +906,13 @@ export default function App() {
       >
         <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
       </button>
+      <svg width="0" height="0" className="absolute pointer-events-none opacity-0">
+        <defs>
+          <clipPath id="eye-clip" clipPathUnits="objectBoundingBox">
+            <path d="M0,0.5 Q0.5,0 1,0.5 Q0.5,1 0,0.5 Z" />
+          </clipPath>
+        </defs>
+      </svg>
     </main>
   );
 }
