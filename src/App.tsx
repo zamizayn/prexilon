@@ -398,13 +398,13 @@ export default function App() {
         </nav>
 
         {/* Hero Content */}
-        <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-8 md:p-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end h-full">
-            <div className="hero-content-left lg:col-span-8 mb-12 lg:mb-0">
+        <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end h-full">
+            <div className="hero-content-left lg:col-span-8 mb-8 lg:mb-0">
               <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
                 Precision Diagnostics Powered By
               </h2>
-              <h3 className="gsap-hero-title text-4xl md:text-6xl lg:text-7xl font-display leading-[1] tracking-tight uppercase text-white">
+              <h3 className="gsap-hero-title text-responsive-h1 font-display leading-[1.1] tracking-tight uppercase text-white">
                 <div className="overflow-hidden"><div className="gsap-hero-line">Next-Generation</div></div>
                 <div className="overflow-hidden py-1 -my-1"><div className="gsap-hero-line"><span className="bg-gradient-to-r from-white via-teal-50 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span></div></div>
                 <div className="overflow-hidden"><div className="gsap-hero-line">And AI Diagnostics</div></div>
@@ -412,7 +412,7 @@ export default function App() {
             </div>
 
             <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-sm">
-              <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
+              <p className="text-responsive-p text-gray-300 font-light leading-relaxed">
                 Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
               </p>
             </div>
@@ -592,10 +592,10 @@ export default function App() {
 
           {/* The ModaPlex Card - Hidden initially, fades in smoothly */}
           <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
-            <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center px-8 md:px-16 pt-24 md:pt-32">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] relative shadow-2xl pointer-events-auto">
-                  <div className="gsap-reveal-up modaplex-device absolute -top-12 -right-4 md:-top-16 md:-right-20 w-48 md:w-64 z-20">
+            <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center px-6 md:px-12 pt-4 md:pt-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 md:p-8 lg:p-12 rounded-[1.5rem] md:rounded-[2rem] relative shadow-2xl pointer-events-auto">
+                  <div className="gsap-reveal-up modaplex-device absolute -top-10 -right-2 md:-top-16 md:-right-20 w-32 md:w-64 z-20">
                     <img
                       src={posMachineImg}
                       alt="ModaPlex Device"
@@ -604,20 +604,20 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="inline-block bg-white text-teal-600 px-4 py-1.5 rounded-full text-sm font-display font-bold mb-8 shadow-sm">
+                  <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-xs font-display font-bold mb-6 md:mb-8 shadow-sm">
                     ModaPlex™ Platform
                   </div>
 
-                  <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white drop-shadow-sm">
+                  <h2 className="text-responsive-h2 font-display font-bold leading-tight mb-4 md:mb-6 text-white drop-shadow-sm">
                     Advanced Molecular <br />
                     Point-of-Care Diagnostics
                   </h2>
 
-                  <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
+                  <p className="text-lg md:text-xl font-display font-medium text-teal-50 mb-6 md:mb-8 italic">
                     Bringing the Lab to the Patient
                   </p>
 
-                  <p className="text-lg text-gray-300 font-light leading-relaxed mb-12 max-w-xl">
+                  <p className="text-responsive-p text-gray-300 font-light leading-relaxed mb-8 md:mb-12 max-w-xl">
                     Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.
                   </p>
 
@@ -627,9 +627,9 @@ export default function App() {
                       "Ultrafast results without specialized infrastructure",
                       "Accessible in urban and rural healthcare environments"
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-4 text-gray-200 font-light">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center shadow-md">
-                          <Check className="w-4 h-4 text-white" />
+                      <li key={i} className="flex items-center gap-3 md:gap-4 text-xs md:text-base text-gray-200 font-light">
+                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center shadow-md">
+                          <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
                         </div>
                         <span>{item}</span>
                       </li>
@@ -652,8 +652,8 @@ export default function App() {
             </div>
 
             {/* Title */}
-            <div className="absolute inset-x-0 top-32 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
-              <h2 className="text-4xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+            <div className="absolute inset-x-0 top-24 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
+              <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>Advanced Molecular</span>
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Point-of-Care</span>
                 <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Diagnostics</span>
@@ -698,10 +698,10 @@ export default function App() {
 
           {/* The Content Card - Hidden initially, fades in smoothly */}
           <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
-            <div className="relative min-h-screen w-full flex items-center px-8 md:px-16 py-24 max-w-7xl mx-auto">
-              <div className="relative z-10 w-full pt-16 flex justify-start">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-8 md:p-16 rounded-[2rem] max-w-3xl relative overflow-visible shadow-2xl pointer-events-auto">
-                  <div className="absolute -top-16 -right-4 md:-top-24 md:-right-20 w-48 md:w-64 z-20">
+            <div className="relative min-h-screen w-full flex items-center px-6 md:px-12 py-6 md:py-8 max-w-7xl mx-auto">
+              <div className="relative z-10 w-full pt-6 md:pt-8 flex justify-start">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 md:p-8 lg:p-12 rounded-[1.5rem] md:rounded-[2rem] max-w-3xl relative overflow-visible shadow-2xl pointer-events-auto">
+                  <div className="absolute -top-10 -right-2 md:-top-24 md:-right-20 w-32 md:w-64 z-20">
                     <img
                       src={retinaImg}
                       alt="Retina Device"
@@ -710,35 +710,35 @@ export default function App() {
                     />
                   </div>
 
-                  <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6 text-white drop-shadow-md">
+                  <h2 className="text-responsive-h2 font-display font-bold leading-tight mb-4 md:mb-6 text-white drop-shadow-md">
                     AI-Powered Retinal <br />
                     Screening Technology
                   </h2>
 
-                  <p className="text-xl font-display font-medium text-teal-50 mb-8 italic">
+                  <p className="text-lg md:text-xl font-display font-medium text-teal-50 mb-6 md:mb-8 italic">
                     See the Unseen. Screen the Unscreened.
                   </p>
 
-                  <p className="text-lg text-gray-200 font-light leading-relaxed mb-12">
+                  <p className="text-responsive-p text-gray-200 font-light leading-relaxed mb-8 md:mb-12">
                     An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports, replacing costly and invasive diagnostic procedures with accessible screening.
                   </p>
 
-                  <ul className="space-y-6 mb-12">
+                  <ul className="space-y-4 md:space-y-6 mb-8 md:mb-12">
                     {[
                       "Scan time is 5 minutes and the procedure is completely non-invasive.",
                       "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
                       "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
                     ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-4 text-gray-200 font-light">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center mt-1 shadow-lg">
-                          <Check className="w-4 h-4 text-white" />
+                      <li key={i} className="flex items-start gap-3 md:gap-4 text-xs md:text-base text-gray-200 font-light">
+                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center mt-0.5 md:mt-1 shadow-lg">
+                          <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
                         </div>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="bg-white rounded-2xl p-4 md:p-6 flex items-center gap-6 w-fit shadow-xl border border-white/20">
+                  <div className="bg-white rounded-2xl p-4 md:p-6 flex items-center gap-4 md:gap-6 w-fit shadow-xl border border-white/20">
                     <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
                       <img
                         src={iitk}
@@ -768,8 +768,8 @@ export default function App() {
             </div>
 
             {/* Title */}
-            <div className="absolute inset-x-0 top-32 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
-              <h2 className="text-4xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+            <div className="absolute inset-x-0 top-24 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
+              <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>AI-Powered Retinal</span>
                 <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Screening</span>
                 <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Technology</span>
