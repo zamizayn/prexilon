@@ -665,7 +665,7 @@ export default function App() {
       </section>
 
       {/* Detailed Platform Section 02 - AI Retinal Screening (Eye Zoom Scroll) */}
-      <section className="eye-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5">
+      <section className="eye-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
         <div className="eye-pin-container relative w-full h-screen flex flex-col items-center justify-center">
 
           {/* Background Image Container - Starts as an eye lens, grows to full screen */}
@@ -795,27 +795,30 @@ export default function App() {
 
         <div className="relative z-10 text-center px-8">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg">
-            Let's shape the Future together
+            Engineering the next era of diagnostics
           </h2>
 
           <p className="text-base md:text-lg text-gray-200 mb-10 max-w-2xl mx-auto drop-shadow-md">
-            Schedule a free demo and see our programs in action.
+            Partner with us in the future of diagnostics
           </p>
 
           {/* Skewed Split Button exactly matching Figma design */}
-          <div className="gsap-reveal-scale flex items-stretch justify-center h-12 mt-8 group cursor-pointer relative z-10 transition-transform hover:scale-105 duration-300">
-            <button
-              className="bg-[#004e5a] text-white px-8 rounded-l-xl transition-colors shadow-lg flex items-center justify-center font-display font-medium tracking-wide z-10"
-              style={{ clipPath: 'polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%)' }}
-            >
-              <span className="mr-2">Conatct us</span>
+          <div className="gsap-reveal-scale flex items-center justify-center mt-10 group cursor-pointer relative z-10 transition-transform hover:scale-105 duration-300 drop-shadow-xl">
+            {/* Left Button */}
+            <button className="relative flex items-center pl-8 pr-12 h-14 focus:outline-none">
+              <div className="absolute inset-0 right-8 bg-[#004e5a] rounded-l-xl z-0 transition-colors group-hover:bg-[#003d47]"></div>
+              <div className="absolute top-0 bottom-0 right-0 w-14 bg-[#004e5a] rounded-r-xl transform skew-x-[-18deg] origin-bottom z-0 transition-colors group-hover:bg-[#003d47]"></div>
+              <span className="relative z-10 text-white font-display font-semibold text-xl tracking-wide">
+                Contact us
+              </span>
             </button>
-            <div
-              className="bg-[#e4e2dd] text-[#004e5a] px-5 rounded-r-xl transition-colors shadow-lg flex items-center justify-center -ml-2.5 z-0"
-              style={{ clipPath: 'polygon(14px 0, 100% 0, 100% 100%, 0 100%)' }}
-            >
-              <ArrowRight className="w-5 h-5 ml-1" strokeWidth={2.5} />
-            </div>
+
+            {/* Right Arrow Button */}
+            <button className="relative flex items-center justify-center w-16 h-14 ml-2 focus:outline-none">
+              <div className="absolute inset-0 left-8 bg-[#e4e2dd] rounded-r-xl z-0 transition-colors group-hover:bg-[#d5d3ce]"></div>
+              <div className="absolute top-0 bottom-0 left-0 w-10 bg-[#e4e2dd] rounded-l-xl transform skew-x-[-18deg] origin-bottom z-0 transition-colors group-hover:bg-[#d5d3ce]"></div>
+              <ArrowRight className="relative z-10 w-6 h-6 text-[#004e5a] ml-1.5" strokeWidth={2.5} />
+            </button>
           </div>
         </div>
       </section>
@@ -910,15 +913,15 @@ export default function App() {
       </button>
 
       {/* ✅ REALISTIC EYE SHAPE MASK */}
-      <svg width="0" height="0" className="absolute pointer-events-none opacity-0">
+      <svg width="0" height="0" className="fixed -top-[1000px] -left-[1000px] w-0 h-0 pointer-events-none opacity-0" aria-hidden="true">
         <defs>
           <clipPath id="eye-clip" clipPathUnits="objectBoundingBox">
             <path d="
-              M 0,0.5
-              C 0.2,0.2 0.35,0.05 0.5,0.05
-              C 0.65,0.05 0.8,0.2 1,0.5
-              C 0.8,0.8 0.65,0.95 0.5,0.95
-              C 0.35,0.95 0.2,0.8 0,0.5
+              M 0.02,0.5
+              C 0.212,0.212 0.356,0.068 0.5,0.068
+              C 0.644,0.068 0.788,0.212 0.98,0.5
+              C 0.788,0.788 0.644,0.932 0.5,0.932
+              C 0.356,0.932 0.212,0.788 0.02,0.5
               Z
             " />
           </clipPath>
