@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background: black; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+  .eye {
+    width: 360px;
+    height: 150px;
+    background: white;
+    clip-path: url(#eye-clip);
+  }
+</style>
+</head>
+<body>
+  <div class="eye"></div>
+  <svg width="0" height="0">
+    <defs>
+      <clipPath id="eye-clip" clipPathUnits="objectBoundingBox">
+        <path d="
+          M 0.02,0.5
+          C 0.212,0.212 0.356,0.068 0.5,0.068
+          C 0.644,0.068 0.788,0.212 0.98,0.5
+          C 0.788,0.788 0.644,0.932 0.5,0.932
+          C 0.356,0.932 0.212,0.788 0.02,0.5
+          Z
+        " />
+      </clipPath>
+    </defs>
+  </svg>
+</body>
+</html>

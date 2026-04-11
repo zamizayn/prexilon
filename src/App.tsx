@@ -5,8 +5,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 import heroBanner from "./assets/hero-banner.png";
+import heroBannerMobile from "./assets/banner-mobile.png";
 import logo from "./assets/logo.png";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
+import diagnosticSolutionMobileImg from "./assets/diagnostic-solution-mobile.png";
 import platformOneImg from "./assets/platform_1.png";
 import posMachineImg from "./assets/pos_machine.png";
 import eyeImage from "./assets/eye_image.png";
@@ -361,11 +363,17 @@ export default function App() {
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           {/* DNA Helix Background */}
-          <div className="hero-bg-dna absolute -right-20 -top-20 w-[80%] h-[120%] opacity-40">
+          <div className="hero-bg-dna absolute -right-20 -top-20 w-[80%] h-[120%] opacity-60">
             <img
               src={heroBanner}
               alt="Hero Banner"
-              className="w-full h-full object-contain"
+              className="hidden md:block w-full h-full object-contain"
+              referrerPolicy="no-referrer"
+            />
+            <img
+              src={heroBannerMobile}
+              alt="Hero Banner Mobile"
+              className="block md:hidden w-full h-full object-contain"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -388,7 +396,7 @@ export default function App() {
         {/* Header */}
         <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
           <div className="flex flex-col">
-            <img src={logo} alt="PREXILON" className="h-16 w-auto object-contain -ml-2" />
+            <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2" />
           </div>
 
           <button className="flex items-center gap-3 bg-black border border-white/10 px-8 py-3 rounded-full hover:bg-white/10 transition-all group">
@@ -489,7 +497,14 @@ export default function App() {
         <img
           src={diagnosticImg}
           alt="Team Celebrating"
-          className="gsap-parallax-image w-full h-full object-cover"
+          className="gsap-parallax-image hidden md:block w-full h-full object-cover"
+          style={{ transformOrigin: "center center" }}
+          referrerPolicy="no-referrer"
+        />
+        <img
+          src={diagnosticSolutionMobileImg}
+          alt="Team Celebrating Mobile"
+          className="gsap-parallax-image block md:hidden w-full h-full object-cover"
           style={{ transformOrigin: "center center" }}
           referrerPolicy="no-referrer"
         />
@@ -679,7 +694,7 @@ export default function App() {
               <img
                 src={eyeImage}
                 alt="Eye Provided Image"
-                className="eye-preview-img absolute inset-0 w-full h-full object-contain opacity-100 z-10 pointer-events-none"
+                className="eye-preview-img absolute inset-0 w-full h-full object-cover opacity-100 z-10 pointer-events-none"
                 referrerPolicy="no-referrer"
               />
               {/* The Current Scene mapped to original full screen image using 'object-cover', hidden initially */}
@@ -917,11 +932,11 @@ export default function App() {
         <defs>
           <clipPath id="eye-clip" clipPathUnits="objectBoundingBox">
             <path d="
-              M 0.02,0.5
-              C 0.212,0.212 0.356,0.068 0.5,0.068
-              C 0.644,0.068 0.788,0.212 0.98,0.5
-              C 0.788,0.788 0.644,0.932 0.5,0.932
-              C 0.356,0.932 0.212,0.788 0.02,0.5
+              M 0,0.5
+              C 0.2,0.2 0.35,0.05 0.5,0.05
+              C 0.65,0.05 0.8,0.2 1,0.5
+              C 0.8,0.8 0.65,0.95 0.5,0.95
+              C 0.35,0.95 0.2,0.8 0,0.5
               Z
             " />
           </clipPath>
