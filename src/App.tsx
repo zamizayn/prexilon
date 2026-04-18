@@ -4,15 +4,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-import heroBanner from "./assets/hero-banner.png";
+import heroBanner from "./assets/hero-banner-tuned.png";
 import heroBannerMobile from "./assets/banner-mobile.png";
 import logo from "./assets/logo.png";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
 import diagnosticSolutionMobileImg from "./assets/diagnostic-solution-mobile.png";
 import platformOneImg from "./assets/platform_1.png";
 import posMachineImg from "./assets/pos_machine.png";
-import eyeImage from "./assets/eye_image.png";
 import posImg from "./assets/pos_bg.png";
+import posImgSharp from "./assets/pos_bg_sharp.png";
 import retinaImg from "./assets/retinaImg.png";
 import iitk from "./assets/iitk.png";
 import footerLogo from "./assets/footerLogo.png";
@@ -329,7 +329,6 @@ export default function App() {
     gsap.set(".eye-image-layer", { y: "15vh" });
 
     eyeTl.to(".eye-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
-      .to(".eye-pupil", { opacity: 0, scale: 40, duration: 0.4 }, 0)
       .to(".eye-image-layer", {
         width: "10800px",
         height: "4500px",
@@ -337,9 +336,7 @@ export default function App() {
         duration: 0.8,
         ease: "power2.inOut"
       }, 0.1)
-      .to(".eye-preview-img", { opacity: 0, duration: 0.3 }, 0.2)
-      .to(".eye-scene-img", { opacity: 1, duration: 0.3 }, 0.2)
-      .to(".eye-scene-img", { opacity: 0.4, duration: 0.4 }, 0.5)
+      .to(".eye-main-img", { opacity: 0.4, duration: 0.4 }, 0.5)
       .to(".eye-bg-gradient", { opacity: 1, duration: 0.4 }, 0.4)
       .to(".eye-content-card", { opacity: 1, y: 0, duration: 0.4, pointerEvents: "auto", ease: "power2.out" }, 0.5);
 
@@ -690,24 +687,14 @@ export default function App() {
             clipPath: 'url(#eye-clip)'
           }}>
             <div className="eye-zoom-wrapper absolute w-[100vw] h-[100vh] max-w-none flex items-center justify-center flex-shrink-0">
-              {/* The Initial Preview mapped to the specific provided image with exactly 'object-contain' */}
               <img
-                src={eyeImage}
-                alt="Eye Provided Image"
-                className="eye-preview-img absolute inset-0 w-full h-full object-cover opacity-100 z-10 pointer-events-none"
-                referrerPolicy="no-referrer"
-              />
-              {/* The Current Scene mapped to original full screen image using 'object-cover', hidden initially */}
-              <img
-                src={posImg}
-                alt="Retinal Full Scene"
-                className="eye-scene-img absolute inset-0 w-full h-full object-cover opacity-0 z-0 pointer-events-none"
+                src={posImgSharp}
+                alt="Retinal screening scene"
+                className="eye-main-img absolute inset-0 h-full w-full object-cover object-center opacity-100 pointer-events-none"
                 referrerPolicy="no-referrer"
               />
             </div>
 
-            {/* The Pupil Ring! */}
-            <div className="eye-pupil absolute z-20 w-20 h-20 md:w-24 md:h-24 rounded-full border-[10px] md:border-[14px] border-black opacity-90 pointer-events-none" />
             <div className="eye-bg-gradient absolute inset-0 z-30 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-0 pointer-events-none" />
           </div>
 
@@ -715,56 +702,60 @@ export default function App() {
           <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
             <div className="relative min-h-screen w-full flex items-center px-6 md:px-12 py-6 md:py-8 max-w-7xl mx-auto">
               <div className="relative z-10 w-full pt-6 md:pt-8 flex justify-start">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 md:p-8 lg:p-12 rounded-[1.5rem] md:rounded-[2rem] max-w-3xl relative overflow-visible shadow-2xl pointer-events-auto">
-                  <div className="absolute -top-10 -right-2 md:-top-24 md:-right-20 w-32 md:w-64 z-20">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 md:p-8 lg:p-12 rounded-[1.5rem] md:rounded-[2rem] max-w-3xl relative overflow-hidden shadow-2xl pointer-events-auto ring-1 ring-white/6">
+                  <div className="absolute inset-0 rounded-[inherit] bg-[linear-gradient(135deg,rgba(10,14,18,0.34),rgba(255,255,255,0.06))] pointer-events-none" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-white/20 pointer-events-none" />
+                  <div className="relative z-10">
+                    <div className="absolute -top-10 -right-2 md:-top-24 md:-right-20 w-32 md:w-64 z-20">
                     <img
                       src={retinaImg}
                       alt="Retina Device"
                       className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
                       referrerPolicy="no-referrer"
                     />
-                  </div>
-
-                  <h2 className="text-responsive-h2 font-display font-bold leading-tight mb-4 md:mb-6 text-white drop-shadow-md">
-                    AI-Powered Retinal <br />
-                    Screening Technology
-                  </h2>
-
-                  <p className="text-lg md:text-xl font-display font-medium text-teal-50 mb-6 md:mb-8 italic">
-                    See the Unseen. Screen the Unscreened.
-                  </p>
-
-                  <p className="text-responsive-p text-gray-200 font-light leading-relaxed mb-8 md:mb-12">
-                    An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports, replacing costly and invasive diagnostic procedures with accessible screening.
-                  </p>
-
-                  <ul className="space-y-4 md:space-y-6 mb-8 md:mb-12">
-                    {[
-                      "Scan time is 5 minutes and the procedure is completely non-invasive.",
-                      "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
-                      "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 md:gap-4 text-xs md:text-base text-gray-200 font-light">
-                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center mt-0.5 md:mt-1 shadow-lg">
-                          <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
-                        </div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="bg-white rounded-2xl p-4 md:p-6 flex items-center gap-4 md:gap-6 w-fit shadow-xl border border-white/20">
-                    <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
-                      <img
-                        src={iitk}
-                        alt="IIITK Logo"
-                        className="w-full h-full object-contain"
-                        referrerPolicy="no-referrer"
-                      />
                     </div>
-                    <div>
-                      <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">Research Partner</p>
-                      <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
+
+                    <h2 className="text-responsive-h2 font-display font-bold leading-tight mb-4 md:mb-6 text-white drop-shadow-md">
+                      AI-Powered Retinal <br />
+                      Screening Technology
+                    </h2>
+
+                    <p className="text-lg md:text-xl font-display font-medium text-teal-50 mb-6 md:mb-8 italic">
+                      See the Unseen. Screen the Unscreened.
+                    </p>
+
+                    <p className="text-responsive-p text-gray-200 font-light leading-relaxed mb-8 md:mb-12">
+                      An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports, replacing costly and invasive diagnostic procedures with accessible screening.
+                    </p>
+
+                    <ul className="space-y-4 md:space-y-6 mb-8 md:mb-12">
+                      {[
+                        "Scan time is 5 minutes and the procedure is completely non-invasive.",
+                        "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
+                        "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-3 md:gap-4 text-xs md:text-base text-gray-200 font-light">
+                          <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center mt-0.5 md:mt-1 shadow-lg">
+                            <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
+                          </div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="bg-white rounded-2xl p-4 md:p-6 flex items-center gap-4 md:gap-6 w-fit shadow-xl border border-white/20">
+                      <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
+                        <img
+                          src={iitk}
+                          alt="IIITK Logo"
+                          className="w-full h-full object-contain"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <div>
+                        <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1">Research Partner</p>
+                        <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
+                      </div>
                     </div>
                   </div>
                 </div>
