@@ -147,7 +147,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
                 id: "01",
                 title: "Advanced Molecular Point-of-Care Diagnostics",
                 subtitle: "Bringing the Lab to the Patient",
-                image: platformOneImg
+                image: services1
               },
               {
                 id: "02",
