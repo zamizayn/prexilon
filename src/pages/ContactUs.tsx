@@ -1,5 +1,6 @@
-import React from "react";
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, MessageCircle, Clock, ArrowRight } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, MessageCircle, Clock, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import mapPlaceholder from "../assets/mapview.png";
 import Footer from "../components/Footer";
 
@@ -9,6 +10,38 @@ interface ContactUsProps {
 }
 
 const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setStatus("sending");
+    setErrorMessage("");
+
+    try {
+      // Replace these with your actual IDs from EmailJS dashboard
+      await emailjs.sendForm(
+        "service_aibnid6",
+        "template_5c3qu4e",
+        formRef.current,
+        "Q2liLAwF-DLKYt8oN"
+      );
+
+      setStatus("success");
+      formRef.current.reset();
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setStatus("error");
+      setErrorMessage("Something went wrong. Please try again later.");
+    }
+  };
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-white text-slate-900">
       {/* Hero Section */}
@@ -16,7 +49,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
         <div className="relative z-10 min-h-[50vh] flex flex-col p-8 md:p-12">
           <nav className="flex items-start justify-between mb-auto">
             <div className="flex flex-col">
-              <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2" />
+              <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
             </div>
             {renderMenuButton()}
           </nav>
@@ -45,13 +78,35 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                 </h2>
               </div>
 
-              <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+              {status === "success" && (
+                <div className="mb-10 p-6 bg-teal-50 border border-teal-100 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                  <CheckCircle2 className="w-6 h-6 text-teal-600" />
+                  <div>
+                    <h4 className="font-display font-bold text-teal-900">Message Sent!</h4>
+                    <p className="text-teal-700 text-sm">Thank you for reaching out. We'll get back to you shortly.</p>
+                  </div>
+                </div>
+              )}
+
+              {status === "error" && (
+                <div className="mb-10 p-6 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                  <AlertCircle className="w-6 h-6 text-red-600" />
+                  <div>
+                    <h4 className="font-display font-bold text-red-900">Submission Failed</h4>
+                    <p className="text-red-700 text-sm">{errorMessage}</p>
+                  </div>
+                </div>
+              )}
+
+              <form ref={formRef} className="space-y-10" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                   {/* Full Name */}
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Full name*</label>
                     <input
+                      name="user_name"
                       type="text"
+                      required
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors placeholder:text-slate-200"
                       placeholder="Your name"
                     />
@@ -61,7 +116,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Email address*</label>
                     <input
+                      name="user_email"
                       type="email"
+                      required
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors placeholder:text-slate-200"
                       placeholder="Your email"
                     />
@@ -71,6 +128,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Phone no:</label>
                     <input
+                      name="user_phone"
                       type="tel"
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors placeholder:text-slate-200"
                       placeholder="Your phone number"
@@ -80,7 +138,11 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   {/* I am a */}
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">I am a*</label>
-                    <select className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none">
+                    <select
+                      name="user_type"
+                      required
+                      className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none"
+                    >
                       <option value="">Select option</option>
                       <option value="doctor">Doctor</option>
                       <option value="partner">Potential Partner</option>
@@ -98,6 +160,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Company name</label>
                     <input
+                      name="user_company"
                       type="text"
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors placeholder:text-slate-200"
                       placeholder="Your company"
@@ -108,7 +171,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">City/location*</label>
                     <input
+                      name="user_city"
                       type="text"
+                      required
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors placeholder:text-slate-200"
                       placeholder="Your location"
                     />
@@ -117,7 +182,11 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   {/* Interested in */}
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">I'm interested in*</label>
-                    <select className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none">
+                    <select
+                      name="interest"
+                      required
+                      className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none"
+                    >
                       <option value="">Select option</option>
                       <option value="molecular">Molecular Diagnostics</option>
                       <option value="ai">AI Screening</option>
@@ -133,7 +202,10 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   {/* Contact Method */}
                   <div className="relative">
                     <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Preferred contact method</label>
-                    <select className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none">
+                    <select
+                      name="contact_method"
+                      className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none"
+                    >
                       <option value="">Select option</option>
                       <option value="email">Email</option>
                       <option value="phone">Phone</option>
@@ -151,6 +223,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                 <div className="relative">
                   <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Message</label>
                   <textarea
+                    name="message"
                     rows={4}
                     className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors placeholder:text-slate-200 resize-none"
                     placeholder="Tell us more about your inquiry"
@@ -161,14 +234,24 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   {/* Skewed Split Button perfectly matching the design */}
                   <button
                     type="submit"
-                    className="flex items-center justify-center group cursor-pointer relative z-10 transition-transform hover:scale-105 duration-300 drop-shadow-xl focus:outline-none"
+                    disabled={status === "sending"}
+                    className={`flex items-center justify-center group cursor-pointer relative z-10 transition-all duration-300 drop-shadow-xl focus:outline-none ${status === "sending" ? "opacity-70 scale-95" : "hover:scale-105"}`}
                   >
                     {/* Left Part */}
-                    <div className="relative flex items-center pl-10 pr-14 h-14 focus:outline-none">
+                    <div className="relative flex items-center pl-10 pr-14 h-14 focus:outline-none min-w-[200px] justify-center">
                       <div className="absolute inset-0 right-8 bg-[#004e5a] rounded-l-xl z-0 transition-colors group-hover:bg-[#003d47]"></div>
                       <div className="absolute top-0 bottom-0 right-0 w-14 bg-[#004e5a] rounded-r-xl transform skew-x-[-18deg] origin-bottom z-0 transition-colors group-hover:bg-[#003d47]"></div>
-                      <span className="relative z-10 text-white font-display font-bold text-xl tracking-tight">
-                        Submit
+                      <span className="relative z-10 text-white font-display font-bold text-xl tracking-tight flex items-center gap-3">
+                        {status === "sending" ? (
+                          <>
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            Sending...
+                          </>
+                        ) : status === "success" ? (
+                          "Sent!"
+                        ) : (
+                          "Submit"
+                        )}
                       </span>
                     </div>
 
@@ -176,7 +259,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                     <div className="relative flex items-center justify-center w-16 h-14 ml-1 focus:outline-none">
                       <div className="absolute inset-0 left-8 bg-[#e4e2dd] rounded-r-xl z-0 transition-colors group-hover:bg-[#d5d3ce]"></div>
                       <div className="absolute top-0 bottom-0 left-0 w-10 bg-[#e4e2dd] rounded-l-xl transform skew-x-[-18deg] origin-bottom z-0 transition-colors group-hover:bg-[#d5d3ce]"></div>
-                      <ArrowRight className="relative z-10 w-6 h-6 text-[#004e5a] ml-1.5" strokeWidth={2.5} />
+                      <ArrowRight className={`relative z-10 w-6 h-6 text-[#004e5a] ml-1.5 transition-transform duration-300 ${status === "sending" ? "translate-x-2 opacity-0" : ""}`} strokeWidth={2.5} />
                     </div>
                   </button>
                 </div>

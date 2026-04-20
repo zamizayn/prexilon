@@ -12,8 +12,6 @@ import services1 from "../assets/services1_clear.png";
 import posImgSharp from "../assets/pos_bg_sharp.png";
 import Footer from "../components/Footer";
 
-gsap.registerPlugin(ScrollTrigger);
-
 interface ServicesProps {
   logo: string;
   renderMenuButton: () => React.ReactNode;
@@ -37,7 +35,11 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
       }
     });
 
-    gsap.set(".molecular-image-layer", { y: "15vh" });
+    const scope = containerRef.current;
+    if (!scope) return;
+
+    gsap.set(scope.querySelectorAll(".molecular-image-layer"), { y: "15vh" });
+    gsap.set(scope.querySelectorAll(".eye-image-layer"), { y: "15vh" });
 
     molecularTl.to(".molecular-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
       .to(".molecular-image-layer", {
@@ -67,7 +69,6 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
       }
     });
 
-    gsap.set(".eye-image-layer", { y: "15vh" });
 
     eyeTl.to(".eye-setup-layer", { opacity: 0, scale: 1.1, duration: 0.2 })
       .to(".eye-image-layer", {
@@ -88,7 +89,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
       <div className="relative z-10 min-h-[70vh] flex flex-col p-8 md:p-12">
         <nav className="flex items-start justify-between mb-auto">
           <div className="flex flex-col">
-            <img src={logo} alt="PREXILON" className="h-[75px] w-auto object-contain -ml-2" />
+            <img src={logo} alt="PREXILON" className="h-[75px] w-auto object-contain -ml-2 mix-blend-color-dodge" />
           </div>
           {renderMenuButton()}
         </nav>
@@ -259,8 +260,10 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
               </span>
             </div>
             <div className="absolute inset-x-0 top-24 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
-              <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-white">
-                Advanced Molecular <br /> Point-of-Care Diagnostics
+              <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>Advanced Molecular</span>
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Point-of-Care</span>
+                <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Diagnostics</span>
               </h2>
             </div>
           </div>
@@ -359,8 +362,10 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
               </span>
             </div>
             <div className="absolute inset-x-0 top-24 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
-              <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-white">
-                AI-Powered Retinal <br /> Screening Technology
+              <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>AI-Powered Retinal</span>
+                <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Screening</span>
+                <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Technology</span>
               </h2>
             </div>
           </div>

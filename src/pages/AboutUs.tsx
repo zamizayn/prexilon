@@ -5,7 +5,147 @@ import directorImg from "../assets/director.png";
 import milestone1Img from "../assets/milestone1.png";
 import milestone2Img from "../assets/milestone2.png";
 import iitkLogo from "../assets/iitk.png";
+import certificate1 from "../assets/certificate1.png";
+import certificate2 from "../assets/certificate2.jpeg";
+import certificate3 from "../assets/certificate3.png";
+import certificate4 from "../assets/certificate4.png";
 import Footer from "../components/Footer";
+import { useState, useRef } from "react";
+import gsap from "gsap";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const certificates = [
+  {
+    id: 1,
+    image: certificate1,
+    title: "DPIIT Certificate of Recognition",
+    caption: "Recognized as a startup by the Department for Promotion of Industry and Internal Trade."
+  },
+  {
+    id: 2,
+    image: certificate2,
+    title: "Startup Certificate",
+    caption: "Registered as a Startup company under Kerala Startup Mission, Government of Kerala."
+  },
+  {
+    id: 3,
+    image: certificate3,
+    title: "Udyam Registration Certificate",
+    caption: ""
+  },
+  {
+    id: 4,
+    image: certificate4,
+    title: "Trademark Registration",
+    caption: "Registered trademark for Modaplex — our advanced molecular diagnostic platform."
+  }
+];
+
+const CertificationsCarousel: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? certificates.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === certificates.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="w-full relative flex flex-col items-center">
+      <div
+        ref={containerRef}
+        className="relative w-full h-[400px] md:h-[550px] flex items-center justify-center overflow-visible"
+      >
+        {certificates.map((cert, index) => {
+          const isActive = index === activeIndex;
+          const isPrev = index === (activeIndex === 0 ? certificates.length - 1 : activeIndex - 1);
+          const isNext = index === (activeIndex === certificates.length - 1 ? 0 : activeIndex + 1);
+
+          let positionStyles: React.CSSProperties = {
+            perspective: "1000px",
+            transformStyle: "preserve-3d",
+          };
+
+          let positionClasses = "opacity-0 scale-75 pointer-events-none z-0";
+
+          if (isActive) {
+            positionClasses = "opacity-100 scale-100 z-30 translate-x-0";
+            positionStyles.transform = "rotateY(0deg) scale(1.1)";
+          } else if (isPrev) {
+            positionClasses = "opacity-40 scale-75 z-10 cursor-pointer";
+            positionStyles.transform = "translateX(-60%) rotateY(25deg)";
+            if (window.innerWidth >= 768) {
+              positionStyles.transform = "translateX(-100%) rotateY(35deg)";
+            }
+          } else if (isNext) {
+            positionClasses = "opacity-40 scale-75 z-10 cursor-pointer";
+            positionStyles.transform = "translateX(60%) rotateY(-25deg)";
+            if (window.innerWidth >= 768) {
+              positionStyles.transform = "translateX(100%) rotateY(-35deg)";
+            }
+          }
+
+          return (
+            <div
+              key={cert.id}
+              onClick={() => {
+                if (isPrev) handlePrev();
+                if (isNext) handleNext();
+              }}
+              className={`absolute transition-all duration-700 ease-out w-[280px] md:w-[450px] aspect-[4/3] bg-white rounded-xl shadow-2xl overflow-hidden border border-white/20 flex items-center justify-center p-4 ${positionClasses}`}
+              style={positionStyles}
+            >
+              <img
+                src={cert.image}
+                alt={cert.title}
+                className="w-full h-full object-contain"
+              />
+              {isActive && (
+                <div className="absolute inset-0 border-[4px] border-teal-500/30 rounded-xl pointer-events-none" />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Caption & Controls */}
+      <div className="mt-12 text-center max-w-2xl px-6">
+        <h3 className="text-xl md:text-2xl font-display font-medium text-white mb-2">
+          {certificates[activeIndex].title}
+        </h3>
+        <p className="text-sm md:text-base text-zinc-400 font-light mb-8">
+          {certificates[activeIndex].caption}
+        </p>
+
+        <div className="flex items-center justify-center gap-6">
+          <button
+            onClick={handlePrev}
+            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <div className="flex gap-2">
+            {certificates.map((_, i) => (
+              <div
+                key={i}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-teal-500 w-6" : "bg-white/20"}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={handleNext}
+            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 interface AboutUsProps {
   logo: string;
@@ -18,7 +158,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       <div className="relative z-10 min-h-[60vh] flex flex-col p-8 md:p-12">
         <nav className="flex items-start justify-between mb-auto">
           <div className="flex flex-col">
-            <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2" />
+            <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
           </div>
           {renderMenuButton()}
         </nav>
@@ -336,6 +476,24 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
                   In collaboration with Indian Institute of Information Technology, Kottayam (IIIT K), we develop handheld screening devices powered by validated AI algorithms. Our solutions include retinal scanning technology for early detection of neurodegenerative diseases like dementia, enabling scalable, precise, and accessible healthcare diagnostics.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Company Certifications & Registrations Section */}
+      <div className="relative z-10 bg-[#121212] px-8 md:px-12 py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-display font-light tracking-tight text-white/90">
+              Company certifications & <br /> registrations
+            </h2>
+          </div>
+
+          <div className="relative">
+            {/* Carousel Container */}
+            <div className="flex items-center justify-center gap-4 md:gap-8 min-h-[400px] md:min-h-[500px]">
+              <CertificationsCarousel />
             </div>
           </div>
         </div>
