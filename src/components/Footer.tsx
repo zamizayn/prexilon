@@ -9,8 +9,8 @@ interface FooterProps {
   showCta?: boolean;
 }
 
-const Footer: React.FC<FooterProps> = ({ 
-  ctaTitle = "Let's shape the Future together", 
+const Footer: React.FC<FooterProps> = ({
+  ctaTitle = "Let's shape the Future together",
   ctaText = "Schedule a free demo and see our programs in action.",
   showCta = true
 }) => {
@@ -83,9 +83,9 @@ const Footer: React.FC<FooterProps> = ({
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* Brand Column */}
           <div className="space-y-8">
-            <div className="bg-white p-4 inline-block rounded-sm">
+            <a href="#/" className="bg-white p-4 inline-block rounded-sm cursor-pointer">
               <img src={footerLogo} alt="PREXILON" className="h-12 w-auto object-contain" />
-            </div>
+            </a>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               Empowering India's future through Prexilon
             </p>
@@ -169,9 +169,8 @@ const Footer: React.FC<FooterProps> = ({
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 z-50 bg-teal-600 text-white p-4 rounded-full shadow-2xl hover:bg-teal-500 transition-all duration-500 group ${
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-        }`}
+        className={`fixed bottom-8 right-8 z-50 bg-teal-600 text-white p-4 rounded-full shadow-2xl hover:bg-teal-500 transition-all duration-500 group ${showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+          }`}
       >
         <ChevronUp className="w-6 h-6 transition-transform group-hover:-translate-y-1" />
       </button>

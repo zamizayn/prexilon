@@ -12,7 +12,9 @@ export default function Header({ logo, onMenuToggle, isSidebarOpen, isDesktop, I
   return (
     <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
       <div className="flex flex-col">
-        <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2" />
+        <a href="#/" className="inline-block cursor-pointer">
+          <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2" />
+        </a>
       </div>
 
       <button

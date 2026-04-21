@@ -375,7 +375,9 @@ export default function App() {
 
             <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
               <div className="flex flex-col">
-                <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2 mix-blend-color-dodge" />
+                <a href="#/" className="inline-block cursor-pointer">
+                  <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2 mix-blend-color-dodge" />
+                </a>
               </div>
               {renderMenuButton()}
             </nav>
@@ -450,14 +452,12 @@ export default function App() {
           <section id="services-anchor" className="relative z-20 bg-[#004d55] text-white py-24 md:py-32 px-8 md:px-16">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
               <div className="gsap-reveal-up">
-                <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-teal-200 mb-6 block">Services</span>
                 <h2 className="text-section-title font-display font-medium leading-none tracking-tight">
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Diagnostic</span>
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Solutions</span>
                 </h2>
               </div>
               <div className="gsap-reveal-up md:pt-20">
-                <h3 className="text-xl font-display font-bold mb-8">Advanced Diagnostics for a Healthier World</h3>
                 <p className="text-xl md:text-2xl text-teal-50/80 font-light leading-relaxed">
                   Prexilon develops and commercializes next-generation diagnostic platforms — from molecular point-of-care testing to AI-powered screening technologies.
                 </p>

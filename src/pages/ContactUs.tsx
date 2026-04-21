@@ -49,7 +49,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
         <div className="relative z-10 min-h-[50vh] flex flex-col p-8 md:p-12">
           <nav className="flex items-start justify-between mb-auto">
             <div className="flex flex-col">
-              <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
+              <a href="#/" className="inline-block cursor-pointer">
+                <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
+              </a>
             </div>
             {renderMenuButton()}
           </nav>

@@ -124,7 +124,7 @@ export default function SideNav({
             ))}
           </nav>
 
-          <div className="app-sidebar__footer">
+          {/* <div className="app-sidebar__footer">
             <div className="app-sidebar__profile">
               <div className="app-sidebar__profile-badge">PX</div>
               <div className={`app-sidebar__profile-copy ${expanded ? "is-visible" : ""}`}>
@@ -132,7 +132,7 @@ export default function SideNav({
                 <span className="app-sidebar__profile-subtitle">Future-ready diagnostics</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </aside>
     </div>
