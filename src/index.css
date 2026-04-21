@@ -18,6 +18,10 @@
   --sidebar-radius: 1.75rem;
 }
 
+html {
+  font-size: 87.5%; /* 14px base – scales all rem/Tailwind sizes down globally */
+}
+
 body {
   background-color: #1a1a1a;
   color: #fff;
@@ -26,23 +30,23 @@ body {
 }
 
 @utility text-responsive-h1 {
-  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-size: clamp(1.6rem, 6.5vw, 3.75rem);
 }
 
 @utility text-responsive-h2 {
-  font-size: clamp(1.75rem, 6vw, 3.5rem);
+  font-size: clamp(1.4rem, 5vw, 2.9rem);
 }
 
 @utility text-responsive-p {
-  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
 }
 
 @utility text-section-title {
-  font-size: clamp(2.5rem, 10vw, 6rem);
+  font-size: clamp(2rem, 8vw, 5rem);
 }
 
 @utility text-hero-main {
-  font-size: clamp(2.25rem, 9vw, 5.5rem);
+  font-size: clamp(1.8rem, 7.5vw, 4.5rem);
 }
 
 .text-glow {

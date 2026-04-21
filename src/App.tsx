@@ -8,6 +8,7 @@ import logo from "./assets/logo_new.png";
 import heroBanner from "./assets/hero-banner-tuned.png";
 import heroBannerMobile from "./assets/banner-mobile.png";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
+import diagnosticImgMobile from "./assets/diagnostic-solution-mobile.png";
 import platformOneImg from "./assets/platform_1.png";
 import posMachineImg from "./assets/pos_machine.png";
 import posImg from "./assets/pos_bg.png";
@@ -194,7 +195,7 @@ export default function App() {
       }
     });
 
-    gsap.set(scope.querySelectorAll(".molecular-image-layer"), { y: 0 });
+    gsap.set(scope.querySelectorAll(".molecular-image-layer"), { y: "15vh" });
 
     molecularTl.to(scope.querySelector(".molecular-setup-layer"), { opacity: 0, scale: 1.1, duration: 0.2 })
       .to(scope.querySelector(".molecular-image-layer"), {
@@ -222,7 +223,7 @@ export default function App() {
       }
     });
 
-    gsap.set(scope.querySelectorAll(".eye-image-layer"), { y: 0 });
+    gsap.set(scope.querySelectorAll(".eye-image-layer"), { y: "15vh" });
 
     eyeTl.to(scope.querySelector(".eye-setup-layer"), { opacity: 0, scale: 1.1, duration: 0.2 })
       .to(scope.querySelector(".eye-image-layer"), {
@@ -441,7 +442,8 @@ export default function App() {
 
           {/* Services Image Section */}
           <section className="relative z-20 w-full h-[60vh] md:h-[80vh] overflow-hidden">
-            <img src={diagnosticImg} alt="Diagnostic Solutions" className="w-full h-full object-cover" />
+            <img src={diagnosticImg} alt="Diagnostic Solutions" className="hidden md:block w-full h-full object-cover" />
+            <img src={diagnosticImgMobile} alt="Diagnostic Solutions Mobile" className="block md:hidden w-full h-full object-cover" />
           </section>
 
           {/* Diagnostic Solutions Content Section */}
@@ -493,7 +495,7 @@ export default function App() {
           <section className="molecular-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
             <div className="molecular-pin-container relative w-full h-screen flex flex-col items-center justify-center">
               {/* Background Image Container - Starts as small preview, grows to full screen */}
-              <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center" style={{ bottom: '2vh', top: 'auto', transform: 'translateY(0)' }}>
+              <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center">
                 <img src={posImg} alt="Molecular Diagnostics" className="molecular-inner-img w-full h-full object-cover" />
                 <div className="molecular-bg-gradient absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent opacity-0 pointer-events-none" />
               </div>
@@ -509,8 +511,8 @@ export default function App() {
                 </div>
 
                 {/* Title */}
-                <div className="absolute inset-x-0 top-[clamp(1rem,4vh,3rem)] z-20 flex flex-col items-center justify-center text-center w-full px-8 pt-4">
-                  <h2 className="text-[clamp(1.2rem,min(5vw,6vh),3.5rem)] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+                <div className="absolute inset-x-0 top-24 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
+                  <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
                     <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>Advanced Molecular</span>
                     <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Point-of-Care</span>
                     <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Diagnostics</span>
@@ -546,7 +548,7 @@ export default function App() {
           <section className="eye-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
             <div className="eye-pin-container relative w-full h-screen flex flex-col items-center justify-center">
               {/* Background Image Container - Circular Eye Look */}
-              <div className="eye-image-layer absolute z-10 overflow-hidden flex items-center justify-center bg-black" style={{ width: 'min(360px, 90vw)', height: '150px', clipPath: 'url(#eye-clip-home)', bottom: '5vh', top: 'auto' }}>
+              <div className="eye-image-layer absolute z-10 overflow-hidden flex items-center justify-center bg-black" style={{ width: 'min(360px, 90vw)', height: '150px', clipPath: 'url(#eye-clip-home)' }}>
                 {/* Image wrapper to handle internal scaling separate from shape scaling */}
                 <div className="eye-zoom-wrapper absolute w-[100vw] h-[100vh] flex items-center justify-center">
                   <img src={posImgSharp} alt="AI Retinal Screening" className="eye-main-img absolute inset-0 h-full w-full object-cover" />
@@ -566,8 +568,8 @@ export default function App() {
                 </div>
 
                 {/* Title */}
-                <div className="absolute inset-x-0 top-[clamp(1rem,4vh,3rem)] z-20 flex flex-col items-center justify-center text-center w-full px-8 pt-4">
-                  <h2 className="text-[clamp(1.2rem,min(5vw,6vh),3.5rem)] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
+                <div className="absolute inset-x-0 top-24 md:top-24 z-20 flex flex-col items-center justify-center text-center w-full px-8">
+                  <h2 className="text-3xl md:text-5xl 2xl:text-[4.5rem] font-display font-light leading-[1.1] md:leading-[1.15] tracking-[0.02em] pb-2 text-transparent">
                     <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 25%, #99f6e4 100%)' }}>AI-Powered Retinal</span>
                     <span className="block w-fit mx-auto md:pr-2 mb-1 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Screening</span>
                     <span className="block w-fit mx-auto md:pr-2 bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 0%, #99f6e4 20%, #99f6e4 100%)' }}>Technology</span>
