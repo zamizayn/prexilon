@@ -55,7 +55,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
           </nav>
 
           <div className="mt-12 mb-12">
-            <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-display font-light leading-[1.05] tracking-tight uppercase max-w-6xl">
+            <h1 className="text-hero-main font-display font-light leading-[1.05] tracking-tight uppercase max-w-6xl">
               Let's Collaborate <br />
               On The <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">Future Of</span> <br />
               Healthcare
@@ -268,7 +268,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
 
             {/* Right Side: Info Card */}
             <div className="lg:col-span-5">
-              <div className="bg-[#0a3d44] rounded-[2rem] p-10 md:p-12 text-white shadow-2xl">
+              <div className="bg-[#0a3d44] rounded-[2rem] p-8 md:p-12 text-white shadow-2xl">
                 <div className="space-y-12">
                   {/* Address */}
                   <div>

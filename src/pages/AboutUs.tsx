@@ -54,10 +54,10 @@ const CertificationsCarousel: React.FC = () => {
   };
 
   return (
-    <div className="w-full relative flex flex-col items-center">
+    <div className="w-full relative flex flex-col items-center overflow-hidden">
       <div
         ref={containerRef}
-        className="relative w-full h-[400px] md:h-[550px] flex items-center justify-center overflow-visible"
+        className="relative w-full h-[350px] md:h-[550px] flex items-center justify-center overflow-visible"
       >
         {certificates.map((cert, index) => {
           const isActive = index === activeIndex;
@@ -76,13 +76,13 @@ const CertificationsCarousel: React.FC = () => {
             positionStyles.transform = "rotateY(0deg) scale(1.1)";
           } else if (isPrev) {
             positionClasses = "opacity-40 scale-75 z-10 cursor-pointer";
-            positionStyles.transform = "translateX(-60%) rotateY(25deg)";
+            positionStyles.transform = "translateX(-45%) rotateY(25deg)";
             if (window.innerWidth >= 768) {
               positionStyles.transform = "translateX(-100%) rotateY(35deg)";
             }
           } else if (isNext) {
             positionClasses = "opacity-40 scale-75 z-10 cursor-pointer";
-            positionStyles.transform = "translateX(60%) rotateY(-25deg)";
+            positionStyles.transform = "translateX(45%) rotateY(-25deg)";
             if (window.innerWidth >= 768) {
               positionStyles.transform = "translateX(100%) rotateY(-35deg)";
             }
@@ -163,8 +163,8 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
           {renderMenuButton()}
         </nav>
 
-        <div className="mt-20">
-          <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-6xl">
+        <div className="mt-12 md:mt-20">
+          <h1 className="text-hero-main font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-6xl">
             Leading the next <br />
             wave of <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">diagnostic</span> <br />
             intelligence
@@ -173,14 +173,12 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Know More About Prexilon Section */}
-      <div className="relative z-10 bg-[#f5f5f5] px-8 md:px-12 py-24">
+      <div className="relative z-10 bg-[#f5f5f5] px-8 md:px-12 py-20 md:py-32">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-20 items-start">
             <div className="xl:col-span-5">
-              <h2 className="text-4xl md:text-[3.25rem] font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
-                <span className="text-[#2a9d8f]">Know More</span>{" "}
-                <span className="text-[#1a1a1a]">About</span>
-                <br />
+              <h2 className="text-responsive-h2 font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
+                <span className="text-[#2a9d8f]">Know More</span> <span className="text-[#1a1a1a]">About</span> <br />
                 <span className="text-[#1a1a1a]">Prexilon</span>
               </h2>
             </div>
@@ -318,11 +316,9 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-20 items-start mb-20">
             <div className="xl:col-span-5">
-              <h2 className="text-4xl md:text-[3.25rem] font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
-                <span className="text-[#2a9d8f]">Global Scientific</span>
-                <br />
-                <span className="text-[#1a1a1a]">Depth Behind</span>
-                <br />
+              <h2 className="text-responsive-h2 font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
+                <span className="text-[#2a9d8f]">Global Scientific</span> <br />
+                <span className="text-[#1a1a1a]">Depth Behind</span> <br />
                 <span className="text-[#1a1a1a]">Prexilon</span>
               </h2>
             </div>
@@ -406,7 +402,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Milestones & Impact Section */}
-      <div className="relative z-10 bg-[#EFEEEC] px-8 md:px-12 py-24">
+      <div className="relative z-10 bg-[#EFEEEC] px-8 md:px-16 py-20 md:py-32">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-20 items-end mb-16">
@@ -414,7 +410,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
               <span className="text-sm font-display font-medium tracking-[0.2em] uppercase text-[#555] block mb-4">
                 Achievements
               </span>
-              <h2 className="text-4xl md:text-[3.25rem] font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
+              <h2 className="text-responsive-h2 font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
                 Milestones & Impact
               </h2>
             </div>
