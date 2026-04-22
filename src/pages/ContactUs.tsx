@@ -24,10 +24,10 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
     try {
       // Replace these with your actual IDs from EmailJS dashboard
       await emailjs.sendForm(
-        "service_aibnid6",
-        "template_5c3qu4e",
+        "service_3lempqq",
+        "template_y692w9q",
         formRef.current,
-        "Q2liLAwF-DLKYt8oN"
+        "tQDK-tIpqcaSl8quh"
       );
 
       setStatus("success");
