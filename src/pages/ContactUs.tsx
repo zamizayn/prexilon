@@ -291,10 +291,10 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                     </div>
                   </div>
 
-                  {/* Open Time */}
+                  {/* Office Hours */}
                   <div>
                     <h3 className="text-xl font-display font-bold mb-4 flex items-center gap-3">
-                      Open time
+                      Office Hours
                     </h3>
                     <p className="text-slate-300 text-sm font-light">
                       Monday - Friday: 09:30 AM - 6:00 PM

@@ -1,14 +1,15 @@
 import { useRef, useState, useEffect } from "react";
-import { ArrowDownLeft, Building2, HeartPulse, Globe, Check } from "lucide-react";
+import { ArrowDownLeft, Building2, HeartPulse, Globe, Check, Sparkles } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 import logo from "./assets/logo_new.png";
 import heroBanner from "./assets/hero-banner-tuned.png";
-import heroBannerMobile from "./assets/banner-mobile.png";
+import heroBannerMobile from "./assets/banner-mobile-v1.jpeg";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
 import diagnosticImgMobile from "./assets/diagnostic-solution-mobile.png";
+import services1 from "./assets/services1_clear.png";
 import platformOneImg from "./assets/platform_1.png";
 import posMachineImg from "./assets/pos_machine.png";
 import posImg from "./assets/pos_bg.png";
@@ -366,11 +367,11 @@ export default function App() {
           {/* Hero Section */}
           <section className="hero-section relative h-screen w-full overflow-hidden flex flex-col bg-black">
             <div className="absolute inset-0 z-0">
-              <div className="hero-bg-dna absolute -right-20 -top-20 w-[80%] h-[120%] opacity-60">
+              <div className="hero-bg-dna absolute inset-0 flex items-center justify-center md:inset-auto md:left-auto md:bottom-auto md:-right-20 md:-top-20 w-full md:w-[80%] h-full md:h-[120%] opacity-100 md:block">
                 <img src={heroBanner} alt="Hero Banner" className="hidden md:block w-full h-full object-contain" />
-                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-contain" />
+                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-contain object-center" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/40" />
             </div>
 
             <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
@@ -390,7 +391,7 @@ export default function App() {
                   </h2>
                   <h3 className="text-hero-main font-display leading-[1.1] tracking-tight uppercase text-white">
                     <span className="block">Next-Generation</span>
-                    <span className="block py-1 -my-1 bg-gradient-to-r from-white via-teal-50 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span>
+                    <span className="block py-1 -my-1 bg-gradient-to-r from-teal-100 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span>
                     <span className="block">And AI Diagnostics</span>
                   </h3>
                 </div>
@@ -423,18 +424,18 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                 {[
-                  { icon: <Building2 className="w-6 h-6 text-teal-600" />, title: "Urban & Rural", desc: "Bridging healthcare gaps everywhere" },
-                  { icon: <HeartPulse className="w-6 h-6 text-teal-600" />, title: "Lives transformed", desc: "Early detection saves millions" },
-                  { icon: <Globe className="w-6 h-6 text-teal-600" />, title: "Global Reach", desc: "Accessible healthcare solutions worldwide" },
-                  { icon: <Globe className="w-6 h-6 text-teal-600" />, title: "Innovation", desc: "Pushing context for healthcare" }
+                  { icon: <Building2 className="w-8 h-8 text-teal-600" />, title: "Urban & Rural", desc: "Bridging healthcare gaps everywhere" },
+                  { icon: <HeartPulse className="w-8 h-8 text-teal-600" />, title: "Lives transformed", desc: "Early detection saves millions" },
+                  { icon: <Globe className="w-8 h-8 text-teal-600" />, title: "Global Reach", desc: "Accessible healthcare solutions worldwide" },
+                  { icon: <Sparkles className="w-8 h-8 text-teal-600" />, title: "AI driven precision", desc: "Accessible healthcare solutions worldwide" },
                 ].map((feature, i) => (
                   <div key={i} className="gsap-reveal-up flex flex-col gap-6 font-display">
-                    <div className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-teal-50 flex items-center justify-center">
                       {feature.icon}
                     </div>
                     <div>
-                      <h4 className="font-bold text-lg text-teal-600 mb-2">{feature.title}</h4>
-                      <p className="text-sm text-slate-500 font-medium leading-snug">{feature.desc}</p>
+                      <h4 className="font-bold text-xl md:text-2xl text-teal-600 mb-3">{feature.title}</h4>
+                      <p className="text-base text-slate-500 font-medium leading-snug">{feature.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -450,11 +451,11 @@ export default function App() {
 
           {/* Diagnostic Solutions Content Section */}
           <section id="services-anchor" className="relative z-20 bg-[#004d55] text-white py-24 md:py-32 px-8 md:px-16">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
               <div className="gsap-reveal-up">
                 <h2 className="text-section-title font-display font-medium leading-none tracking-tight">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Diagnostic</span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Solutions</span>
+                  <span className="block py-2 -my-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Diagnostic</span>
+                  <span className="block py-2 -my-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Solutions</span>
                 </h2>
               </div>
               <div className="gsap-reveal-up md:pt-20">
@@ -473,7 +474,7 @@ export default function App() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 {[
-                  { id: "01", title: "Advanced Molecular Point-of-Care Diagnostics", subtitle: "Bringing the Lab to the Patient", image: platformOneImg },
+                  { id: "01", title: "Advanced Molecular Point-of-Care Diagnostics", subtitle: "Bringing the Lab to the Patient", image: services1 },
                   { id: "02", title: "AI-Powered Retinal Screening Technology", subtitle: "See the Unseen. Screen the Unscreened.", image: platformOneImg }
                 ].map((platform) => (
                   <div key={platform.id} className="gsap-reveal-up bg-white group shadow-sm border border-black/5 rounded-2xl overflow-hidden">
@@ -522,19 +523,19 @@ export default function App() {
 
               {/* Content Card - Fades in as image goes full screen */}
               <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
-                <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-start lg:justify-center px-6 md:px-12 pt-24 lg:pt-0">
+                <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-start lg:justify-center px-4 md:px-12 pt-24 lg:pt-0">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-5 md:p-8 lg:p-12 rounded-[2rem] relative shadow-2xl pointer-events-auto">
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] relative shadow-2xl pointer-events-auto">
                       <div className="absolute modaplex-device -top-10 -right-4 md:-top-16 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
                         <img src={posMachineImg} alt="ModaPlex Device" className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]" />
                       </div>
-                      <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-xs font-bold mb-6 italic">ModaPlex™ Platform</div>
+                      <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic">ModaPlex™ Platform</div>
                       <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
                       <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>
                       <p className="text-base text-gray-300 font-light leading-relaxed mb-4 md:mb-8">Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.</p>
                       <ul className="space-y-4">
                         {["Laboratory-grade accuracy in point-of-care settings", "Ultrafast results without specialized infrastructure", "Accessible in urban and rural healthcare environments"].map((item, i) => (
-                          <li key={i} className="flex items-center gap-4 text-xs md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
+                          <li key={i} className="flex items-center gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                         ))}
                       </ul>
                     </div>
@@ -577,10 +578,9 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Content Card */}
               <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8 text-white">
-                <div className="relative min-h-screen w-full flex items-start lg:items-center px-6 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-5 md:p-8 lg:p-12 rounded-[2rem] max-w-3xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-3xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
                     <div className="relative z-10">
                       <div className="absolute -top-10 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
                         <img src={retinaImg} alt="Retina Device" className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]" />
@@ -590,14 +590,14 @@ export default function App() {
                       <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.</p>
                       <ul className="space-y-4 mb-4 md:mb-8">
                         {["Scan time is 5 minutes and is completely non-invasive.", "Supports Parkinson's, Alzheimer's, and Diabetic Retinopathy.", "Validated through multi-center clinical studies."].map((item, i) => (
-                          <li key={i} className="flex items-start gap-4 text-xs md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
+                          <li key={i} className="flex items-start gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                         ))}
                       </ul>
-                      <div className="bg-white rounded-xl p-3 md:p-6 flex items-center gap-3 md:gap-6 w-fit shadow-xl">
+                      <div className="bg-white rounded-xl p-4 md:p-6 flex items-center gap-3 md:gap-6 w-fit shadow-xl">
                         <div className="w-10 h-10 md:w-16 md:h-16 flex-shrink-0"><img src={iitk} alt="IITK Logo" className="w-full h-full object-contain" /></div>
                         <div>
-                          <p className="text-teal-600 text-[8px] md:text-xs font-bold uppercase tracking-widest mb-0.5">Research Partner</p>
-                          <p className="text-gray-900 font-display font-bold text-sm md:text-xl">In collaboration with IIITK</p>
+                          <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-0.5">Research Partner</p>
+                          <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
                         </div>
                       </div>
                     </div>

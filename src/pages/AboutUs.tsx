@@ -2,13 +2,13 @@ import { Building2, HeartPulse, Globe } from "lucide-react";
 import React from "react";
 import founderImg from "../assets/founder.png";
 import directorImg from "../assets/director.png";
-import milestone1Img from "../assets/milestone1.png";
+import milestone1Img from "../assets/about-us.jpeg";
 import milestone2Img from "../assets/milestone2.png";
 import iitkLogo from "../assets/iitk.png";
-import certificate1 from "../assets/certificate1.png";
-import certificate2 from "../assets/certificate2.jpeg";
-import certificate3 from "../assets/certificate3.png";
-import certificate4 from "../assets/certificate4.png";
+import certificate1 from "../assets/certificate-one-v1.jpg";
+import certificate2 from "../assets/certificate-two-v1.jpeg";
+import certificate3 from "../assets/certificate-three-v1.png";
+import certificate4 from "../assets/certificate-four-v1.png";
 import Footer from "../components/Footer";
 import { useState, useRef } from "react";
 import gsap from "gsap";
@@ -538,7 +538,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-display font-light tracking-tight text-white/90">
-              Company certifications & <br /> registrations
+              Company Certifications & <br /> Registrations
             </h2>
           </div>
 

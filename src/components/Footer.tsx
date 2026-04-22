@@ -87,7 +87,7 @@ const Footer: React.FC<FooterProps> = ({
               <img src={footerLogo} alt="PREXILON" className="h-12 w-auto object-contain" />
             </a>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Empowering India's future through Prexilon
+              Advanced molecular diagnostics and AI-powered screening - engineered in India for the world.
             </p>
             <div className="flex items-center gap-4">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
@@ -140,7 +140,7 @@ const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-6">
               <li className="flex items-center gap-4 text-gray-400 text-sm">
                 <Phone className="w-5 h-5 text-teal-400" />
-                <span>+91 98765 43210</span>
+                <span>+91 98951 05814</span>
               </li>
               <li className="flex items-center gap-4 text-gray-400 text-sm">
                 <Mail className="w-5 h-5 text-teal-400" />
