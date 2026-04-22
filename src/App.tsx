@@ -368,7 +368,7 @@ export default function App() {
           {/* Hero Section */}
           <section className="hero-section relative h-screen w-full overflow-hidden flex flex-col bg-black">
             <div className="absolute inset-0 z-0">
-              <div className="hero-bg-dna absolute inset-0 flex items-center justify-center md:block opacity-100">
+              <div className="absolute inset-0 flex items-center justify-center md:block opacity-100">
                 <img src={heroBanner} alt="Hero Banner" className="hidden md:block w-full h-full object-cover object-right-top" />
                 <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-cover object-center" />
               </div>
