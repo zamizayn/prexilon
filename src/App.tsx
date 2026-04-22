@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { ArrowDownLeft, Building2, HeartPulse, Globe, Check, Sparkles } from "lucide-react";
+import { ArrowDownLeft, Check } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -21,6 +21,7 @@ import contactBg from "./assets/contact_background.png";
 
 import SideNav, { defaultNavItems } from "./components/SideNav";
 import AboutUs from "./pages/AboutUs";
+import StatsStrip from "./components/StatsStrip";
 import Services from "./pages/Services";
 import ContactUs from "./pages/ContactUs";
 import Footer from "./components/Footer";
@@ -367,9 +368,9 @@ export default function App() {
           {/* Hero Section */}
           <section className="hero-section relative h-screen w-full overflow-hidden flex flex-col bg-black">
             <div className="absolute inset-0 z-0">
-              <div className="hero-bg-dna absolute inset-0 flex items-center justify-center md:inset-auto md:left-auto md:bottom-auto md:-right-20 md:-top-20 w-full md:w-[80%] h-full md:h-[120%] opacity-100 md:block">
-                <img src={heroBanner} alt="Hero Banner" className="hidden md:block w-full h-full object-contain" />
-                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-contain object-center" />
+              <div className="hero-bg-dna absolute inset-0 flex items-center justify-center md:block opacity-100">
+                <img src={heroBanner} alt="Hero Banner" className="hidden md:block w-full h-full object-cover object-right-top" />
+                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-cover object-center" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/40" />
             </div>
@@ -406,7 +407,7 @@ export default function App() {
 
           {/* Features Section */}
           <section className="relative z-20 bg-white text-black py-24 md:py-32 px-8 md:px-12">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-32">
                 <div className="gsap-reveal-up lg:col-span-7">
                   <h2 className="gsap-advanced-title text-responsive-h1 font-display font-light leading-[1.1] tracking-tight text-[#2d3a3a]">
@@ -422,24 +423,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-                {[
-                  { icon: <Building2 className="w-8 h-8 text-teal-600" />, title: "Urban & Rural", desc: "Bridging healthcare gaps everywhere" },
-                  { icon: <HeartPulse className="w-8 h-8 text-teal-600" />, title: "Lives transformed", desc: "Early detection saves millions" },
-                  { icon: <Globe className="w-8 h-8 text-teal-600" />, title: "Global Reach", desc: "Accessible healthcare solutions worldwide" },
-                  { icon: <Sparkles className="w-8 h-8 text-teal-600" />, title: "AI driven precision", desc: "Accessible healthcare solutions worldwide" },
-                ].map((feature, i) => (
-                  <div key={i} className="gsap-reveal-up flex flex-col gap-6 font-display">
-                    <div className="w-16 h-16 rounded-full bg-teal-50 flex items-center justify-center">
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-xl md:text-2xl text-teal-600 mb-3">{feature.title}</h4>
-                      <p className="text-base text-slate-500 font-medium leading-snug">{feature.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <StatsStrip />
             </div>
           </section>
 

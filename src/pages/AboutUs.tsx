@@ -1,4 +1,4 @@
-import { Building2, HeartPulse, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
 import React from "react";
 import founderImg from "../assets/founder.png";
 import directorImg from "../assets/director.png";
@@ -14,6 +14,7 @@ import { useState, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import StatsStrip from "../components/StatsStrip";
 
 const certificates = [
   {
@@ -312,47 +313,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       {/* Icon Stats Strip - same as homepage */}
       <div className="relative z-10 bg-white px-8 md:px-12 py-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-              {
-                icon: <Building2 className="w-6 h-6 text-teal-600" />,
-                title: "Urban & Rural",
-                desc: "Bridging healthcare gaps everywhere"
-              },
-              {
-                icon: <HeartPulse className="w-6 h-6 text-teal-600" />,
-                title: "Lives transformed",
-                desc: "Early detection saves millions"
-              },
-              {
-                icon: <Globe className="w-6 h-6 text-teal-600" />,
-                title: "Global Reach",
-                desc: "Accessible healthcare solutions worldwide"
-              },
-              {
-                icon: <Globe className="w-6 h-6 text-teal-600" />,
-                title: "Global Reach",
-                desc: "Accessible healthcare  solutions worldwide"
-              }
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-6"
-              >
-                <div className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center">
-                  {feature.icon}
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-lg text-teal-600 mb-2">
-                    {feature.title}
-                  </h4>
-                  <p className="text-sm text-slate-500 font-medium leading-snug">
-                    {feature.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <StatsStrip />
         </div>
       </div>
 
