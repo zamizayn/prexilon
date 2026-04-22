@@ -11,6 +11,7 @@ import diagnosticImg from "./assets/diagnostic_solutions.png";
 import diagnosticImgMobile from "./assets/diagnostic-solution-mobile.png";
 import services1 from "./assets/services1_clear.png";
 import platformOneImg from "./assets/platform_1.png";
+import ProprietaryPlatforms from "./components/ProprietaryPlatforms";
 import posMachineImg from "./assets/pos_machine.png";
 import posImg from "./assets/pos_bg.png";
 import posImgSharp from "./assets/pos_bg_sharp.png";
@@ -370,7 +371,7 @@ export default function App() {
             <div className="absolute inset-0 z-0">
               <div className="absolute inset-0 flex items-center justify-center md:block opacity-100">
                 <img src={heroBanner} alt="Hero Banner" className="hidden md:block w-full h-full object-cover object-right-top" />
-                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-cover object-center" />
+                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-contain object-center" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/40" />
             </div>
@@ -442,9 +443,9 @@ export default function App() {
                   <span className="block py-2 -my-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Solutions</span>
                 </h2>
               </div>
-              <div className="gsap-reveal-up md:pt-20">
-                <p className="text-xl md:text-2xl text-teal-50/80 font-light leading-relaxed">
-                  Prexilon develops and commercializes next-generation diagnostic platforms — from molecular point-of-care testing to AI-powered screening technologies.
+              <div className="gsap-reveal-up">
+                <p className="text-xl md:text-2xl md:mt-2 text-teal-50/80 font-light leading-relaxed">
+                  Prexilon develops and commercializes proprietary next-generation diagnostic platforms from molecular point-of-care testing to AI-powered screening - while strategically partnering with global innovators to accelerate deployment across the Indian and other healthcare markets.
                 </p>
               </div>
             </div>
@@ -456,23 +457,7 @@ export default function App() {
               <div className="gsap-reveal-up mb-16">
                 <h2 className="text-section-title font-display font-light leading-none tracking-tight">Proprietary <br /><span className="font-bold text-[#5BAAAD]">Platforms</span></h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                {[
-                  { id: "01", title: "Advanced Molecular Point-of-Care Diagnostics", subtitle: "Bringing the Lab to the Patient", image: services1 },
-                  { id: "02", title: "AI-Powered Retinal Screening Technology", subtitle: "See the Unseen. Screen the Unscreened.", image: platformOneImg }
-                ].map((platform) => (
-                  <div key={platform.id} className="gsap-reveal-up bg-white group shadow-sm border border-black/5 rounded-2xl overflow-hidden">
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <img src={platform.image} alt={platform.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    </div>
-                    <div className="p-8 md:p-12">
-                      <span className="text-5xl md:text-6xl font-display font-light text-slate-900 mb-8 block">{platform.id}</span>
-                      <h3 className="text-2xl md:text-3xl font-display font-medium text-slate-900 mb-4 leading-tight">{platform.title}</h3>
-                      <p className="text-sm md:text-base text-slate-500 font-medium tracking-wide">{platform.subtitle}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <ProprietaryPlatforms />
             </div>
           </section>
 
@@ -507,22 +492,22 @@ export default function App() {
 
               {/* Content Card - Fades in as image goes full screen */}
               <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
-                <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-start lg:justify-center px-4 md:px-12 pt-24 lg:pt-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] relative shadow-2xl pointer-events-auto">
-                      <div className="absolute modaplex-device -top-10 -right-4 md:-top-16 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
-                        <img src={posMachineImg} alt="ModaPlex Device" className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]" />
-                      </div>
-                      <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic">ModaPlex™ Platform</div>
-                      <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
-                      <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>
-                      <p className="text-base text-gray-300 font-light leading-relaxed mb-4 md:mb-8">Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.</p>
-                      <ul className="space-y-4">
-                        {["Laboratory-grade accuracy in point-of-care settings", "Ultrafast results without specialized infrastructure", "Accessible in urban and rural healthcare environments"].map((item, i) => (
-                          <li key={i} className="flex items-center gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
+                <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                    <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic shadow-sm">ModaPlex™ Platform</div>
+                    <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-sm">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
+                    <p className="text-lg md:text-xl text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>
+                    <p className="text-base text-gray-300 font-light leading-relaxed mb-4 md:mb-8 max-w-xl">Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.</p>
+                    <ul className="space-y-4 md:space-y-6">
+                      {["Laboratory-grade accuracy in point-of-care settings", "Ultrafast results without specialized infrastructure", "Accessible in urban and rural healthcare environments"].map((item, i) => (
+                        <li key={i} className="flex items-center gap-3 md:gap-4 text-sm md:text-base text-gray-200 font-light">
+                          <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0 shadow-md">
+                            <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
+                          </div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -564,11 +549,11 @@ export default function App() {
 
               <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8 text-white">
                 <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-3xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
                     <div className="relative z-10">
-                      <div className="absolute -top-10 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
+                      {/* <div className="absolute -top-10 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
                         <img src={retinaImg} alt="Retina Device" className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]" />
-                      </div>
+                      </div> */}
                       <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white">AI-Powered Retinal <br /> Screening Technology</h2>
                       <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">See the Unseen. Screen the Unscreened.</p>
                       <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.</p>
@@ -577,11 +562,15 @@ export default function App() {
                           <li key={i} className="flex items-start gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                         ))}
                       </ul>
-                      <div className="bg-white rounded-xl p-4 md:p-6 flex items-center gap-3 md:gap-6 w-fit shadow-xl">
-                        <div className="w-10 h-10 md:w-16 md:h-16 flex-shrink-0"><img src={iitk} alt="IITK Logo" className="w-full h-full object-contain" /></div>
-                        <div>
-                          <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-0.5">Research Partner</p>
-                          <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
+                      <div className="bg-white rounded-3xl p-5 md:p-8 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
+                        <div className="w-24 h-16 md:w-44 md:h-24 flex-shrink-0">
+                          <img src={iitk} alt="IITK Logo" className="w-full h-full object-contain" />
+                        </div>
+                        <div className="min-w-[160px] md:min-w-[220px]">
+                          <p className="text-[#7ebcbe] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2">Research Partner</p>
+                          <div className="text-[#1a1a1a] font-display font-bold text-lg md:text-2xl leading-snug">
+                            In collaboration with <br className="hidden md:block" /> IIITK
+                          </div>
                         </div>
                       </div>
                     </div>

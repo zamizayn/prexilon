@@ -10,11 +10,14 @@ import certificate2 from "../assets/certificate-two-v1.jpeg";
 import certificate3 from "../assets/certificate-three-v1.png";
 import certificate4 from "../assets/certificate-four-v1.png";
 import Footer from "../components/Footer";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import StatsStrip from "../components/StatsStrip";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const certificates = [
   {
@@ -44,110 +47,113 @@ const certificates = [
 ];
 
 const CertificationsCarousel: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const dragStartX = useRef<number>(0);
+  const isDragging = useRef(false);
 
-  const handlePrev = () => {
+  const handlePrev = () =>
     setActiveIndex((prev) => (prev === 0 ? certificates.length - 1 : prev - 1));
+
+  const handleNext = () =>
+    setActiveIndex((prev) => (prev === certificates.length - 1 ? 0 : prev + 1));
+
+  // Autoplay every 4 seconds, pause on hover/drag
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(handleNext, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused, activeIndex]);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    dragStartX.current = e.clientX;
+    isDragging.current = true;
+    setIsPaused(true);
   };
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === certificates.length - 1 ? 0 : prev + 1));
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (!isDragging.current) return;
+    const delta = e.clientX - dragStartX.current;
+    if (Math.abs(delta) > 50) {
+      delta < 0 ? handleNext() : handlePrev();
+    }
+    isDragging.current = false;
+    setIsPaused(false);
   };
+
 
   return (
-    <div className="w-full relative flex flex-col items-center overflow-hidden">
-      <div
-        ref={containerRef}
-        className="relative w-full h-[350px] md:h-[550px] flex items-center justify-center overflow-visible"
-      >
-        {certificates.map((cert, index) => {
-          const isActive = index === activeIndex;
-          const isPrev = index === (activeIndex === 0 ? certificates.length - 1 : activeIndex - 1);
-          const isNext = index === (activeIndex === certificates.length - 1 ? 0 : activeIndex + 1);
+    <div
+      className="w-full select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+    >
+      {/* Fixed-height stage — cards slide inside */}
+      <div className="relative w-full h-[220px] md:h-[380px] overflow-hidden cursor-grab active:cursor-grabbing">
+        {certificates.flatMap((cert, index) => {
+          const diff = ((index - activeIndex) % 4 + 4) % 4;
 
-          let positionStyles: React.CSSProperties = {
-            perspective: "1000px",
-            transformStyle: "preserve-3d",
-          };
+          // Each cert can occupy 1 or 2 visual slots
+          type SlotDef = { key: string; left: string; transform: string; opacity: number; zIndex: number; clickFn?: () => void };
+          const slots: SlotDef[] = [];
 
-          let positionClasses = "opacity-0 scale-75 pointer-events-none z-0";
-
-          if (isActive) {
-            positionClasses = "opacity-100 scale-100 z-30 translate-x-0";
-            positionStyles.transform = "rotateY(0deg) scale(1.1)";
-          } else if (isPrev) {
-            positionClasses = "opacity-40 scale-75 z-10 cursor-pointer";
-            positionStyles.transform = "translateX(-45%) rotateY(25deg)";
-            if (window.innerWidth >= 768) {
-              positionStyles.transform = "translateX(-100%) rotateY(35deg)";
-            }
-          } else if (isNext) {
-            positionClasses = "opacity-40 scale-75 z-10 cursor-pointer";
-            positionStyles.transform = "translateX(45%) rotateY(-25deg)";
-            if (window.innerWidth >= 768) {
-              positionStyles.transform = "translateX(100%) rotateY(-35deg)";
-            }
+          if (diff === 0) slots.push({ key: `${cert.id}-c`, left: "50%", transform: "translateX(-50%) scale(1)", opacity: 1, zIndex: 30 });
+          if (diff === 1) slots.push({ key: `${cert.id}-r`, left: "76%", transform: "translateX(-50%) scale(0.82)", opacity: 0.6, zIndex: 20, clickFn: handleNext });
+          if (diff === 3) slots.push({ key: `${cert.id}-l`, left: "24%", transform: "translateX(-50%) scale(0.82)", opacity: 0.6, zIndex: 20, clickFn: handlePrev });
+          if (diff === 2) {
+            // Same cert appears on BOTH far sides
+            slots.push({ key: `${cert.id}-fr`, left: "93%", transform: "translateX(-50%) scale(0.67)", opacity: 0.3, zIndex: 10 });
+            slots.push({ key: `${cert.id}-fl`, left: "7%", transform: "translateX(-50%) scale(0.67)", opacity: 0.3, zIndex: 10 });
           }
 
-          return (
+          return slots.map(slot => (
             <div
-              key={cert.id}
-              onClick={() => {
-                if (isPrev) handlePrev();
-                if (isNext) handleNext();
+              key={slot.key}
+              onClick={slot.clickFn}
+              className={`absolute top-1/2 -translate-y-1/2 w-[52vw] md:w-[420px] aspect-[4/3]
+                overflow-hidden transition-all duration-700
+                ${slot.clickFn ? "cursor-pointer" : "pointer-events-none"}`}
+              style={{
+                left: slot.left,
+                transform: slot.transform,
+                opacity: slot.opacity,
+                zIndex: slot.zIndex,
+                transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
+                padding: "16px",
+                backgroundColor: "#111111",
+                borderRadius: "8px",
+                boxShadow: diff === 0
+                  ? "0 0 0 2px rgba(255,255,255,0.55), 0 28px 70px rgba(0,0,0,0.9)"
+                  : "0 0 0 1.5px rgba(255,255,255,0.2)",
               }}
-              className={`absolute transition-all duration-700 ease-out w-[280px] md:w-[450px] aspect-[4/3] bg-white rounded-xl shadow-2xl overflow-hidden border border-white/20 flex items-center justify-center p-4 ${positionClasses}`}
-              style={positionStyles}
             >
-              <img
-                src={cert.image}
-                alt={cert.title}
-                className="w-full h-full object-contain"
-              />
-              {isActive && (
-                <div className="absolute inset-0 border-[4px] border-teal-500/30 rounded-xl pointer-events-none" />
-              )}
+              <div className="w-full h-full bg-white rounded-[4px] overflow-hidden flex items-center justify-center">
+                <img
+                  src={cert.image}
+                  alt={cert.title}
+                  className="w-full h-full object-contain"
+                  draggable={false}
+                />
+              </div>
             </div>
-          );
+          ));
         })}
       </div>
 
-      {/* Caption & Controls */}
-      <div className="mt-12 text-center max-w-2xl px-6">
-        <h3 className="text-xl md:text-2xl font-display font-medium text-white mb-2">
-          {certificates[activeIndex].title}
-        </h3>
-        <p className="text-sm md:text-base text-zinc-400 font-light mb-8">
-          {certificates[activeIndex].caption}
-        </p>
 
-        <div className="flex items-center justify-center gap-6">
-          <button
-            onClick={handlePrev}
-            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <div className="flex gap-2">
-            {certificates.map((_, i) => (
-              <div
-                key={i}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-teal-500 w-6" : "bg-white/20"}`}
-              />
-            ))}
-          </div>
-          <button
-            onClick={handleNext}
-            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
+      {/* Caption */}
+      <div className="mt-4 text-center">
+        <p className="text-sm md:text-base text-zinc-400 font-light tracking-wide transition-all duration-500">
+          {certificates[activeIndex].title}
+        </p>
       </div>
     </div>
   );
 };
+
+
 
 const expertiseData = [
   {
@@ -192,7 +198,7 @@ const ExpertiseCard: React.FC<{ title: string; desc: string; icon: React.ReactNo
   return (
     <div
       id={`expertise-card-${id}`}
-      className={`expertise-highlight-card rounded-2xl p-8 md:p-10 transition-all duration-500 ease-in-out ${isActive ? "bg-[#0a3d44] scale-[1.02] shadow-xl" : "bg-[#9fb3b3] scale-100 shadow-none opacity-80 md:opacity-100"
+      className={`expertise-highlight-card p-8 md:p-10 transition-all duration-500 ease-in-out ${isActive ? "bg-[#0a3d44] scale-[1.02] shadow-xl" : "bg-[#9fb3b3] scale-100 shadow-none opacity-80 md:opacity-100"
         }`}
     >
       <div className="flex items-center gap-4 mb-4">
@@ -225,27 +231,42 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Only run on mobile (below md breakpoint)
-    const isMobile = window.innerWidth < 768;
-    if (!isMobile) {
-      // On desktop, keep first card highlighted if preferred, or handle differently
-      // The user specified "this is only for mobile", so we exit the trigger logic early
-      return;
-    }
+    const scope = containerRef.current;
+    if (!scope) return;
 
+    // Refresh triggers once layout settles
+    const refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    // 1. Card Highlight Logic
     expertiseData.forEach((_, index) => {
-      gsap.to(`.expertise-highlight-card`, {
-        scrollTrigger: {
-          trigger: `#expertise-card-${expertiseData[index].id}`,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => setActiveExpertise(index),
-          onEnterBack: () => setActiveExpertise(index),
-        }
+      ScrollTrigger.create({
+        trigger: `#expertise-card-${expertiseData[index].id}`,
+        start: "top 70%",
+        end: "bottom 30%",
+        onToggle: (self) => {
+          if (self.isActive) setActiveExpertise(index);
+        },
       });
     });
 
-    // Suble vertical parallax effect for cards
+    // 2. Generic Reveals
+    gsap.utils.toArray<HTMLElement>(".gsap-reveal-up").forEach((elem) => {
+      gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+    });
+
+    // 3. Suble vertical parallax effect for cards
     gsap.utils.toArray<HTMLElement>(".expertise-highlight-card").forEach((card) => {
       gsap.fromTo(card,
         { y: 30 },
@@ -261,12 +282,13 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
         }
       );
     });
-  }, { scope: containerRef });
+    return () => clearTimeout(refreshTimeout);
+  }, { scope: containerRef, revertOnUpdate: true });
 
   return (
     <section ref={containerRef} className="relative min-h-screen overflow-hidden bg-[#004d55] text-white">
-      <div className="relative z-10 min-h-[60vh] flex flex-col p-8 md:p-12">
-        <nav className="flex items-start justify-between mb-auto">
+      <div className="relative z-10 min-h-[450px] flex flex-col p-8 md:p-12">
+        <nav className="flex items-start justify-between">
           <div className="flex flex-col">
             <a href="#/" className="inline-block cursor-pointer">
               <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
@@ -275,8 +297,11 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
           {renderMenuButton()}
         </nav>
 
-        <div className="mt-12 md:mt-20">
-          <h1 className="text-hero-main font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-6xl">
+        <div className="mt-32">
+          <span className="text-md font-display font-light tracking-[0.1em] uppercase text-white block mb-2">
+            About Us
+          </span>
+          <h1 className="text-3xl md:text-5xl lg:text-[5rem] font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-6xl md:pb-10">
             Leading the next <br />
             wave of <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">diagnostic</span> <br />
             intelligence
@@ -288,14 +313,14 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       <div className="relative z-10 bg-[#f5f5f5] px-8 md:px-12 py-20 md:py-32">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-20 items-start">
-            <div className="xl:col-span-5">
-              <h2 className="text-responsive-h2 font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
-                <span className="text-[#2a9d8f]">Know More</span> <span className="text-[#1a1a1a]">About</span> <br />
-                <span className="text-[#1a1a1a]">Prexilon</span>
+            <div className="xl:col-span-5 gsap-reveal-up">
+              <h2 className="text-responsive-h2 font-display font-semibold leading-[1.1] tracking-tight text-[#1a1a1a]">
+                <span className="text-[#1a1a1a]">Know</span> <span className="bg-gradient-to-r from-[#335c5b] to-[#7ebcbe] bg-clip-text text-transparent">More About</span> <br />
+                <span className="bg-gradient-to-r from-[#1a1a1a] to-[#335c5b] bg-clip-text text-transparent">Prexilon</span>
               </h2>
             </div>
 
-            <div className="xl:col-span-7 space-y-6">
+            <div className="xl:col-span-7 space-y-6 gsap-reveal-up">
               <p className="text-[15px] md:text-base text-[#444] font-normal leading-relaxed text-justify">
                 Prexilon Private Limited is a DPIIT-recognised deep-tech diagnostics and AI-enabled bioscience company based in Kochi, Kerala, India, with additional recognition under Startup India, Startup Kerala, and MSME. We are focused on building advanced molecular point-of-care diagnostic platforms and AI-powered screening solutions designed for scalable, real-world healthcare deployment.
               </p>
@@ -311,7 +336,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Icon Stats Strip - same as homepage */}
-      <div className="relative z-10 bg-white px-8 md:px-12 py-16">
+      <div className="relative z-10 bg-white px-8 md:px-12 py-16 gsap-reveal-up">
         <div className="max-w-7xl mx-auto">
           <StatsStrip />
         </div>
@@ -320,12 +345,12 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       {/* Our Team Section */}
       <div className="relative z-10 bg-[#0a3d44] px-8 md:px-12 py-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-display font-light tracking-tight text-white mb-16">
+          <h2 className="text-4xl md:text-5xl font-display font-light tracking-tight text-white mb-16 gsap-reveal-up">
             Our Team
           </h2>
 
           {/* Founder & CEO */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-8 gsap-reveal-up">
             <div>
               <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
                 Founder & CEO
@@ -355,7 +380,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
           <div className="border-t border-white/15 my-12" />
 
           {/* Director */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center gsap-reveal-up">
             <div className="order-2 lg:order-1 flex justify-center lg:justify-start">
               <div className="w-full max-w-[380px] rounded-2xl overflow-hidden shadow-2xl">
                 <img
@@ -386,7 +411,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       {/* Global Scientific Depth Section */}
       <div className="relative z-10 bg-[#f5f5f5] px-8 md:px-12 py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-20 items-start mb-20">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-20 items-start mb-20 gsap-reveal-up">
             <div className="xl:col-span-5">
               <h2 className="text-responsive-h2 font-display font-bold leading-[1.1] tracking-tight text-[#1a1a1a]">
                 <span className="text-[#2a9d8f]">Global Scientific</span> <br />
@@ -422,7 +447,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       <div className="relative z-10 bg-[#EFEEEC] px-8 md:px-16 py-20 md:py-32">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-20 items-end mb-16">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-20 items-end mb-16 gsap-reveal-up">
             <div className="xl:col-span-7">
               <span className="text-sm font-display font-medium tracking-[0.2em] uppercase text-[#555] block mb-4">
                 Achievements
@@ -432,14 +457,14 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
               </h2>
             </div>
             <div className="xl:col-span-5">
-              <p className="text-lg md:text-xl text-[#444] font-light leading-relaxed">
+              <p className="text-lg md:text-lg text-[#1a1a1a] font-medium leading-relaxed">
                 Celebrating Breakthroughs That Shape the Future of Healthcare
               </p>
             </div>
           </div>
 
           {/* Milestone Card */}
-          <div className="rounded-3xl bg-[#ffffff] overflow-hidden">
+          <div className="rounded-3xl bg-[#ffffff] overflow-hidden gsap-reveal-up">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left: Images */}
               <div className="p-6 md:p-8 space-y-4">
@@ -460,32 +485,37 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
               </div>
 
               {/* Right: Content */}
-              <div className="p-6 md:p-8 flex flex-col justify-center">
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-sm bg-teal-400" />
-                    <span className="text-xs font-display font-bold tracking-[0.15em] uppercase text-black">
+              <div className="p-8 md:p-12 flex flex-col gap-y-6 md:gap-y-8 justify-start">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-2.5 h-2.5 bg-[#26a69a]" />
+                    <span className="text-[11px] font-display font-semibold tracking-[0.2em] uppercase text-black">
                       Projects
                     </span>
                   </div>
-                  <span className="text-sm text-black/50 font-light">
+                  <span className="text-xs text-black/70 font-normal">
                     February 13 2026
                   </span>
                 </div>
 
-                <div className="mb-8">
+                {/* Large Spacer to match design */}
+                <div className="h-6 md:h-10" />
+
+                <div className="flex justify-start">
                   <img
                     src={iitkLogo}
                     alt="Indian Institute of Information Technology Kottayam"
-                    className="h-16 md:h-20 w-auto object-contain"
+                    className="h-20 md:h-28 w-auto object-contain"
                   />
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-display font-bold text-black mb-6 leading-tight">
+                <div className="h-2 md:h-4" />
+
+                <h3 className="text-2xl md:text-[32px] font-display font-bold text-black leading-tight">
                   AI-Powered Healthcare Innovations with IIITK
                 </h3>
 
-                <p className="text-sm md:text-[15px] text-black/70 font-light leading-relaxed">
+                <p className="text-sm md:text-[15px] text-black/80 font-normal leading-relaxed text-justify">
                   In collaboration with Indian Institute of Information Technology, Kottayam (IIIT K), we develop handheld screening devices powered by validated AI algorithms. Our solutions include retinal scanning technology for early detection of neurodegenerative diseases like dementia, enabling scalable, precise, and accessible healthcare diagnostics.
                 </p>
               </div>
@@ -495,20 +525,18 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Company Certifications & Registrations Section */}
-      <div className="relative z-10 bg-[#121212] px-8 md:px-12 py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 bg-[#121212] px-0 pt-24 pb-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-display font-light tracking-tight text-white/90">
-              Company Certifications & <br /> Registrations
+            <h2 className="text-4xl md:text-6xl font-display font-light tracking-tight text-[#7ebcbe]/90">
+              Company certifications & <br /> registrations
             </h2>
           </div>
+        </div>
 
-          <div className="relative">
-            {/* Carousel Container */}
-            <div className="flex items-center justify-center gap-4 md:gap-8 min-h-[400px] md:min-h-[500px]">
-              <CertificationsCarousel />
-            </div>
-          </div>
+        {/* Carousel — full width, no inner padding so cards bleed to edges */}
+        <div className="w-full">
+          <CertificationsCarousel />
         </div>
       </div>
 

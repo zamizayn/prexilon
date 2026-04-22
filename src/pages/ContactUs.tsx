@@ -1,13 +1,21 @@
 import React, { useRef, useState } from "react";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, MessageCircle, Clock, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
-import mapPlaceholder from "../assets/mapview.png";
+import mapPlaceholder from "../assets/map-image-desktop.png";
+import mapMobile from "../assets/map-image-mobile.png";
+import contactBg from "../assets/contact_background.png";
 import Footer from "../components/Footer";
 
 interface ContactUsProps {
   logo: string;
   renderMenuButton: () => React.ReactNode;
 }
+
+const WhatsAppIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 448 512" className={className} fill="currentColor">
+    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.4-8.6-44.6-27.6-16.5-14.7-27.6-32.8-30.8-38.4-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.7 9.2 31.7 11.7 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+  </svg>
+);
 
 const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -42,12 +50,19 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
     }
   };
 
+  const scrollToForm = () => {
+    const element = document.getElementById("contact-form");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-white text-slate-900">
       {/* Hero Section */}
-      <div className="relative bg-[#004d55] text-white overflow-hidden">
-        <div className="relative z-10 min-h-[50vh] flex flex-col p-8 md:p-12">
-          <nav className="flex items-start justify-between mb-auto">
+      <div className="relative bg-[#004d55] text-white overflow-hidden min-h-[450px]">
+        <div className="relative z-10 min-h-[400px] flex flex-col p-8 md:p-12">
+          <nav className="flex items-start justify-between">
             <div className="flex flex-col">
               <a href="#/" className="inline-block cursor-pointer">
                 <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
@@ -56,10 +71,13 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
             {renderMenuButton()}
           </nav>
 
-          <div className="mt-12 mb-12">
-            <h1 className="text-hero-main font-display font-light leading-[1.05] tracking-tight uppercase max-w-6xl">
+          <div className="mt-32">
+            <span className="text-md font-display font-light tracking-[0.1em] uppercase text-white block mb-2">
+              Contact Us
+            </span>
+            <h1 className="text-3xl md:text-5xl lg:text-[5rem] font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-6xl md:pb-10">
               Let's Collaborate <br />
-              On The <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">Future Of</span> <br />
+              <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">On The Future Of</span> <br />
               Healthcare
             </h1>
           </div>
@@ -67,7 +85,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Main Content Section */}
-      <div className="relative z-10 px-8 md:px-12 py-24">
+      <div id="contact-form" className="relative z-10 px-8 md:px-12 py-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
@@ -286,8 +304,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   <div>
                     <h3 className="text-xl font-display font-bold mb-4">Contact</h3>
                     <div className="space-y-2 text-sm text-slate-300 font-light">
-                      <p className="flex items-center gap-2">Phone: +91 98951 05814</p>
-                      <p className="flex items-center gap-2">Email: info@prexilon.in</p>
+                      <p className="flex items-center gap-2">
+                        Phone: <a href="tel:+919895105814" className="hover:text-teal-400 transition-colors">+91 98951 05814</a>
+                      </p>
+                      <p className="flex items-center gap-2">
+                        Email: <a href="mailto:info@prexilon.in" className="hover:text-teal-400 transition-colors">info@prexilon.in</a>
+                      </p>
                     </div>
                   </div>
 
@@ -305,9 +327,21 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                   <div>
                     <h3 className="text-xl font-display font-bold mb-6">Stay Connected</h3>
                     <div className="flex items-center gap-4">
-                      {[Facebook, Twitter, Linkedin, Instagram, MessageCircle].map((Icon, i) => (
-                        <a key={i} href="#" className="h-10 w-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 transition-all">
-                          <Icon className="w-5 h-5 text-white" />
+                      {[
+                        { Icon: Facebook, href: "https://facebook.com" },
+                        { Icon: Twitter, href: "https://twitter.com" },
+                        { Icon: Linkedin, href: "https://linkedin.com" },
+                        { Icon: Instagram, href: "https://instagram.com" },
+                        { Icon: WhatsAppIcon, href: "https://wa.me/919895105814" }
+                      ].map((item, i) => (
+                        <a
+                          key={i}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="h-10 w-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 transition-all"
+                        >
+                          <item.Icon className="w-5 h-5 text-white" />
                         </a>
                       ))}
                     </div>
@@ -320,15 +354,37 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Map Section */}
-      <div className="relative w-full h-[450px] overflow-hidden">
+      <a
+        href="https://maps.app.goo.gl/wjuDJaEQ4R1UQqvM7?g_st=ic"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative block w-full h-[300px] md:h-[450px] overflow-hidden group cursor-pointer"
+      >
+        {/* Desktop Image */}
         <img
           src={mapPlaceholder}
-          alt="Location Map"
-          className="w-full h-full object-cover"
+          alt="Location Map Desktop"
+          className="hidden md:block w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-      </div>
+        {/* Mobile Image */}
+        <img
+          src={mapMobile}
+          alt="Location Map Mobile"
+          className="block md:hidden w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* Overlay to hint interactivity */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
+          <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-teal-600" />
+            <span className="text-slate-900 font-display font-bold text-sm tracking-wide">View on Google Maps</span>
+          </div>
+        </div>
+      </a>
 
-      <Footer />
+      <Footer
+        ctaTitle="Engineering The Next Era Of Diagnostics"
+        ctaText="Partner with us in the future of diagnostics"
+      />
     </section>
   );
 };

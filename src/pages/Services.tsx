@@ -10,6 +10,7 @@ import retinaImg from "../assets/retinaImg.png";
 import iitk from "../assets/iitk.png";
 import services1 from "../assets/services1_clear.png";
 import posImgSharp from "../assets/pos_bg_sharp.png";
+import ProprietaryPlatforms from "../components/ProprietaryPlatforms";
 import Footer from "../components/Footer";
 
 interface ServicesProps {
@@ -86,25 +87,23 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
 
   return (
     <section ref={containerRef} className="relative min-h-screen overflow-hidden bg-[#121212] text-white">
-      <div className="relative z-10 min-h-[70vh] flex flex-col p-8 md:p-12">
-        <nav className="flex items-start justify-between mb-auto">
+      <div className="relative z-10 min-h-[450px] flex flex-col p-8 md:p-12">
+        <nav className="flex items-start justify-between">
           <div className="flex flex-col">
             <a href="#/" className="inline-block cursor-pointer">
-              <img src={logo} alt="PREXILON" className="h-[75px] w-auto object-contain -ml-2 mix-blend-color-dodge" />
+              <img src={logo} alt="PREXILON" className="h-20 w-auto object-contain -ml-2 mix-blend-color-dodge" />
             </a>
           </div>
           {renderMenuButton()}
         </nav>
 
         <div className="mt-32">
-          <span className="text-sm md:text-base font-display font-medium tracking-[0.4em] uppercase text-white/90 block mb-8">
+          <span className="text-md font-display font-light tracking-[0.1em] uppercase text-white block mb-2">
             Services
           </span>
-          <h1 className="text-hero-main font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-7xl">
+          <h1 className="text-3xl md:text-5xl lg:text-[5rem] font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-7xl md:pb-10">
             Advanced <br />
-            <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">
-              Diagnostics For
-            </span> <br />
+            <span className="bg-gradient-to-r from-[#E8F3F3] to-[#7EBCBE] bg-clip-text text-transparent">Diagnostics For</span> <br />
             A Healthier World
           </h1>
         </div>
@@ -144,47 +143,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {[
-              {
-                id: "01",
-                title: "Advanced Molecular Point-of-Care Diagnostics",
-                subtitle: "Bringing the Lab to the Patient",
-                image: services1
-              },
-              {
-                id: "02",
-                title: "AI-Powered Retinal Screening Technology",
-                subtitle: "See the Unseen. Screen the Unscreened.",
-                image: platformOneImg
-              }
-            ].map((platform) => (
-              <div
-                key={platform.id}
-                className="bg-white group"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <img
-                    src={platform.image}
-                    alt={platform.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="p-8 md:p-12">
-                  <span className="text-5xl md:text-6xl font-display font-light text-slate-900 mb-8 block">
-                    {platform.id}
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-display font-medium text-slate-900 mb-4 leading-tight">
-                    {platform.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-slate-500 font-medium tracking-wide">
-                    {platform.subtitle}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProprietaryPlatforms />
         </div>
       </section>
 
@@ -204,43 +163,17 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
 
           {/* Content Card */}
           <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
-            <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-start lg:justify-center px-4 md:px-12 pt-24 lg:pt-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[1.5rem] md:rounded-[2rem] relative shadow-2xl pointer-events-auto">
-                  <div className="gsap-reveal-up absolute -top-10 -right-4 md:-top-16 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
-                    <img
-                      src={posMachineImg}
-                      alt="ModaPlex Device"
-                      className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-
-                  <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-display font-bold mb-6 md:mb-8 shadow-sm">
-                    ModaPlex™ Platform
-                  </div>
-
-                  <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-sm">
-                    Advanced Molecular <br />
-                    Point-of-Care Diagnostics
-                  </h2>
-
-                  <p className="text-lg md:text-xl font-display font-medium text-teal-50 mb-3 md:mb-6 italic">
-                    Bringing the Lab to the Patient
-                  </p>
-
-                  <p className="text-base text-gray-300 font-light leading-relaxed mb-4 md:mb-8 max-w-xl">
-                    Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.
-                  </p>
-
-                  <ul className="space-y-6">
-                    {[
-                      "Laboratory-grade accuracy in point-of-care settings",
-                      "Ultrafast results without specialized infrastructure",
-                      "Accessible in urban and rural healthcare environments"
-                    ].map((item, i) => (
+            <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
+              <div className="relative z-10 w-full pt-6 md:pt-8 flex justify-start">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                  <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic shadow-sm">ModaPlex™ Platform</div>
+                  <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-sm">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
+                  <p className="text-lg md:text-xl text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>
+                  <p className="text-base text-gray-300 font-light leading-relaxed mb-4 md:mb-8 max-w-xl">Laboratory-grade accuracy, ultrafast results, works in real-world urban and rural healthcare environments without specialized infrastructure.</p>
+                  <ul className="space-y-4 md:space-y-6">
+                    {["Laboratory-grade accuracy in point-of-care settings", "Ultrafast results without specialized infrastructure", "Accessible in urban and rural healthcare environments"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 md:gap-4 text-sm md:text-base text-gray-200 font-light">
-                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center shadow-md">
+                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0 shadow-md">
                           <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
                         </div>
                         <span>{item}</span>
@@ -293,60 +226,55 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
           </div>
 
           {/* Content Card */}
-          <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
+          <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8 text-white">
             <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-              <div className="relative z-10 w-full pt-6 md:pt-8 flex justify-start">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[1.5rem] md:rounded-[2rem] max-w-3xl relative overflow-hidden shadow-2xl pointer-events-auto ring-1 ring-white/6">
-                  <div className="relative z-10">
-                    <div className="absolute -top-6 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                <div className="relative z-10">
+                  {/* <div className="absolute -top-6 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
                       <img
                         src={retinaImg}
                         alt="Retina Device"
                         className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
                         referrerPolicy="no-referrer"
                       />
+                    </div> */}
+
+                  <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white">AI-Powered Retinal <br /> Screening Technology</h2>
+
+                  <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">See the Unseen. Screen the Unscreened.</p>
+
+                  <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">
+                    An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.
+                  </p>
+
+                  <ul className="space-y-4 md:space-y-6 mb-4 md:mb-8">
+                    {[
+                      "Scan time is 5 minutes and the procedure is completely non-invasive.",
+                      "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
+                      "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 md:gap-4 text-sm md:text-base text-gray-200 font-light">
+                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center mt-0.5 md:mt-1 shadow-lg">
+                          <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
+                        </div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="bg-white rounded-3xl p-5 md:p-8 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
+                    <div className="w-24 h-16 md:w-44 md:h-24 flex-shrink-0">
+                      <img
+                        src={iitk}
+                        alt="IIITK Logo"
+                        className="w-full h-full object-contain"
+                        referrerPolicy="no-referrer"
+                      />
                     </div>
-
-                    <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-md">
-                      AI-Powered Retinal <br />
-                      Screening Technology
-                    </h2>
-
-                    <p className="text-lg md:text-xl font-display font-medium text-teal-50 mb-3 md:mb-6 italic">
-                      See the Unseen. Screen the Unscreened.
-                    </p>
-
-                    <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">
-                      An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.
-                    </p>
-
-                    <ul className="space-y-4 md:space-y-6 mb-4 md:mb-8">
-                      {[
-                        "Scan time is 5 minutes and the procedure is completely non-invasive.",
-                        "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
-                        "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 md:gap-4 text-sm md:text-base text-gray-200 font-light">
-                          <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center mt-0.5 md:mt-1 shadow-lg">
-                            <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
-                          </div>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="bg-white rounded-xl p-4 md:p-6 flex items-center gap-3 md:gap-6 w-fit shadow-xl border border-white/20">
-                      <div className="w-10 h-10 md:w-16 md:h-16 flex-shrink-0">
-                        <img
-                          src={iitk}
-                          alt="IIITK Logo"
-                          className="w-full h-full object-contain"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      <div>
-                        <p className="text-teal-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-0.5">Research Partner</p>
-                        <p className="text-gray-900 font-display font-bold text-base md:text-xl">In collaboration with IIITK</p>
+                    <div className="min-w-[160px] md:min-w-[220px]">
+                      <p className="text-[#7ebcbe] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2">Research Partner</p>
+                      <div className="text-[#1a1a1a] font-display font-bold text-lg md:text-2xl leading-snug">
+                        In collaboration with <br className="hidden md:block" /> IIITK
                       </div>
                     </div>
                   </div>
