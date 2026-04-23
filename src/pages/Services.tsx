@@ -9,6 +9,8 @@ import posMachineImg from "../assets/pos_machine.png";
 import retinaImg from "../assets/retinaImg.png";
 import iitk from "../assets/iitk.png";
 import services1 from "../assets/services1_clear.png";
+import services1Mobile from "../assets/services-one-mobile.png";
+import services2Mobile from "../assets/services-two-mobile.png";
 import posImgSharp from "../assets/pos_bg_sharp.png";
 import ProprietaryPlatforms from "../components/ProprietaryPlatforms";
 import Footer from "../components/Footer";
@@ -20,6 +22,13 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = React.useState(window.innerWidth >= 1024);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useGSAP(() => {
     // -----------------------------------
@@ -131,8 +140,8 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
         <div className="max-w-7xl mx-auto">
           <div className="gsap-reveal-up mb-16">
             <h2 className="text-section-title font-display font-light leading-none tracking-tight">
-              <div className="overflow-hidden pb-2"><div className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #222222 0%, #5BAAAD 100%)' }}>Proprietary</div></div>
-              <div className="overflow-hidden pb-2"><div className="font-bold text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #222222 0%, #5BAAAD 100%)' }}>Platforms</div></div>
+              <div className="overflow-hidden pb-2"><div className="text-[#334141]">Next-Gen Diagnostic</div></div>
+              <div className="overflow-hidden pb-2"><div className="font-bold text-[#334141]">Platforms</div></div>
             </h2>
           </div>
 
@@ -144,9 +153,9 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
       <section className="molecular-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
         <div className="molecular-pin-container relative w-full h-screen flex flex-col items-center justify-center">
           {/* Background Image Container */}
-          <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center">
+          <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-[4/5] md:aspect-video rounded-none flex items-center justify-center">
             <img
-              src={services1}
+              src={(typeof window !== 'undefined' && window.innerWidth < 768) ? services1Mobile : services1}
               alt="Advanced Molecular Diagnostics"
               className="molecular-inner-img w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -158,7 +167,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
           <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
             <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
               <div className="relative z-10 w-full pt-6 md:pt-8 flex justify-start">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                <div className="bg-black/60 lg:bg-white/10 backdrop-blur-2xl lg:backdrop-blur-xl border border-white/20 lg:border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/10 lg:ring-white/6 text-white">
                   <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic shadow-sm">ModaPlex™ Platform</div>
                   <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-sm">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
                   <p className="text-lg md:text-xl text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>
@@ -211,7 +220,13 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
               <img
                 src={posImgSharp}
                 alt="AI Retinal Screening"
-                className="eye-main-img absolute inset-0 h-full w-full object-cover object-center opacity-100 pointer-events-none"
+                className="hidden md:block eye-main-img absolute inset-0 h-full w-full object-cover object-center opacity-100 pointer-events-none"
+                referrerPolicy="no-referrer"
+              />
+              <img
+                src={services2Mobile}
+                alt="AI Retinal Screening Mobile"
+                className="block md:hidden eye-main-img absolute inset-0 h-full w-full object-cover object-center opacity-100 pointer-events-none"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -221,7 +236,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
           {/* Content Card */}
           <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8 text-white">
             <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+              <div className="bg-black/60 lg:bg-white/10 backdrop-blur-2xl lg:backdrop-blur-xl border border-white/20 lg:border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/10 lg:ring-white/6 text-white">
                 <div className="relative z-10">
                   {/* <div className="absolute -top-6 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
                       <img
@@ -256,7 +271,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
                   </ul>
 
                   <div className="bg-white rounded-3xl p-5 md:p-8 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
-                    <div className="w-24 h-16 md:w-44 md:h-24 flex-shrink-0">
+                    <div className="">
                       <img
                         src={iitk}
                         alt="IIITK Logo"

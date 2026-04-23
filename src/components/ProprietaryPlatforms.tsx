@@ -21,15 +21,15 @@ const ProprietaryPlatforms: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
       {platforms.map((platform) => (
-        <div 
-          key={platform.id} 
+        <div
+          key={platform.id}
           className="gsap-reveal-up bg-white group shadow-sm border border-black/5 overflow-hidden"
         >
           <div className="relative aspect-[16/9] overflow-hidden">
-            <img 
-              src={platform.image} 
-              alt={platform.title} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            <img
+              src={platform.image}
+              alt={platform.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               referrerPolicy="no-referrer"
             />
           </div>

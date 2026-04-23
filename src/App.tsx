@@ -10,11 +10,13 @@ import heroBannerMobile from "./assets/banner-mobile.png";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
 import diagnosticImgMobile from "./assets/diagnostic-solution-mobile.png";
 import services1 from "./assets/services1_clear.png";
+import services1Mobile from "./assets/services-one-mobile.png";
 import platformOneImg from "./assets/platform_1.png";
 import ProprietaryPlatforms from "./components/ProprietaryPlatforms";
 import posMachineImg from "./assets/pos_machine.png";
 import posImg from "./assets/pos_bg.png";
 import posImgSharp from "./assets/pos_bg_sharp.png";
+import services2Mobile from "./assets/services-two-mobile.png";
 import retinaImg from "./assets/retinaImg.png";
 import iitk from "./assets/iitk.png";
 import footerLogo from "./assets/footerLogo.png";
@@ -124,8 +126,8 @@ export default function App() {
 
     // Hero Parallax Backgrounds
     gsap.to(scope.querySelectorAll(".hero-bg-dna"), {
-      y: -200,
-      scale: 1.1,
+      y: -100,
+      scale: 1.05,
       ease: "none",
       scrollTrigger: {
         trigger: scope.querySelector(".hero-section"),
@@ -367,15 +369,20 @@ export default function App() {
         <div className="relative bg-black w-full overflow-hidden">
           {/* Hero Section */}
           <section className="hero-section relative h-auto md:h-screen w-full overflow-hidden flex flex-col bg-black">
-            {/* Desktop Image */}
-            <div className="absolute inset-0 z-0 hidden md:block">
-              <img src={heroBanner} alt="Hero Banner" className="w-full h-full object-cover object-right-top" />
+            {/* Background Images */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src={heroBanner}
+                alt="Hero Banner"
+                className="hidden md:block w-full h-full object-cover object-right-top hero-bg-dna will-change-transform"
+              />
+              <img
+                src={heroBannerMobile}
+                alt="Hero Banner Mobile"
+                className="block md:hidden w-full h-full object-cover bg-black will-change-transform"
+              />
             </div>
-            {/* Mobile Image (defines height) */}
-            <div className="relative z-0 block md:hidden w-full">
-              <img src={heroBannerMobile} alt="Hero Banner Mobile" className="w-full h-auto object-cover bg-black" />
-            </div>
-            <div className="absolute inset-0 z-0 pointer-events-none" />
+
 
 
 
@@ -384,8 +391,8 @@ export default function App() {
 
 
             {/* Overlay Content Wrapper */}
-            <div className="absolute inset-0 z-10 flex flex-col">
-              <nav className="relative z-20 flex justify-between items-center p-8 md:p-12">
+            <div className="relative md:absolute md:inset-0 z-10 flex flex-col pb-20 md:pb-0">
+              <nav className="relative z-20 flex justify-between items-center p-6 md:p-12">
                 <div className="flex flex-col">
                   <a href="#/" className="inline-block cursor-pointer">
                     <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2 mix-blend-color-dodge" />
@@ -394,10 +401,10 @@ export default function App() {
                 {renderMenuButton()}
               </nav>
 
-              <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10 text-white">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center lg:items-end h-full">
-                  <div className="hero-content-left lg:col-span-8 mb-8 lg:mb-0">
-                    <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
+              <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-start md:justify-center p-6 md:p-8 lg:p-10 text-white pt-10 md:pt-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 items-center lg:items-end h-full">
+                  <div className="hero-content-left lg:col-span-7 mb-6 lg:mb-0">
+                    <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-6 md:mb-8">
                       Precision Diagnostics Powered By
                     </h2>
                     <h3 className="text-hero-main font-display leading-[1.1] tracking-tight uppercase text-white">
@@ -407,7 +414,7 @@ export default function App() {
                     </h3>
                   </div>
                   <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-sm">
-                    <p className="text-lg text-gray-300 font-light leading-relaxed">
+                    <p className="text-lg text-gray-300 font-semibold leading-relaxed pb-12 md:pb-0">
                       Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
                     </p>
                   </div>
@@ -423,22 +430,22 @@ export default function App() {
                 <div className="gsap-reveal-up lg:col-span-8">
                   <h2 className="gsap-advanced-title text-4xl md:text-7xl lg:text-[5.2rem] font-display font-light leading-[1.02] tracking-tight">
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#4b6b6b]">
-                        Engineering <span className="text-[#5a9191] font-semibold">Scalable</span>
+                      <div className="gsap-title-line text-[#334141]">
+                        Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#334141] to-[#5a9191] font-semibold">Scalable</span>
                       </div>
                     </div>
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#1a1a1a] font-semibold">
-                        Diagnostics <span className="text-[#5a9191] font-light">For A</span>
+                      <div className="gsap-title-line text-[#334141] font-semibold">
+                        Diagnostics <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#334141] to-[#5a9191] font-light">For A</span>
                       </div>
                     </div>
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#5a9191]">
+                      <div className="gsap-title-line text-transparent bg-clip-text bg-gradient-to-r from-[#334141] to-[#5a9191]">
                         World That Needs
                       </div>
                     </div>
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#1a1a1a] font-semibold">
+                      <div className="gsap-title-line text-[#334141] font-semibold">
                         Precision
                       </div>
                     </div>
@@ -482,7 +489,10 @@ export default function App() {
           <section className="relative z-20 bg-[#f8f9fa] text-black py-24 md:py-32 px-8 md:px-16">
             <div className="max-w-7xl mx-auto">
               <div className="gsap-reveal-up mb-16">
-                <h2 className="text-section-title font-display font-light leading-none tracking-tight">Proprietary <br /><span className="font-bold text-[#5BAAAD]">Platforms</span></h2>
+                <h2 className="text-section-title font-display font-light leading-none tracking-tight text-[#334141]">
+                  Next-Gen Diagnostic<br />
+                  <span className="font-bold">Platforms</span>
+                </h2>
               </div>
               <ProprietaryPlatforms />
             </div>
@@ -492,8 +502,12 @@ export default function App() {
           <section className="molecular-scroll-section relative z-20 bg-black text-white w-full border-t border-white/5 overflow-hidden">
             <div className="molecular-pin-container relative w-full h-screen flex flex-col items-center justify-center">
               {/* Background Image Container - Starts as small preview, grows to full screen */}
-              <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center">
-                <img src={services1} alt="Molecular Diagnostics" className="molecular-inner-img w-full h-full object-cover" />
+              <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-[4/5] md:aspect-video rounded-none flex items-center justify-center">
+                <img
+                  src={(typeof window !== 'undefined' && window.innerWidth < 768) ? services1Mobile : services1}
+                  alt="Molecular Diagnostics"
+                  className="molecular-inner-img w-full h-full object-cover"
+                />
                 <div className="molecular-bg-gradient absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent opacity-0 pointer-events-none" />
               </div>
 
@@ -520,7 +534,7 @@ export default function App() {
               {/* Content Card - Fades in as image goes full screen */}
               <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
                 <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                  <div className="bg-black/60 lg:bg-white/10 backdrop-blur-2xl lg:backdrop-blur-xl border border-white/20 lg:border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/10 lg:ring-white/6 text-white">
                     <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic shadow-sm">ModaPlex™ Platform</div>
                     <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-sm">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
                     <p className="text-lg md:text-xl text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>
@@ -548,7 +562,8 @@ export default function App() {
               <div className="eye-image-layer absolute z-10 overflow-hidden flex items-center justify-center bg-black" style={{ width: 'min(360px, 90vw)', height: '150px', clipPath: 'url(#eye-clip-home)' }}>
                 {/* Image wrapper to handle internal scaling separate from shape scaling */}
                 <div className="eye-zoom-wrapper absolute w-[100vw] h-[100vh] flex items-center justify-center">
-                  <img src={posImgSharp} alt="AI Retinal Screening" className="eye-main-img absolute inset-0 h-full w-full object-cover" />
+                  <img src={posImgSharp} alt="AI Retinal Screening" className="hidden md:block eye-main-img absolute inset-0 h-full w-full object-cover" />
+                  <img src={services2Mobile} alt="AI Retinal Screening Mobile" className="block md:hidden eye-main-img absolute inset-0 h-full w-full object-cover" />
                 </div>
                 {/* Gradient overlay for text legibility later */}
                 <div className="eye-bg-gradient absolute inset-0 z-30 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-0 pointer-events-none" />
@@ -576,7 +591,7 @@ export default function App() {
 
               <div className="eye-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8 text-white">
                 <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                  <div className="bg-black/60 lg:bg-white/10 backdrop-blur-2xl lg:backdrop-blur-xl border border-white/20 lg:border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/10 lg:ring-white/6 text-white">
                     <div className="relative z-10">
                       {/* <div className="absolute -top-10 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
                         <img src={retinaImg} alt="Retina Device" className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]" />
@@ -585,12 +600,12 @@ export default function App() {
                       <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">See the Unseen. Screen the Unscreened.</p>
                       <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.</p>
                       <ul className="space-y-4 mb-4 md:mb-8">
-                        {["Scan time is 5 minutes and is completely non-invasive.", "Supports Parkinson's, Alzheimer's, and Diabetic Retinopathy.", "Validated through multi-center clinical studies."].map((item, i) => (
+                        {["Scan time is 5 minutes and is completely non-invasive.", "Supports Parkinson's, Alzheimer's, and Diabetic Retinopathy.", "The technology has been validated through a multi-center clinical study conducted across three hospital sites."].map((item, i) => (
                           <li key={i} className="flex items-start gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                         ))}
                       </ul>
                       <div className="bg-white rounded-3xl p-5 md:p-8 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
-                        <div className="w-24 h-16 md:w-44 md:h-24 flex-shrink-0">
+                        <div className="">
                           <img src={iitk} alt="IITK Logo" className="w-full h-full object-contain" />
                         </div>
                         <div className="min-w-[160px] md:min-w-[220px]">
