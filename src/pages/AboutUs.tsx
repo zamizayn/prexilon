@@ -4,11 +4,12 @@ import founderImg from "../assets/founder.png";
 import directorImg from "../assets/director.png";
 import milestone1Img from "../assets/about-us.jpeg";
 import milestone2Img from "../assets/milestone2.png";
-import iitkLogo from "../assets/iitk.png";
+import iitkLogo from "../assets/iitk.jpeg";
 import certificate1 from "../assets/certificate-one-v1.jpg";
 import certificate2 from "../assets/certificate-two-v1.jpeg";
 import certificate3 from "../assets/certificate-three-v1.png";
 import certificate4 from "../assets/certificate-four-v1.png";
+import contactBg from "../assets/contact_background.png";
 import Footer from "../components/Footer";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
@@ -501,15 +502,15 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
                 {/* Large Spacer to match design */}
                 <div className="h-6 md:h-10" />
 
-                <div className="flex justify-start">
+                <div className="w-[80px] h-[80px] md:w-[200px] md:h-[200px] flex items-center justify-start">
                   <img
                     src={iitkLogo}
+                    width={200}
+                    height={200}
                     alt="Indian Institute of Information Technology Kottayam"
-                    className="h-20 md:h-28 w-auto object-contain"
+                    className="w-full h-full object-contain"
                   />
                 </div>
-
-                <div className="h-2 md:h-4" />
 
                 <h3 className="text-2xl md:text-[32px] font-display font-bold text-black leading-tight">
                   AI-Powered Healthcare Innovations with IIITK

@@ -44,13 +44,14 @@ const Footer: React.FC<FooterProps> = ({
       {/* CTA Section */}
       {showCta && (
         <section className="relative z-10 h-[60vh] w-full overflow-hidden flex items-center justify-center">
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 overflow-hidden">
             <img
               src={contactBg}
               alt="Scientific Background"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-105"
               referrerPolicy="no-referrer"
             />
+            <div className="absolute inset-0 bg-[#004d55]/80 mix-blend-multiply"></div>
           </div>
           <div className="relative z-10 text-center px-8">
             <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg">

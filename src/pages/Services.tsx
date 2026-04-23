@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import platformOneImg from "../assets/platform_1.png";
 import posMachineImg from "../assets/pos_machine.png";
 import retinaImg from "../assets/retinaImg.png";
-import iitk from "../assets/iitk.png";
+import iitk from "../assets/iitk.jpeg";
 import services1 from "../assets/services1_clear.png";
 import services1Mobile from "../assets/services-one-mobile.png";
 import services2Mobile from "../assets/services-two-mobile.png";
@@ -238,45 +238,25 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
             <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
               <div className="bg-black/60 lg:bg-white/10 backdrop-blur-2xl lg:backdrop-blur-xl border border-white/20 lg:border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/10 lg:ring-white/6 text-white">
                 <div className="relative z-10">
-                  {/* <div className="absolute -top-6 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
-                      <img
-                        src={retinaImg}
-                        alt="Retina Device"
-                        className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div> */}
-
+                  {/* <div className="absolute -top-10 -right-4 md:-top-24 md:-right-20 w-24 md:w-64 z-20 opacity-40 lg:opacity-100">
+                        <img src={retinaImg} alt="Retina Device" className="w-full h-auto drop-shadow-[0_20px_50px_rgba(45,212,191,0.3)]" />
+                      </div> */}
                   <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white">AI-Powered Retinal <br /> Screening Technology</h2>
-
                   <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">See the Unseen. Screen the Unscreened.</p>
-
-                  <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">
-                    An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.
-                  </p>
-
-                  <ul className="space-y-4 md:space-y-6 mb-4 md:mb-8">
-                    {[
-                      "Scan time is 5 minutes and the procedure is completely non-invasive.",
-                      "It supports applications including Parkinson's, Alzheimer's, dementia, and diabetic retinopathy.",
-                      "The technology has been validated through a multi-center clinical study conducted across three hospital sites."
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 md:gap-4 text-sm md:text-base text-gray-200 font-light">
-                        <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-teal-500 flex items-center justify-center mt-0.5 md:mt-1 shadow-lg">
-                          <Check className="w-3 h-3 md:w-4 md:h-4 text-white" />
-                        </div>
-                        <span>{item}</span>
-                      </li>
+                  <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.</p>
+                  <ul className="space-y-4 mb-4 md:mb-8">
+                    {["Scan time is 5 minutes and is completely non-invasive.", "Supports Parkinson's, Alzheimer's, and Diabetic Retinopathy.", "The technology has been validated through a multi-center clinical study conducted across three hospital sites."].map((item, i) => (
+                      <li key={i} className="flex items-start gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                     ))}
                   </ul>
-
-                  <div className="bg-white rounded-3xl p-5 md:p-8 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
-                    <div className="">
+                  <div className="bg-white rounded-3xl p-3 md:p-3 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
+                    <div className="w-[80px] h-[80px] md:w-[110px] md:h-[110px] flex-shrink-0 flex items-center justify-center">
                       <img
                         src={iitk}
                         alt="IIITK Logo"
+                        width={110}
+                        height={110}
                         className="w-full h-full object-contain"
-                        referrerPolicy="no-referrer"
                       />
                     </div>
                     <div className="min-w-[160px] md:min-w-[220px]">

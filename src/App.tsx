@@ -18,7 +18,7 @@ import posImg from "./assets/pos_bg.png";
 import posImgSharp from "./assets/pos_bg_sharp.png";
 import services2Mobile from "./assets/services-two-mobile.png";
 import retinaImg from "./assets/retinaImg.png";
-import iitk from "./assets/iitk.png";
+import iitk from "./assets/iitk.jpeg";
 import footerLogo from "./assets/footerLogo.png";
 import contactBg from "./assets/contact_background.png";
 import SideNav, { defaultNavItems } from "./components/SideNav";
@@ -604,9 +604,15 @@ export default function App() {
                           <li key={i} className="flex items-start gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                         ))}
                       </ul>
-                      <div className="bg-white rounded-3xl p-5 md:p-8 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
-                        <div className="">
-                          <img src={iitk} alt="IITK Logo" className="w-full h-full object-contain" />
+                      <div className="bg-white rounded-3xl p-3 md:p-3 flex items-center gap-5 md:gap-8 w-fit shadow-xl border border-black/5">
+                        <div className="w-[80px] h-[80px] md:w-[110px] md:h-[110px] flex-shrink-0 flex items-center justify-center">
+                          <img
+                            src={iitk}
+                            alt="IIITK Logo"
+                            width={110}
+                            height={110}
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="min-w-[160px] md:min-w-[220px]">
                           <p className="text-[#7ebcbe] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2">Research Partner</p>
