@@ -375,7 +375,7 @@ export default function App() {
             <div className="relative z-0 block md:hidden w-full">
               <img src={heroBannerMobile} alt="Hero Banner Mobile" className="w-full h-auto object-cover bg-black" />
             </div>
-            <div className="absolute inset-0 z-0 bg-black/40 pointer-events-none" />
+            <div className="absolute inset-0 z-0 pointer-events-none" />
 
 
 
@@ -418,18 +418,18 @@ export default function App() {
 
           {/* Features Section */}
           <section className="relative z-20 bg-white text-black py-24 md:py-32 px-8 md:px-16 lg:px-24">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-24">
-                <div className="gsap-reveal-up lg:col-span-7">
-                  <h2 className="gsap-advanced-title text-responsive-h1 font-display font-light leading-[1.05] tracking-tight">
+            <div className="max-w-[1440px] mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-32">
+                <div className="gsap-reveal-up lg:col-span-8">
+                  <h2 className="gsap-advanced-title text-4xl md:text-7xl lg:text-[5.2rem] font-display font-light leading-[1.02] tracking-tight">
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#5a9191]">
+                      <div className="gsap-title-line text-[#4b6b6b]">
                         Engineering <span className="text-[#5a9191] font-semibold">Scalable</span>
                       </div>
                     </div>
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#5a9191]">
-                        <span className="text-[#1a1a1a] font-semibold">Diagnostics</span> For A
+                      <div className="gsap-title-line text-[#1a1a1a] font-semibold">
+                        Diagnostics <span className="text-[#5a9191] font-light">For A</span>
                       </div>
                     </div>
                     <div className="overflow-hidden pb-1">
@@ -438,14 +438,14 @@ export default function App() {
                       </div>
                     </div>
                     <div className="overflow-hidden pb-1">
-                      <div className="gsap-title-line text-[#1a1a1a]">
+                      <div className="gsap-title-line text-[#1a1a1a] font-semibold">
                         Precision
                       </div>
                     </div>
                   </h2>
                 </div>
-                <div className="gsap-reveal-up lg:col-span-5 lg:pt-20">
-                  <p className="text-base md:text-lg text-[#000] font-light leading-relaxed max-w-sm ml-auto">
+                <div className="gsap-reveal-up lg:col-span-4 lg:pt-40">
+                  <p className="text-xl md:text-2xl lg:text-[1.7rem] text-[#000000] font-light leading-relaxed lg:ml-auto">
                     Combining artificial intelligence with advanced bioscience to enable fast, accurate diagnostics at the point of care.
                   </p>
                 </div>
