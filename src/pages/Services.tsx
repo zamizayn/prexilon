@@ -110,23 +110,16 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
       </div>
 
       {/* Diagnostic Solutions Content Section (from Homepage) */}
-      <section className="relative z-20 bg-[#004d55] text-white py-24 md:py-32 px-8 md:px-16 border-t border-white/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <section className="relative z-20 bg-[#004d55] text-white py-24 md:py-32 px-8 md:px-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
           <div className="gsap-reveal-up">
-            <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-teal-200 mb-6 block">
-              Services
-            </span>
             <h2 className="text-section-title font-display font-medium leading-none tracking-tight">
-              <div className="overflow-hidden pb-4 -mb-2"><div className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #FFFFFF 0%, #5BAAAD 100%)', paddingBottom: '0.1em' }}>Diagnostic</div></div>
-              <div className="overflow-hidden pb-4 -mb-2"><div className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, #FFFFFF 0%, #5BAAAD 100%)', paddingBottom: '0.1em' }}>Solutions</div></div>
+              <span className="block py-2 -my-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Diagnostic</span>
+              <span className="block py-2 -my-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200/50">Solutions</span>
             </h2>
           </div>
-
-          <div className="gsap-reveal-up md:pt-20" style={{ transitionDelay: '200ms' }}>
-            <h3 className="text-xl font-display font-bold mb-8">
-              Advanced Diagnostics for a Healthier World
-            </h3>
-            <p className="text-xl md:text-2xl text-teal-50/80 font-light leading-relaxed">
+          <div className="gsap-reveal-up">
+            <p className="text-xl md:text-2xl md:mt-2 text-teal-50/80 font-light leading-relaxed">
               Prexilon develops and commercializes proprietary next-generation diagnostic platforms from molecular point-of-care testing to AI-powered screening - while strategically partnering with global innovators to accelerate deployment across the Indian and other healthcare markets.
             </p>
           </div>

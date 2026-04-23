@@ -99,10 +99,10 @@ const Footer: React.FC<FooterProps> = ({
             </div>
             <div className="flex items-center gap-6">
               {[
-                { Icon: Facebook, href: "https://facebook.com" },
-                { Icon: Twitter, href: "https://twitter.com" },
-                { Icon: Linkedin, href: "https://linkedin.com" },
-                { Icon: Instagram, href: "https://instagram.com" },
+                // { Icon: Facebook, href: "https://facebook.com" },
+                // { Icon: Twitter, href: "https://twitter.com" },
+                // { Icon: Linkedin, href: "https://linkedin.com" },
+                // { Icon: Instagram, href: "https://instagram.com" },
                 { Icon: WhatsAppIcon, href: "https://wa.me/919895105814" }
               ].map((item, i) => (
                 <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="text-white hover:text-teal-400 transition-colors">

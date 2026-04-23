@@ -19,7 +19,6 @@ import retinaImg from "./assets/retinaImg.png";
 import iitk from "./assets/iitk.png";
 import footerLogo from "./assets/footerLogo.png";
 import contactBg from "./assets/contact_background.png";
-
 import SideNav, { defaultNavItems } from "./components/SideNav";
 import AboutUs from "./pages/AboutUs";
 import StatsStrip from "./components/StatsStrip";
@@ -367,58 +366,79 @@ export default function App() {
       ) : (
         <div className="relative bg-black w-full overflow-hidden">
           {/* Hero Section */}
-          <section className="hero-section relative h-screen w-full overflow-hidden flex flex-col bg-black">
-            <div className="absolute inset-0 z-0">
-              <div className="absolute inset-0 flex items-center justify-center md:block opacity-100">
-                <img src={heroBanner} alt="Hero Banner" className="hidden md:block w-full h-full object-cover object-right-top" />
-                <img src={heroBannerMobile} alt="Hero Banner Mobile" className="block md:hidden w-full h-full object-contain object-center" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/40" />
+          <section className="hero-section relative h-auto min-h-screen md:h-screen w-full overflow-hidden flex flex-col bg-black">
+            <div className="absolute inset-0 z-0 hidden md:block">
+              <img src={heroBanner} alt="Hero Banner" className="w-full h-full object-cover object-right-top" />
             </div>
+            <div className="relative z-0 block md:hidden w-full">
+              <img src={heroBannerMobile} alt="Hero Banner Mobile" className="w-full h-auto object-contain bg-black" />
+            </div>
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-transparent to-black/20 pointer-events-none" />
 
-            <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
-              <div className="flex flex-col">
-                <a href="#/" className="inline-block cursor-pointer">
-                  <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2 mix-blend-color-dodge" />
-                </a>
-              </div>
-              {renderMenuButton()}
-            </nav>
 
-            <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10 text-white">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end h-full">
-                <div className="hero-content-left lg:col-span-8 mb-8 lg:mb-0">
-                  <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
-                    Precision Diagnostics Powered By
-                  </h2>
-                  <h3 className="text-hero-main font-display leading-[1.1] tracking-tight uppercase text-white">
-                    <span className="block">Next-Generation</span>
-                    <span className="block py-1 -my-1 bg-gradient-to-r from-teal-100 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span>
-                    <span className="block">And AI Diagnostics</span>
-                  </h3>
+            {/* Overlay Content Wrapper */}
+            <div className="absolute inset-0 z-10 flex flex-col">
+              <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
+                <div className="flex flex-col">
+                  <a href="#/" className="inline-block cursor-pointer">
+                    <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2 mix-blend-color-dodge" />
+                  </a>
                 </div>
-                <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-sm">
-                  <p className="text-lg text-gray-300 font-light leading-relaxed">
-                    Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
-                  </p>
+                {renderMenuButton()}
+              </nav>
+
+              <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10 text-white">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end h-full">
+                  <div className="hero-content-left lg:col-span-8 mb-8 lg:mb-0">
+                    <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
+                      Precision Diagnostics Powered By
+                    </h2>
+                    <h3 className="text-hero-main font-display leading-[1.1] tracking-tight uppercase text-white">
+                      <span className="block">Next-Generation</span>
+                      <span className="block py-1 -my-1 bg-gradient-to-r from-teal-100 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span>
+                      <span className="block">And AI Diagnostics</span>
+                    </h3>
+                  </div>
+                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-sm">
+                    <p className="text-lg text-gray-300 font-light leading-relaxed">
+                      Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
           {/* Features Section */}
-          <section className="relative z-20 bg-white text-black py-24 md:py-32 px-8 md:px-12">
+          <section className="relative z-20 bg-white text-black py-24 md:py-32 px-8 md:px-16 lg:px-24">
             <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-32">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-24">
                 <div className="gsap-reveal-up lg:col-span-7">
-                  <h2 className="gsap-advanced-title text-responsive-h1 font-display font-light leading-[1.1] tracking-tight text-[#2d3a3a]">
-                    <div className="overflow-hidden pb-1"><div className="gsap-title-line">Engineering <span className="text-[#5a9191]">scalable</span></div></div>
-                    <div className="overflow-hidden pb-1"><div className="gsap-title-line"><span className="text-[#2d3a3a]">diagnostics</span> <span className="text-slate-500">for a</span></div></div>
-                    <div className="overflow-hidden pb-1"><div className="gsap-title-line"><span className="text-slate-500">world that needs precision</span></div></div>
+                  <h2 className="gsap-advanced-title text-responsive-h1 font-display font-light leading-[1.05] tracking-tight">
+                    <div className="overflow-hidden pb-1">
+                      <div className="gsap-title-line text-[#5a9191]">
+                        Engineering <span className="text-[#5a9191] font-semibold">Scalable</span>
+                      </div>
+                    </div>
+                    <div className="overflow-hidden pb-1">
+                      <div className="gsap-title-line text-[#5a9191]">
+                        <span className="text-[#1a1a1a] font-semibold">Diagnostics</span> For A
+                      </div>
+                    </div>
+                    <div className="overflow-hidden pb-1">
+                      <div className="gsap-title-line text-[#5a9191]">
+                        World That Needs
+                      </div>
+                    </div>
+                    <div className="overflow-hidden pb-1">
+                      <div className="gsap-title-line text-[#1a1a1a]">
+                        Precision
+                      </div>
+                    </div>
                   </h2>
                 </div>
-                <div className="gsap-reveal-up lg:col-span-5 lg:pt-16">
-                  <p className="text-base md:text-lg text-slate-600 font-light leading-relaxed max-w-sm ml-auto">
+                <div className="gsap-reveal-up lg:col-span-5 lg:pt-20">
+                  <p className="text-base md:text-lg text-[#000] font-light leading-relaxed max-w-sm ml-auto">
                     Combining artificial intelligence with advanced bioscience to enable fast, accurate diagnostics at the point of care.
                   </p>
                 </div>
@@ -466,7 +486,7 @@ export default function App() {
             <div className="molecular-pin-container relative w-full h-screen flex flex-col items-center justify-center">
               {/* Background Image Container - Starts as small preview, grows to full screen */}
               <div className="molecular-image-layer absolute z-0 overflow-hidden w-[90vw] md:w-full max-w-2xl aspect-video rounded-none flex items-center justify-center">
-                <img src={posImg} alt="Molecular Diagnostics" className="molecular-inner-img w-full h-full object-cover" />
+                <img src={services1} alt="Molecular Diagnostics" className="molecular-inner-img w-full h-full object-cover" />
                 <div className="molecular-bg-gradient absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent opacity-0 pointer-events-none" />
               </div>
 
@@ -493,7 +513,7 @@ export default function App() {
               {/* Content Card - Fades in as image goes full screen */}
               <div className="molecular-content-card absolute inset-0 z-10 opacity-0 pointer-events-none translate-y-8">
                 <div className="relative min-h-screen w-full flex items-start lg:items-center px-4 md:px-12 py-24 lg:py-8 max-w-7xl mx-auto">
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-7 md:p-8 lg:p-12 rounded-[2rem] max-w-2xl relative shadow-2xl pointer-events-auto ring-1 ring-white/6 text-white">
                     <div className="inline-block bg-white text-teal-600 px-3 py-1 rounded-full text-sm font-bold mb-6 italic shadow-sm">ModaPlex™ Platform</div>
                     <h2 className="text-2xl md:text-5xl font-display font-bold leading-tight mb-2 md:mb-4 text-white drop-shadow-sm">Advanced Molecular <br /> Point-of-Care Diagnostics</h2>
                     <p className="text-lg md:text-xl text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">Bringing the Lab to the Patient</p>

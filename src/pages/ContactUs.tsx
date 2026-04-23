@@ -328,10 +328,10 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                     <h3 className="text-xl font-display font-bold mb-6">Stay Connected</h3>
                     <div className="flex items-center gap-4">
                       {[
-                        { Icon: Facebook, href: "https://facebook.com" },
-                        { Icon: Twitter, href: "https://twitter.com" },
-                        { Icon: Linkedin, href: "https://linkedin.com" },
-                        { Icon: Instagram, href: "https://instagram.com" },
+                        // { Icon: Facebook, href: "https://facebook.com" },
+                        // { Icon: Twitter, href: "https://twitter.com" },
+                        // { Icon: Linkedin, href: "https://linkedin.com" },
+                        // { Icon: Instagram, href: "https://instagram.com" },
                         { Icon: WhatsAppIcon, href: "https://wa.me/919895105814" }
                       ].map((item, i) => (
                         <a
