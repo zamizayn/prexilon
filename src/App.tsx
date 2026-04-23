@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 
 import logo from "./assets/logo_new.png";
 import heroBanner from "./assets/hero-banner-tuned.png";
-import heroBannerMobile from "./assets/banner-mobile-v1.jpeg";
+import heroBannerMobile from "./assets/banner-mobile.png";
 import diagnosticImg from "./assets/diagnostic_solutions.png";
 import diagnosticImgMobile from "./assets/diagnostic-solution-mobile.png";
 import services1 from "./assets/services1_clear.png";
