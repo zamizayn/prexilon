@@ -366,19 +366,26 @@ export default function App() {
       ) : (
         <div className="relative bg-black w-full overflow-hidden">
           {/* Hero Section */}
-          <section className="hero-section relative h-auto min-h-screen md:h-screen w-full overflow-hidden flex flex-col bg-black">
+          <section className="hero-section relative h-auto md:h-screen w-full overflow-hidden flex flex-col bg-black">
+            {/* Desktop Image */}
             <div className="absolute inset-0 z-0 hidden md:block">
               <img src={heroBanner} alt="Hero Banner" className="w-full h-full object-cover object-right-top" />
             </div>
+            {/* Mobile Image (defines height) */}
             <div className="relative z-0 block md:hidden w-full">
-              <img src={heroBannerMobile} alt="Hero Banner Mobile" className="w-full h-auto object-contain bg-black" />
+              <img src={heroBannerMobile} alt="Hero Banner Mobile" className="w-full h-auto object-cover bg-black" />
             </div>
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-transparent to-black/20 pointer-events-none" />
+            <div className="absolute inset-0 z-0 bg-black/40 pointer-events-none" />
+
+
+
+
+
 
 
             {/* Overlay Content Wrapper */}
             <div className="absolute inset-0 z-10 flex flex-col">
-              <nav className="relative z-20 flex justify-between items-start p-8 md:p-12">
+              <nav className="relative z-20 flex justify-between items-center p-8 md:p-12">
                 <div className="flex flex-col">
                   <a href="#/" className="inline-block cursor-pointer">
                     <img src={logo} alt="PREXILON" className="h-24 w-auto object-contain -ml-2 mix-blend-color-dodge" />
@@ -388,7 +395,7 @@ export default function App() {
               </nav>
 
               <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10 text-white">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end h-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center lg:items-end h-full">
                   <div className="hero-content-left lg:col-span-8 mb-8 lg:mb-0">
                     <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-8">
                       Precision Diagnostics Powered By

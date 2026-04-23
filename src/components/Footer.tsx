@@ -16,8 +16,8 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({
-  ctaTitle = "Let's shape the Future together",
-  ctaText = "Schedule a free demo and see our programs in action.",
+  ctaTitle = "Engineering The Next Era Of Diagnostics",
+  ctaText = "Partner with us in the future of diagnostics",
   showCta = true
 }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);

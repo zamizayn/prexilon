@@ -381,10 +381,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
         </div>
       </a>
 
-      <Footer
-        ctaTitle="Engineering The Next Era Of Diagnostics"
-        ctaText="Partner with us in the future of diagnostics"
-      />
+      <Footer />
     </section>
   );
 };
