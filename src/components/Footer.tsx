@@ -51,7 +51,7 @@ const Footer: React.FC<FooterProps> = ({
               className="w-full h-full object-cover scale-105"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-[#004d55]/80 mix-blend-multiply"></div>
+            {/* <div className="absolute inset-0 bg-[#004d55]/80 mix-blend-multiply"></div> */}
           </div>
           <div className="relative z-10 text-center px-8">
             <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg">
