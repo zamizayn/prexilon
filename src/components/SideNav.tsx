@@ -142,6 +142,6 @@ export default function SideNav({
 export const defaultNavItems: NavItem[] = [
   { id: "top", label: "Home", icon: Home },
   { id: "about-us", label: "About Us", icon: Info },
-  { id: "services", label: "Services", icon: Sparkles },
+  { id: "services", label: "Innovation Platforms", icon: Sparkles },
   { id: "contact-us", label: "Contact Us", icon: Mail },
 ];

@@ -96,6 +96,12 @@ const Footer: React.FC<FooterProps> = ({
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 Advanced molecular diagnostics and AI-powered screening - engineered in India for the world.
               </p>
+              <div className="text-gray-400 text-xs leading-relaxed mt-4 max-w-md space-y-1">
+                <p>Prexilon Private Limited ·</p>
+                <p>CIN: U32509KL2025PTC099140</p>
+                <p>A Startup India / DPIIT, Kerala Startup Mission, and MSME-recognised company ·</p>
+                <p>Registered office: Corrazone, Panadans Venture, CUSAT P.O., Kalamassery, Kochi 682022.</p>
+              </div>
             </div>
             <div className="flex items-center gap-6">
               {[
@@ -119,7 +125,7 @@ const Footer: React.FC<FooterProps> = ({
               {[
                 { label: "Home", hash: "/" },
                 { label: "About", hash: "/about-us" },
-                { label: "Services", hash: "/services" },
+                { label: "Innovation Platforms", hash: "/services" },
                 { label: "Contact", hash: "/contact-us" }
               ].map((link) => (
                 <li key={link.label}>

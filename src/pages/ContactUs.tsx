@@ -164,10 +164,11 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none"
                     >
                       <option value="">Select option</option>
-                      <option value="doctor">Doctor</option>
-                      <option value="partner">Potential Partner</option>
-                      <option value="investor">Investor</option>
-                      <option value="other">Other</option>
+                      <option value="Investor">Investor</option>
+                      <option value="Customer">Customer</option>
+                      <option value="Researcher">Researcher</option>
+                      <option value="Student">Student</option>
+                      <option value="Job seeker">Job seeker</option>
                     </select>
                     <div className="absolute right-0 bottom-4 pointer-events-none opacity-40">
                       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -201,16 +202,18 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
 
                   {/* Interested in */}
                   <div className="relative">
-                    <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">I'm interested in*</label>
+                    <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">I am interested in*</label>
                     <select
                       name="interest"
                       required
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none"
                     >
                       <option value="">Select option</option>
-                      <option value="molecular">Molecular Diagnostics</option>
-                      <option value="ai">AI Screening</option>
-                      <option value="partnership">General Partnership</option>
+                      <option value="Job seeking">Job seeking</option>
+                      <option value="Investment">Investment</option>
+                      <option value="Partnership">Partnership</option>
+                      <option value="Collaboration">Collaboration</option>
+                      <option value="Sales">Sales</option>
                     </select>
                     <div className="absolute right-0 bottom-4 pointer-events-none opacity-40">
                       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -221,15 +224,15 @@ const ContactUs: React.FC<ContactUsProps> = ({ logo, renderMenuButton }) => {
 
                   {/* Contact Method */}
                   <div className="relative">
-                    <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Preferred contact method</label>
+                    <label className="text-[11px] font-display font-bold tracking-widest uppercase text-slate-400 block mb-2">Contact method</label>
                     <select
                       name="contact_method"
                       className="w-full bg-transparent border-b border-slate-200 py-3 text-slate-900 focus:outline-none focus:border-teal-600 transition-colors appearance-none"
                     >
                       <option value="">Select option</option>
-                      <option value="email">Email</option>
-                      <option value="phone">Phone</option>
-                      <option value="whatsapp">WhatsApp</option>
+                      <option value="Email id">Email id</option>
+                      <option value="Whatsapp">Whatsapp</option>
+                      <option value="Call">Call</option>
                     </select>
                     <div className="absolute right-0 bottom-4 pointer-events-none opacity-40">
                       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">

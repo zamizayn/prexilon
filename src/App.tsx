@@ -600,7 +600,7 @@ export default function App() {
                       <p className="text-lg text-teal-50 mb-3 md:mb-6 italic font-medium leading-relaxed">See the Unseen. Screen the Unscreened.</p>
                       <p className="text-base text-gray-200 font-light leading-relaxed mb-4 md:mb-8">An AI-powered platform for non-invasive early detection of neurodegenerative and metabolic diseases. A 5-minute scan generates clinician-ready risk stratification reports.</p>
                       <ul className="space-y-4 mb-4 md:mb-8">
-                        {["Scan time is 5 minutes and is completely non-invasive.", "Supports Parkinson's, Alzheimer's, and Diabetic Retinopathy.", "The technology has being validated through a multi-center clinical study conducted across three hospital sites."].map((item, i) => (
+                        {["Scan time is 5 minutes and is completely non-invasive.", "Supports Parkinson's, Alzheimer's, and Diabetic Retinopathy.", "Being validated through a multi-center clinical study conducted across three hospital sites."].map((item, i) => (
                           <li key={i} className="flex items-start gap-4 text-sm md:text-base text-gray-200"><div className="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center mt-1 flex-shrink-0"><Check className="w-3 h-3 text-white" /></div>{item}</li>
                         ))}
                       </ul>
