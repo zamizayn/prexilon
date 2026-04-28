@@ -368,7 +368,7 @@ export default function App() {
       ) : (
         <div className="relative bg-black w-full overflow-hidden">
           {/* Hero Section */}
-          <section className="hero-section relative h-auto md:h-screen w-full overflow-hidden flex flex-col bg-black">
+          <section className="hero-section relative h-[85vh] md:h-screen w-full overflow-hidden flex flex-col bg-black">
             {/* Background Images */}
             <div className="absolute inset-0 z-0">
               <img
@@ -391,7 +391,7 @@ export default function App() {
 
 
             {/* Overlay Content Wrapper */}
-            <div className="relative md:absolute md:inset-0 z-10 flex flex-col pb-20 md:pb-0">
+            <div className="relative md:absolute md:inset-0 z-10 flex flex-col pb-20 md:pb-0 h-full">
               <nav className="relative z-20 flex justify-between items-center p-6 md:p-12">
                 <div className="flex flex-col">
                   <a href="#/" className="inline-block cursor-pointer">
@@ -401,8 +401,8 @@ export default function App() {
                 {renderMenuButton()}
               </nav>
 
-              <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-start md:justify-center p-6 md:p-8 lg:p-10 text-white pt-10 md:pt-0">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 items-center lg:items-end h-full">
+              <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-end md:justify-center p-6 md:p-8 lg:p-10 text-white pt-10 md:pt-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 items-end h-full mt-12">
                   <div className="hero-content-left lg:col-span-7 mb-10 lg:mb-0 max-w-[70%] md:max-w-none">
                     <h2 className="text-[9px] md:text-base font-display font-semibold tracking-[0.05em] md:tracking-[0.3em] text-gray-300 uppercase mb-6 md:mb-8 whitespace-nowrap">
                       Precision Diagnostics Powered By
@@ -415,7 +415,7 @@ export default function App() {
                       <span className="block">AI Diagnostics</span>
                     </h3>
                   </div>
-                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-[70%] md:max-w-sm mt-32 md:mt-0">
+                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-[70%] md:max-w-sm mt-12 md:mt-0">
                     <p className="text-base md:text-lg text-gray-300 font-normal md:font-semibold leading-relaxed pb-12 md:pb-0">
                       Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
                     </p>
