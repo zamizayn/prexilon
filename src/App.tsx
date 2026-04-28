@@ -403,18 +403,20 @@ export default function App() {
 
               <div className="hero-content-fade relative z-10 flex-1 flex flex-col justify-start md:justify-center p-6 md:p-8 lg:p-10 text-white pt-10 md:pt-0">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 items-center lg:items-end h-full">
-                  <div className="hero-content-left lg:col-span-7 mb-6 lg:mb-0">
-                    <h2 className="text-sm md:text-base font-display font-semibold tracking-[0.3em] text-gray-300 uppercase mb-6 md:mb-8">
+                  <div className="hero-content-left lg:col-span-7 mb-10 lg:mb-0 max-w-[70%] md:max-w-none">
+                    <h2 className="text-[9px] md:text-base font-display font-semibold tracking-[0.05em] md:tracking-[0.3em] text-gray-300 uppercase mb-6 md:mb-8 whitespace-nowrap">
                       Precision Diagnostics Powered By
                     </h2>
-                    <h3 className="text-hero-main font-display leading-[1.1] tracking-tight uppercase text-white">
+                    <h3 className="text-[22px] md:text-hero-main font-display leading-[1.1] tracking-tight uppercase text-white">
                       <span className="block">Next-Generation</span>
-                      <span className="block py-1 -my-1 bg-gradient-to-r from-teal-100 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span>
-                      <span className="block">And AI Diagnostics</span>
+                      <span className="block py-1 -my-1">
+                        <span className="bg-gradient-to-r from-teal-100 to-teal-200 bg-clip-text text-transparent">Point-Of-Care</span> And
+                      </span>
+                      <span className="block">AI Diagnostics</span>
                     </h3>
                   </div>
-                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-sm">
-                    <p className="text-lg text-gray-300 font-semibold leading-relaxed pb-12 md:pb-0">
+                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-[70%] md:max-w-sm">
+                    <p className="text-sm md:text-lg text-gray-300 font-normal md:font-semibold leading-relaxed pb-12 md:pb-0">
                       Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
                     </p>
                   </div>
