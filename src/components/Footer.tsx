@@ -43,7 +43,7 @@ const Footer: React.FC<FooterProps> = ({
     <>
       {/* CTA Section */}
       {showCta && (
-        <section className="relative z-10 h-[60vh] w-full overflow-hidden flex items-center justify-center">
+        <section className="relative z-10 h-[60vh] w-full overflow-hidden flex items-center justify-center bg-[#121212]">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
               src={contactBg}

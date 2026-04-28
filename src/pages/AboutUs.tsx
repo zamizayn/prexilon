@@ -486,39 +486,42 @@ const AboutUs: React.FC<AboutUsProps> = ({ logo, renderMenuButton }) => {
               </div>
 
               {/* Right: Content */}
-              <div className="p-8 md:p-12 flex flex-col gap-y-6 md:gap-y-8 justify-start">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-2.5 h-2.5 bg-[#26a69a]" />
-                    <span className="text-[11px] font-display font-semibold tracking-[0.2em] uppercase text-black">
-                      Projects
+              <div className="p-6 md:p-8 flex flex-col justify-between h-full">
+                {/* Block 1: Header & Logo */}
+                <div className="flex flex-col gap-y-4 md:gap-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2.5 h-2.5 bg-[#26a69a]" />
+                      <span className="text-[11px] font-display font-semibold tracking-[0.2em] uppercase text-black">
+                        Projects
+                      </span>
+                    </div>
+                    <span className="text-xs text-black/70 font-normal">
+                      February 13 2026
                     </span>
                   </div>
-                  <span className="text-xs text-black/70 font-normal">
-                    February 13 2026
-                  </span>
+
+                  <div className="w-[80px] h-[80px] md:w-[200px] md:h-[200px] flex items-center justify-start">
+                    <img
+                      src={iitkLogo}
+                      width={200}
+                      height={200}
+                      alt="Indian Institute of Information Technology Kottayam"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
 
-                {/* Large Spacer to match design */}
-                <div className="h-6 md:h-10" />
+                {/* Block 2: Title & Text */}
+                <div className="flex flex-col gap-y-4">
+                  <h3 className="text-2xl md:text-[32px] font-display font-bold text-black leading-tight">
+                    AI-Powered Healthcare Innovations with IIITK
+                  </h3>
 
-                <div className="w-[80px] h-[80px] md:w-[200px] md:h-[200px] flex items-center justify-start">
-                  <img
-                    src={iitkLogo}
-                    width={200}
-                    height={200}
-                    alt="Indian Institute of Information Technology Kottayam"
-                    className="w-full h-full object-contain"
-                  />
+                  <p className="text-sm md:text-[15px] text-black/80 font-normal leading-relaxed text-justify">
+                    In collaboration with Indian Institute of Information Technology, Kottayam (IIIT K), we develop handheld screening devices powered by validated AI algorithms. Our solutions include retinal scanning technology for early detection of neurodegenerative diseases like dementia, enabling scalable, precise, and accessible healthcare diagnostics.
+                  </p>
                 </div>
-
-                <h3 className="text-2xl md:text-[32px] font-display font-bold text-black leading-tight">
-                  AI-Powered Healthcare Innovations with IIITK
-                </h3>
-
-                <p className="text-sm md:text-[15px] text-black/80 font-normal leading-relaxed text-justify">
-                  In collaboration with Indian Institute of Information Technology, Kottayam (IIIT K), we develop handheld screening devices powered by validated AI algorithms. Our solutions include retinal scanning technology for early detection of neurodegenerative diseases like dementia, enabling scalable, precise, and accessible healthcare diagnostics.
-                </p>
               </div>
             </div>
           </div>
