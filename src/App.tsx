@@ -415,8 +415,8 @@ export default function App() {
                       <span className="block">AI Diagnostics</span>
                     </h3>
                   </div>
-                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-[70%] md:max-w-sm">
-                    <p className="text-sm md:text-lg text-gray-300 font-normal md:font-semibold leading-relaxed pb-12 md:pb-0">
+                  <div className="hero-content-right lg:col-span-4 lg:ml-auto max-w-[70%] md:max-w-sm mt-32 md:mt-0">
+                    <p className="text-base md:text-lg text-gray-300 font-normal md:font-semibold leading-relaxed pb-12 md:pb-0">
                       Building rapid, scalable diagnostic platforms across molecular testing and AI-enabled healthcare.
                     </p>
                   </div>
