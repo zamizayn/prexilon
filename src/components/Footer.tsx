@@ -163,8 +163,8 @@ const Footer: React.FC<FooterProps> = ({
         {/* Bottom Bar */}
         <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row gap-6 items-center">
           <div className="flex items-center gap-8">
-            <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Terms of Service</a>
+            {/* <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Privacy Policy</a>
+            <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Terms of Service</a> */}
           </div>
           <div className="md:ml-auto text-gray-500 text-[10px] uppercase tracking-widest">
             © 2026 PREXILON. All rights reserved.
