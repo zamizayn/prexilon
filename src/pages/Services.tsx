@@ -108,7 +108,7 @@ const Services: React.FC<ServicesProps> = ({ logo, renderMenuButton }) => {
 
         <div className="mt-32">
           <span className="text-md font-display font-light tracking-[0.1em] uppercase text-white block mb-2">
-            Services
+            INNOVATION PLATFORMS
           </span>
           <h1 className="text-3xl md:text-5xl lg:text-[5rem] font-display font-light leading-[1.05] tracking-tight text-white uppercase max-w-7xl md:pb-10">
             Advanced <br />
